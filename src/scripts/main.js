@@ -89,23 +89,46 @@
     // Terminal Animation
     const terminalLines = [
         { type: 'command', text: 'docker-compose up -d --build backend-services' },
-        { type: 'output', text: '[+] Running 4/4' },
-        { type: 'output', text: ' ✔ Container postgres-cluster  Started' },
-        { type: 'output', text: ' ✔ Container redis-cache       Started' },
-        { type: 'output', text: ' ✔ Container celery-workers    Started' },
-        { type: 'output', text: ' ✔ Container fastapi-gateway   Started' },
-        { type: 'command', text: 'uvicorn fingrasp.main:app --workers 4' },
-        { type: 'output', text: '[SYS] Booting FastAPI async engine...' },
+        { type: 'output', text: '[+] Running 6/6' },
+        { type: 'output', text: ' ✔ Container postgres-cluster    Started' },
+        { type: 'output', text: ' ✔ Container redis-cache         Started' },
+        { type: 'output', text: ' ✔ Container rabbitmq-broker     Started' },
+        { type: 'output', text: ' ✔ Container celery-workers      Started' },
+        { type: 'output', text: ' ✔ Container prometheus-monitor  Started' },
+        { type: 'output', text: ' ✔ Container fastapi-gateway     Started' },
+        { type: 'command', text: 'alembic upgrade head' },
+        { type: 'output', text: 'INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.' },
+        { type: 'output', text: 'INFO  [alembic.runtime.migration] Will assume transactional DDL.' },
+        { type: 'output', text: 'INFO  [alembic.runtime.migration] Running upgrade e3f12b -> f42a91, added_user_auth' },
+        { type: 'output', text: 'INFO  [alembic.runtime.migration] Running upgrade f42a91 -> d81c4e, index_product_prices' },
+        { type: 'command', text: 'uvicorn fingrasp.main:app --host 0.0.0.0 --port 8000 --workers 4' },
+        { type: 'output', text: '[SYS] Booting FastAPI async engine (version 0.109.0)...' },
+        { type: 'output', text: '[SYS] Loading security middleware: OAuth2, Fingerprint-Shield' },
         { type: 'output', text: '[SYS] REST & WebSocket gateways mounted securely' },
-        { type: 'command', text: 'python scraper_bot.py --stealth --target all' },
-        { type: 'output', text: '[BOT] Init Playwright headless context (Chrome/146)' },
-        { type: 'output', text: '[BOT] Extracting live DOM... syncing with Kafka: Done' },
+        { type: 'output', text: 'INFO:     Started server process [29481]' },
+        { type: 'output', text: 'INFO:     Waiting for application startup.' },
+        { type: 'output', text: 'INFO:     Application startup complete.' },
+        { type: 'command', text: 'python scraper_bot.py --stealth --mode distributed --target store-grid' },
+        { type: 'output', text: '[BOT] Init Playwright headless context (Chrome/146)...' },
+        { type: 'output', text: '[BOT] Spoofing navigator.webdriver and RTC properties' },
+        { type: 'output', text: '[BOT] Proxy rotation: US-EAST-1 residential pool active' },
+        { type: 'output', text: '[BOT] Scrape initiated: target=E-commerce_Grid_v3' },
+        { type: 'output', text: '[BOT] Extracting live DOM... syncing with Kafka stream: Done' },
+        { type: 'command', text: 'celery -A worker_process.tasks status' },
+        { type: 'output', text: ' -> celery@worker_cluster_01: OK' },
+        { type: 'output', text: ' -> celery@worker_cluster_02: OK' },
         { type: 'command', text: 'pytest -v tests/' },
         { type: 'output', text: '[PASS] tests/api/test_rate_limiter.py' },
+        { type: 'output', text: '[PASS] tests/security/test_anti_detection.py' },
         { type: 'output', text: '[PASS] tests/test_whatsapp_monitor.py' },
         { type: 'output', text: '[PASS] tests/test_human_typing_markov.py' },
         { type: 'output', text: '[PASS] tests/test_product_price_tracker.py' },
-        { type: 'output', text: '============ 43 passed in 12.04s ============' }
+        { type: 'output', text: '[PASS] tests/integration/test_kafka_pipeline.py' },
+        { type: 'output', text: '============ 68 passed, 2 skipped in 18.52s ============' },
+        { type: 'command', text: 'tail -n 5 logs/system_health.log' },
+        { type: 'output', text: '2026-04-18 10:22:15 [INFO] Memory usage: 42%' },
+        { type: 'output', text: '2026-04-18 10:22:18 [INFO] Request throughput: 1.2k req/sec' },
+        { type: 'output', text: '2026-04-18 10:22:20 [INFO] All nodes reporting healthy' }
     ];
 
     let lineIndex = 0;
@@ -142,7 +165,13 @@
             }
             div.appendChild(activeCursor);
 
-            terminalBody.scrollTop = terminalBody.scrollHeight;
+            // Only auto-scroll if the user is already at the bottom (or very close to it)
+            const threshold = 60; // pixels
+            const isAtBottom = terminalBody.scrollHeight - terminalBody.scrollTop - terminalBody.clientHeight < threshold;
+
+            if (isAtBottom) {
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
 
             lineIndex++;
             const delay = line.type === 'command' ? 1200 : (Math.random() * 300 + 100);

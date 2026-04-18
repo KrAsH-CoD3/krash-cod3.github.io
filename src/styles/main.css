@@ -467,9 +467,25 @@ body::before {
     font-size: 0.9rem;
     line-height: 1.6;
     height: 300px;
-    overflow: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     position: relative;
     background: var(--bg-secondary);
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) var(--bg-tertiary);
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background-color: var(--accent-primary);
+    border-radius: 10px;
 }
 
 .line {
