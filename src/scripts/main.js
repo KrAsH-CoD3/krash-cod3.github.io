@@ -86,6 +86,72 @@
         setInterval(drawMatrix, 35);
     }
 
+    // Terminal Animation
+    const terminalLines = [
+        { type: 'command', text: 'docker-compose up -d --build backend-services' },
+        { type: 'output', text: '[+] Running 4/4' },
+        { type: 'output', text: ' ✔ Container postgres-cluster  Started' },
+        { type: 'output', text: ' ✔ Container redis-cache       Started' },
+        { type: 'output', text: ' ✔ Container celery-workers    Started' },
+        { type: 'output', text: ' ✔ Container fastapi-gateway   Started' },
+        { type: 'command', text: 'uvicorn fingrasp.main:app --workers 4' },
+        { type: 'output', text: '[SYS] Booting FastAPI async engine...' },
+        { type: 'output', text: '[SYS] REST & WebSocket gateways mounted securely' },
+        { type: 'command', text: 'python scraper_bot.py --stealth --target all' },
+        { type: 'output', text: '[BOT] Init Playwright headless context (Chrome/146)' },
+        { type: 'output', text: '[BOT] Extracting live DOM... syncing with Kafka: Done' },
+        { type: 'command', text: 'pytest -v tests/' },
+        { type: 'output', text: '[PASS] tests/api/test_rate_limiter.py' },
+        { type: 'output', text: '[PASS] tests/test_whatsapp_monitor.py' },
+        { type: 'output', text: '[PASS] tests/test_human_typing_markov.py' },
+        { type: 'output', text: '[PASS] tests/test_product_price_tracker.py' },
+        { type: 'output', text: '============ 43 passed in 12.04s ============' }
+    ];
+
+    let lineIndex = 0;
+    const terminalBody = document.getElementById('aboutTerminalBody');
+
+    if (terminalBody) {
+        function addTerminalLine() {
+            if (lineIndex >= terminalLines.length) {
+                lineIndex = 0;
+                setTimeout(() => {
+                    terminalBody.innerHTML = '';
+                    setTimeout(addTerminalLine, 500);
+                }, 4000);
+                return;
+            }
+
+            const line = terminalLines[lineIndex];
+            const div = document.createElement('div');
+            div.className = 'line';
+            div.style.animationDelay = '0s';
+
+            if (line.type === 'command') {
+                div.innerHTML = `<span class="prompt">~$</span> <span class="command">${line.text}</span>`;
+            } else {
+                div.innerHTML = `<span class="output">${line.text}</span>`;
+            }
+
+            terminalBody.appendChild(div);
+
+            let activeCursor = terminalBody.querySelector('.cursor');
+            if (!activeCursor) {
+                activeCursor = document.createElement('span');
+                activeCursor.className = 'cursor';
+            }
+            div.appendChild(activeCursor);
+
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+
+            lineIndex++;
+            const delay = line.type === 'command' ? 1200 : (Math.random() * 300 + 100);
+            setTimeout(addTerminalLine, delay);
+        }
+
+        setTimeout(addTerminalLine, 1000);
+    }
+
     // Cursor Trail
     const trail = document.querySelector('.cursor-trail');
     const dot = document.querySelector('.cursor-dot');

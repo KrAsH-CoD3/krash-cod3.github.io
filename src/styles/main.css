@@ -418,6 +418,13 @@ body::before {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.3s;
+}
+
+.terminal-window:hover {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
 }
 
 .terminal-header {
@@ -458,23 +465,52 @@ body::before {
     padding: 1.5rem;
     font-family: var(--font-mono);
     font-size: 0.9rem;
-    line-height: 1.8;
+    line-height: 1.6;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-secondary);
 }
 
-.code-keyword {
-    color: #c678dd;
+.line {
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: fadeIn 0.3s forwards;
 }
 
-.code-class {
-    color: #e5c07b;
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.code-function {
-    color: #61afef;
+.prompt {
+    color: var(--accent-primary);
 }
 
-.code-string {
-    color: #98c379;
+.command {
+    color: var(--text-primary);
+}
+
+.output {
+    color: var(--text-secondary);
+    margin-left: 1.5rem;
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 18px;
+    background: var(--accent-primary);
+    animation: cursor 1s infinite;
+    vertical-align: middle;
+}
+
+@keyframes cursor {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
 .skills-grid {
