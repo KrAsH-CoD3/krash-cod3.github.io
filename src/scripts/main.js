@@ -39,11 +39,11 @@
     const typedRoleElement = document.querySelector('.typed-role');
     if (typedRoleElement) {
         const roles = [
-            "Building Scalable APIs",
-            "Designing Async Pipelines",
-            "Bypassing Anti-Bot Systems",
-            "Orchestrating Cloud Workloads",
-            "Crafting Clean Architectures"
+            "Building Scalable Backend Systems",
+            "Defeating Advanced Anti-Bot Protections",
+            "Architecting Distributed Systems",
+            "Fortifying System Security & Integrity",
+            "Optimizing High-Concurrency Performance"
         ];
         
         let roleIndex = 0;
