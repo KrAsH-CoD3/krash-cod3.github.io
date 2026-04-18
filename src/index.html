@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Alewi Samuel - Backend Engineer & Web Automation Specialist">
+    <meta name="description" content="Samuel Alewi - Backend Engineer & Web Automation Specialist">
     <meta name="keywords" content="Python, Backend, FastAPI, Web Automation, Software Engineer">
-    <title>Alewi Samuel | Backend Engineer</title>
+    <title>Samuel Alewi | Backend Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
 </head>
+
 <body>
     <canvas id="matrix-canvas"></canvas>
     <div class="cursor-trail"></div>
@@ -18,35 +22,69 @@
 
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="#" class="nav-logo" aria-label="Home">&lt;AS /&gt;</a>
+            <a href="#" class="nav-logo" aria-label="Home">&lt;SA /&gt;</a>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span class="hamburger"></span>
             </button>
-    <ul class="nav-menu" role="menubar">
-        <li role="none"><a href="#about" class="nav-link" role="menuitem"><span class="nav-number">01.</span> About</a></li>
-        <li role="none"><a href="#skills" class="nav-link" role="menuitem"><span class="nav-number">02.</span> Skills</a></li>
-        <li role="none"><a href="#projects" class="nav-link" role="menuitem"><span class="nav-number">03.</span> Projects</a></li>
-        <li role="none"><a href="#contact" class="nav-link" role="menuitem"><span class="nav-number">04.</span> Contact</a></li>
-    </ul>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#about" class="nav-link" role="menuitem"><span class="nav-number">01.</span>
+                        About</a></li>
+                <li role="none"><a href="#skills" class="nav-link" role="menuitem"><span class="nav-number">02.</span>
+                        Skills</a></li>
+                <li role="none"><a href="#projects" class="nav-link" role="menuitem"><span class="nav-number">03.</span>
+                        Projects</a></li>
+                <li role="none"><a href="#contact" class="nav-link" role="menuitem"><span class="nav-number">04.</span>
+                        Contact</a></li>
+            </ul>
         </div>
     </nav>
 
     <section class="hero" id="hero">
-        <div class="hero-content">
-            <p class="hero-greeting">Hello, I'm</p>
-            <h1 class="hero-title">Alewi Samuel</h1>
-            <h2 class="hero-subtitle">Backend Engineer & <span class="highlight">Web Automation</span> Specialist</h2>
-            <p class="hero-description">
-                I build robust backend systems and automate complex web workflows. 
-                Specializing in Python, FastAPI, and intelligent automation solutions.
-            </p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        <div class="hero-grid">
+            <div class="hero-text">
+                <p class="hero-greeting anim-stagger" style="--i:0">>> hello, world</p>
+                <h1 class="hero-title anim-stagger" style="--i:1" data-text="Samuel Alewi">Samuel Alewi</h1>
+                <h2 class="hero-subtitle anim-stagger" style="--i:2">
+                    <span class="typed-role"></span><span class="typed-cursor">|</span>
+                </h2>
+                <p class="hero-description anim-stagger" style="--i:3">
+                    I architect high-performance backend systems and engineer resilient automation
+                    frameworks — from async API pipelines to stealth browser orchestration.
+                </p>
+                <div class="hero-tech-inline anim-stagger" style="--i:4">
+                    <span class="hero-tech-tag">Python</span>
+                    <span class="hero-tech-tag">FastAPI</span>
+                    <span class="hero-tech-tag">Playwright</span>
+                    <span class="hero-tech-tag">PostgreSQL</span>
+                    <span class="hero-tech-tag">Docker</span>
+                </div>
+                <div class="hero-buttons anim-stagger" style="--i:5">
+                    <a href="#projects" class="btn btn-primary">
+                        <span class="btn-icon">▶</span> Featured Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">Initialize Communication</a>
+                </div>
             </div>
-            <div class="scroll-indicator" aria-hidden="true">
-                <span></span>
+            <div class="hero-image-wrapper anim-stagger" style="--i:2">
+                <div class="hero-image-container">
+                    <div class="hero-image-ring"></div>
+                    <div class="hero-image-ring ring-2"></div>
+                    <div class="hero-image-ring ring-3"></div>
+                    <img src="https://github.com/KrAsH-CoD3.png" alt="Samuel Alewi - Backend Engineer"
+                        class="hero-image" loading="eager">
+                    <div class="hero-image-glow"></div>
+                    <!-- Floating tech orbits -->
+                    <div class="orbit-icon" style="--angle: 0deg; --delay: 0s;">⚡</div>
+                    <div class="orbit-icon" style="--angle: 72deg; --delay: 0.5s;">🐍</div>
+                    <div class="orbit-icon" style="--angle: 144deg; --delay: 1s;">🔒</div>
+                    <div class="orbit-icon" style="--angle: 216deg; --delay: 1.5s;">⚙️</div>
+                    <div class="orbit-icon" style="--angle: 288deg; --delay: 2s;">🗄️</div>
+                </div>
+                <div class="hero-image-dots"></div>
             </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <span></span>
         </div>
     </section>
 
@@ -56,17 +94,17 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a passionate <strong>Backend Engineer</strong> with expertise in building 
-                        scalable server-side applications and automating web-based workflows. 
+                        I'm a passionate <strong>Backend Engineer</strong> with expertise in building
+                        scalable server-side applications and automating web-based workflows.
                         My work focuses on creating efficient, maintainable solutions that solve real-world problems.
                     </p>
                     <p>
-                        With a strong foundation in <strong>Python</strong> and modern backend frameworks 
-                        like <strong>FastAPI</strong>, I develop APIs and services that power applications. 
+                        With a strong foundation in <strong>Python</strong> and modern backend frameworks
+                        like <strong>FastAPI</strong>, I develop APIs and services that power applications.
                         My automation work helps businesses save time by handling repetitive web tasks programmatically.
                     </p>
                     <p>
-                        Currently, I'm focused on research and development projects that push the 
+                        Currently, I'm focused on research and development projects that push the
                         boundaries of what's possible with backend engineering and web automation.
                     </p>
                 </div>
@@ -160,15 +198,24 @@
                         <div class="project-header">
                             <span class="project-folder">Research Project</span>
                             <div class="project-links">
-                                <a href="https://github.com/KrAsH-CoD3" target="_blank" rel="noopener noreferrer" aria-label="View Fingrasp on GitHub">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19"/><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                                <a href="https://github.com/KrAsH-CoD3" target="_blank" rel="noopener noreferrer"
+                                    aria-label="View Fingrasp on GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19" />
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M12 8v4" />
+                                        <path d="M12 16h.01" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>
                         <h3 class="project-title">Fingrasp</h3>
                         <p class="project-description">
-                            A research project built with FastAPI exploring advanced backend patterns and API design. 
-                            Fingrasp demonstrates modern Python backend development practices with a focus on 
+                            A research project built with FastAPI exploring advanced backend patterns and API design.
+                            Fingrasp demonstrates modern Python backend development practices with a focus on
                             performance, scalability, and clean architecture.
                         </p>
                         <ul class="project-features">
@@ -190,14 +237,26 @@
                         <div class="project-header">
                             <span class="project-folder">Web Automation</span>
                             <div class="project-links">
-                                <a href="https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker" target="_blank" rel="noopener noreferrer" aria-label="View WhatsApp Status Checker on GitHub">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19"/><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                                <a href="https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker" target="_blank"
+                                    rel="noopener noreferrer" aria-label="View WhatsApp Status Checker on GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19" />
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M12 8v4" />
+                                        <path d="M12 16h.01" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>
                         <h3 class="project-title">WhatsApp Status Checker</h3>
                         <p class="project-description">
-                            An intelligent web automation tool that continuously views a specific WhatsApp contact's status as soon as it is uploaded, sends you a message about the status type (Image, Video, Text, or Audio) and the time it was viewed, or alternatively always monitors the contact and notifies you at configurable intervals (30min, 1hr, 3hr, 6hr).
+                            An intelligent web automation tool that continuously views a specific WhatsApp contact's
+                            status as soon as it is uploaded, sends you a message about the status type (Image, Video,
+                            Text, or Audio) and the time it was viewed, or alternatively always monitors the contact and
+                            notifies you at configurable intervals (30min, 1hr, 3hr, 6hr).
                         </p>
                         <ul class="project-features">
                             <li>Real-time Status Monitoring</li>
@@ -219,14 +278,25 @@
                         <div class="project-header">
                             <span class="project-folder">Keyboard Simulator</span>
                             <div class="project-links">
-                                <a href="https://github.com/KrAsH-CoD3/HumanTyping" target="_blank" rel="noopener noreferrer" aria-label="View HumanTyping on GitHub">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19"/><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                                <a href="https://github.com/KrAsH-CoD3/HumanTyping" target="_blank"
+                                    rel="noopener noreferrer" aria-label="View HumanTyping on GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19" />
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M12 8v4" />
+                                        <path d="M12 16h.01" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>
                         <h3 class="project-title">HumanTyping</h3>
                         <p class="project-description">
-                            The most realistic keyboard typing simulator based on Markov Chains. Models authentic human behavior (errors, corrections, fatigue, speed variations) for Playwright and Selenium automation. Contributed error correction fixes and modernized packaging.
+                            The most realistic keyboard typing simulator based on Markov Chains. Models authentic human
+                            behavior (errors, corrections, fatigue, speed variations) for Playwright and Selenium
+                            automation. Contributed error correction fixes and modernized packaging.
                         </p>
                         <ul class="project-features">
                             <li>Markov Chain Modeling</li>
@@ -248,14 +318,24 @@
                         <div class="project-header">
                             <span class="project-folder">Browser Tools</span>
                             <div class="project-links">
-                                <a href="https://github.com/KrAsH-CoD3/browserforge" target="_blank" rel="noopener noreferrer" aria-label="View browserforge on GitHub">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19"/><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                                <a href="https://github.com/KrAsH-CoD3/browserforge" target="_blank"
+                                    rel="noopener noreferrer" aria-label="View browserforge on GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19" />
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M12 8v4" />
+                                        <path d="M12 16h.01" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>
                         <h3 class="project-title">browserforge</h3>
                         <p class="project-description">
-                            Intelligent browser header & fingerprint generator. Forked and enhanced version that generates realistic browser fingerprints for web automation and testing.
+                            Intelligent browser header & fingerprint generator. Forked and enhanced version that
+                            generates realistic browser fingerprints for web automation and testing.
                         </p>
                         <ul class="project-features">
                             <li>Browser Fingerprinting</li>
@@ -277,14 +357,25 @@
                         <div class="project-header">
                             <span class="project-folder">Additional Projects</span>
                             <div class="project-links">
-                                <a href="https://github.com/KrAsH-CoD3" target="_blank" rel="noopener noreferrer" aria-label="View all projects on GitHub">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19"/><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                                <a href="https://github.com/KrAsH-CoD3" target="_blank" rel="noopener noreferrer"
+                                    aria-label="View all projects on GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19" />
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M12 8v4" />
+                                        <path d="M12 16h.01" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>
                         <h3 class="project-title">Additional Projects</h3>
                         <p class="project-description">
-                            Explore my GitHub for more projects including: Betking-VF-Autobet (virtual football betting automation), Font-Detective (font fingerprint discovery), HumanScroll, SandboxBridge (JS sandbox), Flet-Weather-App, AI-VM virtual assistant, and News-Summary news scraper.
+                            Explore my GitHub for more projects including: Betking-VF-Autobet (virtual football betting
+                            automation), Font-Detective (font fingerprint discovery), HumanScroll, SandboxBridge (JS
+                            sandbox), Flet-Weather-App, AI-VM virtual assistant, and News-Summary news scraper.
                         </p>
                         <div class="project-tech">
                             <span>Python</span>
@@ -293,7 +384,8 @@
                             <span>Web Scraping</span>
                         </div>
                     </div>
-                    <a href="https://github.com/KrAsH-CoD3" class="project-link-overlay" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/KrAsH-CoD3" class="project-link-overlay" target="_blank"
+                        rel="noopener noreferrer">
                         <span class="sr-only">View on GitHub</span>
                     </a>
                 </article>
@@ -308,20 +400,38 @@
             <h2 class="section-title" id="contact-title"><span class="section-number">05.</span> Get In Touch</h2>
             <div class="contact-content">
                 <p class="contact-intro">
-                    I'm currently open to new opportunities and collaborations. Whether you have a 
+                    I'm currently open to new opportunities and collaborations. Whether you have a
                     question, a project idea, or just want to connect, feel free to reach out!
                 </p>
                 <div class="contact-links">
                     <a href="mailto:your.email@example.com" class="contact-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
                         Send Email
                     </a>
-                    <a href="https://github.com/KrAsH-CoD3" class="contact-btn" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19"/><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                    <a href="https://github.com/KrAsH-CoD3" class="contact-btn" target="_blank"
+                        rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94.26c-1.63.73-3.39 1.14-5.22 1.14-1.8 0-3.52-.39-5.06-1.08a3.37 3.37 0 0 0-.94-.26V19" />
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v4" />
+                            <path d="M12 16h.01" />
+                        </svg>
                         GitHub
                     </a>
-                    <a href="https://www.linkedin.com/in/samuel-alewi" class="contact-btn" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    <a href="https://www.linkedin.com/in/samuel-alewi" class="contact-btn" target="_blank"
+                        rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="12" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
                         LinkedIn
                     </a>
                 </div>
@@ -331,10 +441,11 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Alewi Samuel. Built with precision.</p>
+            <p>&copy; 2026 Samuel Alewi. Built with precision.</p>
         </div>
     </footer>
 
     <script src="scripts/main.js"></script>
 </body>
+
 </html>

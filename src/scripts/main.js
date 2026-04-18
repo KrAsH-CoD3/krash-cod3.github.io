@@ -35,6 +35,51 @@
         });
     });
 
+    // Hero Typing Effect
+    const typedRoleElement = document.querySelector('.typed-role');
+    if (typedRoleElement) {
+        const roles = [
+            "Building Scalable APIs",
+            "Designing Async Pipelines",
+            "Bypassing Anti-Bot Systems",
+            "Orchestrating Cloud Workloads",
+            "Crafting Clean Architectures"
+        ];
+        
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingDelay = 100;
+        
+        function typeRole() {
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                typedRoleElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+                typingDelay = 50; // Faster deleting
+            } else {
+                typedRoleElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+                typingDelay = 100; // Normal typing speed
+            }
+            
+            if (!isDeleting && charIndex === currentRole.length) {
+                isDeleting = true;
+                typingDelay = 2000; // Pause at the end of typing
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typingDelay = 500; // Pause before typing new word
+            }
+            
+            setTimeout(typeRole, typingDelay);
+        }
+        
+        // Start typing effect after initial delay
+        setTimeout(typeRole, 1500); 
+    }
+
     // Matrix Rain Effect
     const canvas = document.getElementById('matrix-canvas');
     if (canvas) {
