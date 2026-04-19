@@ -63,7 +63,8 @@
             "Defeating Advanced Anti-Bot Protections",
             "Architecting Distributed Systems",
             "Fortifying System Security & Integrity",
-            "Optimizing High-Concurrency Performance"
+            "Optimizing High-Concurrency Performance",
+            "Open Source Engineer"
         ];
         
         let roleIndex = 0;
