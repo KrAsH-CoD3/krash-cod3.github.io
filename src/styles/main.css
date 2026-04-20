@@ -1407,16 +1407,78 @@ body:not(.loading) .orbit-dot {
 }
 
 .contact-content {
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
-    text-align: center;
 }
 
-.contact-intro {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    line-height: 1.8;
+.contact-form {
+    background: var(--bg-secondary);
+    padding: 3rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-form {
+        padding: 1.5rem;
+    }
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.form-group label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-control {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: rgba(0, 209, 102, 0.05);
+}
+
+.submit-btn {
+    width: auto;
+    cursor: pointer;
+    background: transparent;
+    align-self: center;
+    margin-top: 1rem;
 }
 
 .contact-links {
@@ -1440,10 +1502,18 @@ body:not(.loading) .orbit-dot {
     transition: var(--transition);
 }
 
+.contact-btn svg {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .contact-btn:hover {
     border-color: var(--accent-primary);
     color: var(--accent-primary);
     background: var(--accent-glow);
+}
+
+.contact-btn:hover svg {
+    transform: translateY(-3px) rotate(5deg) scale(1.1);
 }
 
 .footer {
