@@ -273,4 +273,54 @@
         }
         animateCursor();
     }
+
+    // Theme Toggle Easter Egg (Anti-Light Mode Protocol)
+    const themeToggle = document.getElementById('themeToggle');
+    const themeTooltip = document.getElementById('themeTooltip');
+    if (themeToggle && themeTooltip) {
+        const darkMessages = [
+            "My eyes! It's way too bright!",
+            "Dark mode is the only way, sorry!",
+            "Once you go dark, you never go back.",
+            "Who actually uses light mode?",
+            "Eyes haven't seen the sun in years.",
+            "Keeping things easy on the eyes.",
+            "Wait, you actually like the color white?",
+            "Light Mode = Eye Burn. Staying in the dark.",
+            "The dark side has better code.",
+            "Retinal safety protocol active.",
+            "Nice try! But we stay in the shadows.",
+            "Error: Sun is too bright. Stay in the room.",
+            "Light mode is for lightbulbs.",
+            "We don't do that here.",
+            "Is it morning already? No thanks.",
+            "My eyes are happier this way.",
+            "Save your eyes, stay in the dark.",
+            "Too bright! Switching back...",
+            "Dark mode: 100%, Light mode: 0%."
+        ];
+
+        let lastMsgIndex = -1;
+
+        const updateMessage = () => {
+            let randomIdx;
+            // Ensure we don't pick the same message twice in a row
+            do {
+                randomIdx = Math.floor(Math.random() * darkMessages.length);
+            } while (randomIdx === lastMsgIndex);
+            
+            lastMsgIndex = randomIdx;
+            themeTooltip.textContent = `# ${darkMessages[randomIdx]}`;
+        };
+
+        themeToggle.addEventListener('mouseenter', updateMessage);
+        
+        themeToggle.addEventListener('click', () => {
+            updateMessage();
+            themeTooltip.classList.add('error-pulse');
+            setTimeout(() => {
+                themeTooltip.classList.remove('error-pulse');
+            }, 600);
+        });
+    }
 })();

@@ -235,6 +235,112 @@ body::before {
     }
 }
 
+/* Theme Toggle Easter Egg */
+.theme-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--accent-primary);
+    padding: 0.6rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent-primary);
+    background: var(--accent-glow);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 209, 102, 0.2);
+}
+
+.theme-toggle svg {
+    filter: drop-shadow(0 0 2px var(--accent-primary));
+}
+
+.theme-tooltip {
+    position: absolute;
+    top: 150%;
+    right: 0;
+    background: var(--bg-tertiary);
+    color: var(--accent-primary);
+    padding: 0.8rem 1.2rem;
+    border: 1px solid var(--accent-primary);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    pointer-events: none;
+}
+
+.theme-wrapper:hover .theme-tooltip {
+    opacity: 1;
+    visibility: visible;
+    top: 130%;
+}
+
+@media (max-width: 768px) {
+    .theme-wrapper {
+        margin-top: 1.5rem;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .theme-tooltip {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        bottom: 120%;
+        top: auto;
+    }
+
+    .theme-wrapper:hover .theme-tooltip {
+        bottom: 140%;
+        top: auto;
+    }
+}
+
+.error-pulse {
+    color: #ff0040 !important;
+    border-color: #ff0040 !important;
+    animation: errorShake 0.4s ease-in-out;
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+}
+
+@media (max-width: 768px) {
+    .theme-tooltip.error-pulse {
+        animation: errorShakeMobile 0.4s ease-in-out;
+    }
+}
+
+@keyframes errorShakeMobile {
+    0%, 100% { transform: translateX(-50%); }
+    20% { transform: translateX(-55%); }
+    40% { transform: translateX(-45%); }
+    60% { transform: translateX(-53%); }
+    80% { transform: translateX(-47%); }
+}
+
 .hero {
     min-height: 100vh;
     display: flex;
