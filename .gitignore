@@ -1,3 +1,11 @@
+# Ignore ALL hidden files/folders by default
+.*
+
+# Explicitly allow specific hidden files/folders to be tracked
+!.gitignore
+!.gitattributes
+!.env.example
+
 # Python-generated files
 __pycache__/
 *.py[oc]
@@ -6,25 +14,4 @@ dist/
 wheels/
 *.egg-info
 
-# Virtual environments
-.venv
 
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment
-.env
-.env.local
-
-# Logs
-*.log
-
-# Project specific
-.claude/
-.kilocode/
-.kilo/

@@ -1283,6 +1283,14 @@ body:not(.loading) .orbit-dot {
     letter-spacing: 0.5px;
 }
 
+.status-tag.stats {
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
+    font-size: 0.75rem;
+    padding: 3px 8px;
+}
+
 .project-links {
     display: flex;
     gap: 0.8rem;
