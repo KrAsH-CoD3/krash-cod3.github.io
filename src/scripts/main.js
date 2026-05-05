@@ -479,4 +479,66 @@
             }, 600);
         });
     }
+
+    // Contact Form Handler
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+
+    if (contactForm && formStatus && submitBtn && btnText) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // UI Feedback: Loading State
+            submitBtn.classList.add('loading');
+            const originalText = btnText.textContent;
+            btnText.textContent = ">> SENDING...";
+            formStatus.className = 'status-message';
+            formStatus.textContent = "";
+
+            const formData = new FormData(contactForm);
+            
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success State
+                    formStatus.textContent = ">> SUCCESS: MESSAGE TRANSMITTED THROUGH SECURE CHANNEL.";
+                    formStatus.classList.add('success');
+                    contactForm.reset();
+                    btnText.textContent = ">> TRANSMITTED";
+                    
+                    // Reset button after 5 seconds
+                    setTimeout(() => {
+                        btnText.textContent = originalText;
+                        submitBtn.classList.remove('loading');
+                        formStatus.classList.remove('success');
+                        formStatus.style.display = 'none';
+                    }, 5000);
+                } else {
+                    const data = await response.json();
+                    if (Object.hasOwn(data, 'errors')) {
+                        formStatus.textContent = ">> ERROR: " + data.errors.map(error => error.message).join(", ");
+                    } else {
+                        formStatus.textContent = ">> ERROR: TRANSMISSION FAILED. PACKET LOSS DETECTED.";
+                    }
+                    formStatus.classList.add('error');
+                    btnText.textContent = originalText;
+                    submitBtn.classList.remove('loading');
+                }
+            } catch (error) {
+                formStatus.textContent = ">> ERROR: CONNECTION INTERRUPTED. CHECK YOUR UPLINK.";
+                formStatus.classList.add('error');
+                btnText.textContent = originalText;
+                submitBtn.classList.remove('loading');
+            }
+        });
+    }
 })();

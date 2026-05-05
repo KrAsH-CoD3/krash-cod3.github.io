@@ -635,7 +635,7 @@
         <div class="container">
             <h2 class="section-title" id="contact-title"><span class="hacker-trigger">Contact</span></h2>
             <div class="contact-content">
-                <form class="contact-form" action="#" method="POST">
+                <form id="contactForm" class="contact-form" action="https://formspree.io/f/mkoyboky" method="POST">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Full Name</label>
@@ -658,14 +658,15 @@
                         <textarea id="message" name="message" class="form-control" rows="5"
                             placeholder="Enter your message..." required></textarea>
                     </div>
-                    <button type="submit" class="contact-btn submit-btn">
+                    <button type="submit" id="submitBtn" class="contact-btn submit-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="22" y1="2" x2="11" y2="13"></line>
                             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                         </svg>
-                        Send Message
+                        <span class="btn-text">Send Message</span>
                     </button>
+                    <div id="formStatus" class="status-message"></div>
                 </form>
 
                 <div class="contact-links">
