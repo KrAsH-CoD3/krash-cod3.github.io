@@ -1921,6 +1921,24 @@ body:not(.loading) .hero-profile-wrapper {
     background: rgba(0, 209, 102, 0.1);
     color: var(--accent-primary);
     border-color: var(--accent-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.status-message.success::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 209, 102, 0.2), transparent);
+    animation: scanLine 2s linear infinite;
+}
+
+@keyframes scanLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
 .status-message.error {
@@ -1932,15 +1950,51 @@ body:not(.loading) .hero-profile-wrapper {
 
 .contact-btn.loading {
     pointer-events: none;
-    opacity: 0.7;
-    filter: grayscale(1);
+    opacity: 0.9;
+    background: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+    position: relative;
+    overflow: hidden;
 }
 
-.contact-btn.loading svg {
-    animation: spin 1s linear infinite;
+.contact-btn.loading .btn-text {
+    animation: textPulse 1s ease-in-out infinite alternate;
 }
 
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+@keyframes textPulse {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* Transmitting Scanner Effect */
+.contact-btn.loading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent-primary);
+    animation: transmitProgress 2.5s ease-in-out infinite;
+}
+
+@keyframes transmitProgress {
+    0% { width: 0%; left: 0; }
+    40% { width: 70%; left: 0; }
+    60% { width: 30%; left: 70%; }
+    100% { width: 0%; left: 100%; }
+}
+
+.success-icon-wrapper {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+    animation: iconGlitch 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes iconGlitch {
+    0% { transform: scale(0) rotate(-45deg); filter: hue-rotate(90deg) blur(5px); }
+    70% { transform: scale(1.2) rotate(10deg); filter: hue-rotate(-45deg) blur(0px); }
+    100% { transform: scale(1) rotate(0deg); }
 }

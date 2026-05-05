@@ -490,15 +490,19 @@
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // UI Feedback: Loading State
+            // UI Feedback: Loading State (Scanner Effect)
             submitBtn.classList.add('loading');
             const originalText = btnText.textContent;
             btnText.textContent = ">> SENDING...";
             formStatus.className = 'status-message';
-            formStatus.textContent = "";
+            formStatus.style.display = 'none';
+            formStatus.innerHTML = "";
 
             const formData = new FormData(contactForm);
             
+            // Slight delay for smooth transitions
+            await new Promise(resolve => setTimeout(resolve, 800));
+
             try {
                 const response = await fetch(contactForm.action, {
                     method: 'POST',
@@ -509,11 +513,21 @@
                 });
 
                 if (response.ok) {
-                    // Success State
-                    formStatus.textContent = ">> SUCCESS: MESSAGE TRANSMITTED THROUGH SECURE CHANNEL.";
+                    // Success State: Plain English
+                    const successIcon = `
+                        <span class="success-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                <polyline points="9 11 12 14 15 9"></polyline>
+                            </svg>
+                        </span>
+                    `;
+                    
+                    formStatus.innerHTML = `${successIcon} >> MESSAGE SENT SUCCESSFULLY.`;
+                    formStatus.style.display = 'block';
                     formStatus.classList.add('success');
                     contactForm.reset();
-                    btnText.textContent = ">> TRANSMITTED";
+                    btnText.textContent = ">> SENT";
                     
                     // Reset button after 5 seconds
                     setTimeout(() => {
@@ -527,14 +541,16 @@
                     if (Object.hasOwn(data, 'errors')) {
                         formStatus.textContent = ">> ERROR: " + data.errors.map(error => error.message).join(", ");
                     } else {
-                        formStatus.textContent = ">> ERROR: TRANSMISSION FAILED. PACKET LOSS DETECTED.";
+                        formStatus.textContent = ">> ERROR: FAILED TO SEND. PLEASE TRY AGAIN LATER.";
                     }
+                    formStatus.style.display = 'block';
                     formStatus.classList.add('error');
                     btnText.textContent = originalText;
                     submitBtn.classList.remove('loading');
                 }
             } catch (error) {
-                formStatus.textContent = ">> ERROR: CONNECTION INTERRUPTED. CHECK YOUR UPLINK.";
+                formStatus.textContent = ">> ERROR: CONNECTION FAILED. PLEASE CHECK YOUR INTERNET.";
+                formStatus.style.display = 'block';
                 formStatus.classList.add('error');
                 btnText.textContent = originalText;
                 submitBtn.classList.remove('loading');
