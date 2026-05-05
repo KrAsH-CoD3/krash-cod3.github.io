@@ -55,6 +55,163 @@
         });
     });
 
+    // Hacker Text Decipher Effect
+    class HackerText {
+        constructor(el) {
+            this.el = el;
+            this.originalText = el.innerText;
+            this.chars = '!<>-_\\/[]{}—=+*^?#________';
+            this.update = this.update.bind(this);
+        }
+
+        setText(newText) {
+            const oldText = this.el.innerText;
+            const length = Math.max(oldText.length, newText.length);
+            const promise = new Promise((resolve) => (this.resolve = resolve));
+            this.queue = [];
+            for (let i = 0; i < length; i++) {
+                const from = oldText[i] || '';
+                const to = newText[i] || '';
+                const start = Math.floor(Math.random() * 40);
+                const end = start + Math.floor(Math.random() * 40);
+                this.queue.push({ from, to, start, end });
+            }
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.update();
+            return promise;
+        }
+
+        update() {
+            let output = '';
+            let complete = 0;
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+                let { from, to, start, end, char } = this.queue[i];
+                if (this.frame >= end) {
+                    complete++;
+                    output += to;
+                } else if (this.frame >= start) {
+                    if (!char || Math.random() < 0.28) {
+                        char = this.randomChar();
+                        this.queue[i].char = char;
+                    }
+                    output += `<span class="dud">${char}</span>`;
+                } else {
+                    output += from;
+                }
+            }
+            this.el.innerHTML = output;
+            if (complete === this.queue.length) {
+                this.resolve();
+            } else {
+                this.frameRequest = requestAnimationFrame(this.update);
+                this.frame++;
+            }
+        }
+
+        randomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+    }
+
+    // Dynamic Glitch Effect
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        const hacker = new HackerText(heroTitle);
+        let isGlitching = false;
+
+        function triggerGlitchBurst() {
+            if (isGlitching) return;
+            isGlitching = true;
+            
+            heroTitle.classList.add('glitch-active');
+            
+            // Randomly trigger text deciphering
+            if (Math.random() > 0.6) {
+                hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
+            }
+            
+            setTimeout(() => {
+                heroTitle.classList.remove('glitch-active');
+                isGlitching = false;
+            }, 300 + Math.random() * 400);
+        }
+        
+        // Random glitch bursts
+        function scheduleGlitch() {
+            const delay = 4000 + Math.random() * 6000;
+            setTimeout(() => {
+                if (Math.random() > 0.3) triggerGlitchBurst();
+                scheduleGlitch();
+            }, delay);
+        }
+        
+        // Initial effect
+        setTimeout(() => {
+            hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
+        }, 1200);
+
+        setTimeout(scheduleGlitch, 3000);
+        
+        // Mouse triggers
+        let lastGlitch = 0;
+        document.addEventListener('mousemove', () => {
+            const now = Date.now();
+            if (Math.random() > 0.95 && now - lastGlitch > 2000) {
+                triggerGlitchBurst();
+                lastGlitch = now;
+            }
+        });
+    }
+
+    // Section Titles Hacker Effect
+    const sectionTitles = document.querySelectorAll('.section-title');
+    if (sectionTitles.length > 0) {
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const trigger = entry.target.querySelector('.hacker-trigger');
+                    if (trigger) {
+                        const hacker = new HackerText(trigger);
+                        hacker.setText(trigger.innerText);
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        sectionTitles.forEach(title => observer.observe(title));
+    }
+
+    // Global Random Glitch Bursts
+    const scanlines = document.querySelector('.scanlines');
+    if (scanlines) {
+        function triggerGlobalGlitch() {
+            // Apply intense glitch
+            scanlines.classList.add('glitch-intense');
+            document.body.classList.add('global-glitch-active');
+            
+            // Short burst duration - slightly longer for noticeability
+            const duration = 200 + Math.random() * 400;
+            
+            setTimeout(() => {
+                scanlines.classList.remove('glitch-intense');
+                document.body.classList.remove('global-glitch-active');
+                
+                // Schedule next potential burst (more frequent)
+                const nextBurst = 6000 + Math.random() * 12000;
+                setTimeout(triggerGlobalGlitch, nextBurst);
+            }, duration);
+        }
+        
+        // Start the random cycle
+        setTimeout(triggerGlobalGlitch, 5000);
+    }
+
     // Hero Typing Effect
     const typedRoleElement = document.querySelector('.typed-role');
     if (typedRoleElement) {

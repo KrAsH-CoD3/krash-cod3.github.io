@@ -30,16 +30,11 @@
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="#about" class="nav-link" role="menuitem"><span class="nav-number">01.</span>
-                        About</a></li>
-                <li role="none"><a href="#skills" class="nav-link" role="menuitem"><span class="nav-number">02.</span>
-                        Skills</a></li>
-                <li role="none"><a href="#projects" class="nav-link" role="menuitem"><span class="nav-number">03.</span>
-                        Projects</a></li>
-                <li role="none"><a href="#research" class="nav-link" role="menuitem"><span class="nav-number">04.</span>
-                        Contribution & Research</a></li>
-                <li role="none"><a href="#contact" class="nav-link" role="menuitem"><span class="nav-number">05.</span>
-                        Contact</a></li>
+                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
+                <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
+                <li role="none"><a href="#research" class="nav-link" role="menuitem">Contribution & Research</a></li>
+                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
                 <li role="none">
                     <div class="theme-wrapper">
                         <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme (Experimental)">
@@ -99,7 +94,7 @@
 
     <section class="section" id="about" aria-labelledby="about-title">
         <div class="container">
-            <h2 class="section-title" id="about-title"><span class="section-number">01.</span> About Me</h2>
+            <h2 class="section-title" id="about-title"><span class="hacker-trigger">About Me</span></h2>
             <div class="about-content">
                 <div class="about-text">
                     <div class="info-container">
@@ -139,12 +134,11 @@
 
     <section class="section" id="skills" aria-labelledby="skills-title">
         <div class="container">
-            <h2 class="section-title" id="skills-title"><span class="section-number">02.</span>Skills</h2>
+            <h2 class="section-title" id="skills-title"><span class="hacker-trigger">Skills</span></h2>
             <div class="skills-grid">
 
                 <div class="skill-category">
                     <div class="category-header">
-                        <span class="category-code">0x01</span>
                         <h3 class="skill-category-title">Languages</h3>
                     </div>
                     <div class="skill-tags">
@@ -157,7 +151,6 @@
 
                 <div class="skill-category">
                     <div class="category-header">
-                        <span class="category-code">0x02</span>
                         <h3 class="skill-category-title">Frameworks & Libraries</h3>
                     </div>
                     <div class="skill-tags">
@@ -172,7 +165,6 @@
 
                 <div class="skill-category">
                     <div class="category-header">
-                        <span class="category-code">0x03</span>
                         <h3 class="skill-category-title">Automation & Scraping</h3>
                     </div>
                     <div class="skill-tags">
@@ -187,7 +179,6 @@
 
                 <div class="skill-category">
                     <div class="category-header">
-                        <span class="category-code">0x04</span>
                         <h3 class="skill-category-title">Databases</h3>
                     </div>
                     <div class="skill-tags">
@@ -201,7 +192,6 @@
 
                 <div class="skill-category">
                     <div class="category-header">
-                        <span class="category-code">0x05</span>
                         <h3 class="skill-category-title">Infrastructure</h3>
                     </div>
                     <div class="skill-tags">
@@ -217,7 +207,6 @@
 
                 <div class="skill-category">
                     <div class="category-header">
-                        <span class="category-code">0x06</span>
                         <h3 class="skill-category-title">Security</h3>
                     </div>
                     <div class="skill-tags">
@@ -236,14 +225,13 @@
     </section>
     <section class="section" id="projects" aria-labelledby="projects-title">
         <div class="container">
-            <h2 class="section-title" id="projects-title"><span class="section-number">03.</span> Projects</h2>
+            <h2 class="section-title" id="projects-title"><span class="hacker-trigger">Projects</span></h2>
             <div class="projects-grid">
                 <!-- Fingrasp -->
                 <article class="project-card featured">
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
-                                <span class="project-id">0xP1</span>
                                 <span class="project-folder">Fingrasp</span>
                             </div>
                             <div class="project-main-header">
@@ -294,12 +282,23 @@
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
-                                <span class="project-id">0xP2</span>
                                 <span class="project-folder">WhatsAppStatusViewer</span>
                             </div>
                             <div class="project-main-header">
                                 <h3 class="project-title">Status Monitor</h3>
-                                <span class="status-tag stats">★ 21 ·⑂ 71</span>
+                                <span class="status-tag stats">
+    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>
+    21
+    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="6" y1="3" x2="6" y2="15"></line>
+        <circle cx="18" cy="6" r="3"></circle>
+        <circle cx="6" cy="18" r="3"></circle>
+        <path d="M18 9a9 9 0 0 1-9 9"></path>
+    </svg>
+    71
+</span>
                                 <div class="project-links">
                                     <a href="https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker" target="_blank"
                                         rel="noopener noreferrer" aria-label="GitHub">
@@ -333,7 +332,6 @@
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
-                                <span class="project-id">0xP3</span>
                                 <span class="project-folder">Portfolio</span>
                             </div>
                             <div class="project-main-header">
@@ -381,7 +379,6 @@
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
-                                <span class="project-id">0xP4</span>
                                 <span class="project-folder">Betking-VF-Autobet</span>
                             </div>
                             <div class="project-main-header">
@@ -420,9 +417,8 @@
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
-                                <span class="project-id">0xP5</span>
                                 <span class="project-folder">BotasHuman</span>
-                                <span class="status-tag">PRIVATE</span>
+                                <!-- <span class="status-tag">PRIVATE</span> -->
                             </div>
                             <div class="project-main-header">
                                 <h3 class="project-title">BotasHuman</h3>
@@ -471,7 +467,6 @@
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
-                                <span class="project-id">0xP6</span>
                                 <span class="project-folder">TheBotify</span>
                                 <span class="status-tag">PRIVATE</span>
                             </div>
@@ -509,7 +504,6 @@
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
-                                <span class="project-id">0xP7</span>
                                 <span class="project-folder">Plu-Auto-Trading</span>
                             </div>
                             <div class="project-main-header">
@@ -546,8 +540,7 @@
 
     <section class="section" id="research" aria-labelledby="research-title">
         <div class="container">
-            <h2 class="section-title" id="research-title"><span class="section-number">04.</span> Contribution &
-                Research</h2>
+            <h2 class="section-title" id="research-title"><span class="hacker-trigger">Contribution & Research</span></h2>
             <div class="timeline">
                 <!-- HumanTyping Contribution -->
                 <div class="timeline-item">
@@ -640,7 +633,7 @@
 
     <section class="section" id="contact" aria-labelledby="contact-title">
         <div class="container">
-            <h2 class="section-title" id="contact-title"><span class="section-number">05.</span> Contact</h2>
+            <h2 class="section-title" id="contact-title"><span class="hacker-trigger">Contact</span></h2>
             <div class="contact-content">
                 <form class="contact-form" action="#" method="POST">
                     <div class="form-row">
@@ -720,6 +713,19 @@
     </footer>
 
     <script src="src/scripts/main.js"></script>
+
+    <!-- Realistic Glitch Assets -->
+    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+        <filter id="glitch-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.00001" numOctaves="1" result="noise">
+                <animate attributeName="baseFrequency" from="0.00001" to="0.02" dur="15s" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" result="displacement">
+                <animate attributeName="scale" values="0;0;0;10;0;20;0;0" dur="20s" repeatCount="indefinite" />
+            </feDisplacementMap>
+        </filter>
+    </svg>
+    <div class="scanlines" aria-hidden="true"></div>
 </body>
 
 </html>
