@@ -716,14 +716,11 @@
     <script src="src/scripts/main.js"></script>
 
     <!-- Realistic Glitch Assets -->
+    <!-- Glitch filter: static values, JS activates only during glitch bursts -->
     <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
         <filter id="glitch-filter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.00001" numOctaves="1" result="noise">
-                <animate attributeName="baseFrequency" from="0.00001" to="0.02" dur="15s" repeatCount="indefinite" />
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" result="displacement">
-                <animate attributeName="scale" values="0;0;0;10;0;20;0;0" dur="20s" repeatCount="indefinite" />
-            </feDisplacementMap>
+            <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="1" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" result="displacement" />
         </filter>
     </svg>
     <div class="scanlines" aria-hidden="true"></div>

@@ -67,8 +67,8 @@ body::before {
     background-size: 100% 3px, 3px 100%;
     pointer-events: none;
     z-index: 9999;
-    animation: flicker 0.15s infinite;
-    opacity: 0.6;
+    animation: flicker 8s ease-in-out infinite;
+    opacity: 0.55;
 }
 
 .scanlines {
@@ -105,8 +105,7 @@ body::before {
 }
 
 body.global-glitch-active {
-    animation: jitter 0.05s infinite;
-    filter: invert(0.05) contrast(1.1);
+    animation: jitter 0.1s steps(3) 1 forwards;
 }
 
 @keyframes jitter {
@@ -124,13 +123,8 @@ body.global-glitch-active {
 }
 
 @keyframes flicker {
-    0% { opacity: 0.55; }
-    10% { opacity: 0.53; }
-    20% { opacity: 0.55; }
-    30% { opacity: 0.54; }
-    50% { opacity: 0.55; }
-    80% { opacity: 0.54; }
-    100% { opacity: 0.55; }
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 0.52; }
 }
 
 /* Custom Cursor with Trail */

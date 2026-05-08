@@ -153,14 +153,19 @@
 
         setTimeout(scheduleGlitch, 3000);
         
-        // Mouse triggers
+        // Mouse triggers (throttled)
         let lastGlitch = 0;
+        let mouseMoveRAF = null;
         document.addEventListener('mousemove', () => {
-            const now = Date.now();
-            if (Math.random() > 0.95 && now - lastGlitch > 2000) {
-                triggerGlitchBurst();
-                lastGlitch = now;
-            }
+            if (mouseMoveRAF) return;
+            mouseMoveRAF = requestAnimationFrame(() => {
+                mouseMoveRAF = null;
+                const now = Date.now();
+                if (Math.random() > 0.95 && now - lastGlitch > 2000) {
+                    triggerGlitchBurst();
+                    lastGlitch = now;
+                }
+            });
         });
     }
 
@@ -187,30 +192,35 @@
         sectionTitles.forEach(title => observer.observe(title));
     }
 
-    // Global Random Glitch Bursts
-    const scanlines = document.querySelector('.scanlines');
-    if (scanlines) {
-        function triggerGlobalGlitch() {
-            // Apply intense glitch
-            scanlines.classList.add('glitch-intense');
-            document.body.classList.add('global-glitch-active');
+        // Global Random Glitch Bursts
+        const scanlines = document.querySelector('.scanlines');
+        if (scanlines) {
+            let glitchTimerId = null;
             
-            // Short burst duration - slightly longer for noticeability
-            const duration = 200 + Math.random() * 400;
-            
-            setTimeout(() => {
-                scanlines.classList.remove('glitch-intense');
-                document.body.classList.remove('global-glitch-active');
+            function triggerGlobalGlitch() {
+                if (document.hidden) {
+                    // Don't glitch while tab is hidden; reschedule
+                    glitchTimerId = setTimeout(triggerGlobalGlitch, 8000);
+                    return;
+                }
                 
-                // Schedule next potential burst (more frequent)
-                const nextBurst = 6000 + Math.random() * 12000;
-                setTimeout(triggerGlobalGlitch, nextBurst);
-            }, duration);
+                // Apply intense glitch (scanlines only, no body filter)
+                scanlines.classList.add('glitch-intense');
+                document.body.classList.add('global-glitch-active');
+                
+                const duration = 150 + Math.random() * 250;
+                
+                setTimeout(() => {
+                    scanlines.classList.remove('glitch-intense');
+                    document.body.classList.remove('global-glitch-active');
+                    
+                    const nextBurst = 8000 + Math.random() * 15000;
+                    glitchTimerId = setTimeout(triggerGlobalGlitch, nextBurst);
+                }, duration);
+            }
+            
+            glitchTimerId = setTimeout(triggerGlobalGlitch, 5000);
         }
-        
-        // Start the random cycle
-        setTimeout(triggerGlobalGlitch, 5000);
-    }
 
     // Hero Typing Effect
     const typedRoleElement = document.querySelector('.typed-role');
