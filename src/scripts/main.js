@@ -222,7 +222,7 @@
             glitchTimerId = setTimeout(triggerGlobalGlitch, 5000);
         }
 
-    // Hero Typing Effect
+    // Hero Typing Effect (pauses when hero not visible)
     const typedRoleElement = document.querySelector('.typed-role');
     if (typedRoleElement) {
         const roles = [
@@ -237,34 +237,56 @@
         let charIndex = 0;
         let isDeleting = false;
         let typingDelay = 100;
+        let typingTimerId = null;
+        let heroVisible = true;
+        
+        // Pause typing when hero scrolls out of view
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            const typingObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    heroVisible = entry.isIntersecting;
+                    if (heroVisible && !typingTimerId) {
+                        typingTimerId = setTimeout(typeRole, typingDelay);
+                    }
+                });
+            }, { threshold: 0 });
+            typingObserver.observe(heroSection);
+        }
         
         function typeRole() {
+            typingTimerId = null;
+            if (!heroVisible || document.hidden) {
+                // Will be restarted by observer or visibilitychange
+                return;
+            }
+            
             const currentRole = roles[roleIndex];
             
             if (isDeleting) {
                 typedRoleElement.textContent = currentRole.substring(0, charIndex - 1);
                 charIndex--;
-                typingDelay = 50; // Faster deleting
+                typingDelay = 50;
             } else {
                 typedRoleElement.textContent = currentRole.substring(0, charIndex + 1);
                 charIndex++;
-                typingDelay = 100; // Normal typing speed
+                typingDelay = 100;
             }
             
             if (!isDeleting && charIndex === currentRole.length) {
                 isDeleting = true;
-                typingDelay = 2000; // Pause at the end of typing
+                typingDelay = 2000;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 roleIndex = (roleIndex + 1) % roles.length;
-                typingDelay = 500; // Pause before typing new word
+                typingDelay = 500;
             }
             
-            setTimeout(typeRole, typingDelay);
+            typingTimerId = setTimeout(typeRole, typingDelay);
         }
         
         // Start typing effect after reveal has stabilized
-        setTimeout(typeRole, 2000); 
+        typingTimerId = setTimeout(typeRole, 2000); 
     }
 
     // Matrix Rain Effect
@@ -416,31 +438,51 @@
         setTimeout(addTerminalLine, 1000);
     }
 
-    // Cursor Trail
+    // Cursor Trail (optimized: GPU transforms, idle pause)
     const trail = document.querySelector('.cursor-trail');
     const dot = document.querySelector('.cursor-dot');
     if (trail && dot) {
         let mouseX = 0, mouseY = 0;
         let trailX = 0, trailY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+        let cursorAnimating = false;
+        let cursorIdleTimer = null;
+        
+        // Hide on mobile/touch — no cursor trail needed
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            trail.style.display = 'none';
+            dot.style.display = 'none';
+        } else {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                // Use transform for GPU acceleration
+                dot.style.transform = `translate3d(${mouseX - 10}px, ${mouseY - 10}px, 0)`;
+                
+                // Restart cursor animation if idle
+                if (!cursorAnimating) {
+                    cursorAnimating = true;
+                    requestAnimationFrame(animateCursor);
+                }
+                
+                // Auto-pause after 3s idle
+                clearTimeout(cursorIdleTimer);
+                cursorIdleTimer = setTimeout(() => {
+                    cursorAnimating = false;
+                }, 3000);
+            });
             
-            dot.style.left = mouseX - 10 + 'px';
-            dot.style.top = mouseY - 10 + 'px';
-        });
-
-        function animateCursor() {
-            trailX += (mouseX - trailX) * 0.1;
-            trailY += (mouseY - trailY) * 0.1;
-            
-            trail.style.left = trailX - 4 + 'px';
-            trail.style.top = trailY - 4 + 'px';
-            
-            requestAnimationFrame(animateCursor);
+            function animateCursor() {
+                if (!cursorAnimating) return;
+                
+                trailX += (mouseX - trailX) * 0.1;
+                trailY += (mouseY - trailY) * 0.1;
+                
+                trail.style.transform = `translate3d(${trailX - 4}px, ${trailY - 4}px, 0)`;
+                
+                requestAnimationFrame(animateCursor);
+            }
         }
-        animateCursor();
     }
 
     // Theme Toggle Easter Egg (Anti-Light Mode Protocol)
