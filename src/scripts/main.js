@@ -377,100 +377,115 @@
         terminalTimer = setTimeout(addTerminalLine, 1000);
     }
 
-    // Cursor Trail (optimized: GPU transforms, idle pause)
-    const trail = document.querySelector('.cursor-trail');
-    const dot = document.querySelector('.cursor-dot');
-    if (trail && dot) {
-        let mouseX = 0, mouseY = 0;
-        let trailX = 0, trailY = 0;
-        let cursorAnimating = false;
-        let cursorIdleTimer = null;
-        
-        // Hide on mobile/touch — no cursor trail needed
-        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-            trail.style.display = 'none';
-            dot.style.display = 'none';
-        } else {
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                
-                // Use transform for GPU acceleration
-                dot.style.transform = `translate3d(${mouseX - 10}px, ${mouseY - 10}px, 0)`;
-                
-                // Restart cursor animation if idle
-                if (!cursorAnimating) {
-                    cursorAnimating = true;
-                    requestAnimationFrame(animateCursor);
-                }
-                
-                // Auto-pause after 3s idle
-                clearTimeout(cursorIdleTimer);
-                cursorIdleTimer = setTimeout(() => {
-                    cursorAnimating = false;
-                }, 3000);
-            });
-            
-            function animateCursor() {
-                if (!cursorAnimating) return;
-                
-                trailX += (mouseX - trailX) * 0.1;
-                trailY += (mouseY - trailY) * 0.1;
-                
-                trail.style.transform = `translate3d(${trailX - 4}px, ${trailY - 4}px, 0)`;
-                
-                requestAnimationFrame(animateCursor);
+
+
+    // Multi-line terminal typewriter
+    let typewriterTimer = null;
+    function typeLines(el, lines, cb) {
+        if (typewriterTimer) {
+            clearInterval(typewriterTimer);
+            typewriterTimer = null;
+        }
+        el.innerHTML = '';
+        el.classList.add('visible');
+        let lineIdx = 0;
+        let charIdx = 0;
+
+        function typeLine() {
+            if (lineIdx >= lines.length) {
+                if (cb) setTimeout(cb, 3000);
+                return;
+            }
+            const line = lines[lineIdx];
+            // render all lines so far + current line being typed
+            let html = '';
+            for (let i = 0; i < lineIdx; i++) {
+                html += lines[i] + '<br>';
+            }
+            html += line.substring(0, charIdx + 1) + '<span class="terminal-cursor">█</span>';
+            el.innerHTML = html;
+
+            charIdx++;
+            if (charIdx < line.length) {
+                typewriterTimer = setTimeout(typeLine, 20 + Math.random() * 15);
+            } else {
+                // line complete — pause, then next line
+                lineIdx++;
+                charIdx = 0;
+                typewriterTimer = setTimeout(typeLine, 350 + Math.random() * 200);
             }
         }
+
+        typeLine();
     }
+
+    // Terminal scan on page load — hints at easter egg
+    setTimeout(() => {
+        const tt = document.getElementById('themeTooltip');
+        if (tt) {
+            const hex = Array.from({length: 8}, () => Math.floor(Math.random() * 16).toString(16).toUpperCase()).join('');
+            typeLines(tt, [
+                '> unknown entity detected',
+                '> interact? [Y/n] >_'
+            ], () => tt.classList.remove('visible'));
+        }
+    }, 2800);
 
     // Theme Toggle Easter Egg (Anti-Light Mode Protocol)
     const themeToggle = document.getElementById('themeToggle');
     const themeTooltip = document.getElementById('themeTooltip');
     if (themeToggle && themeTooltip) {
         const darkMessages = [
-            "My eyes! It's way too bright!",
-            "Dark mode is the only way, sorry!",
-            "Once you go dark, you never go back.",
-            "Who actually uses light mode?",
-            "Eyes haven't seen the sun in years.",
-            "Keeping things easy on the eyes.",
-            "Wait, you actually like the color white?",
-            "Light Mode = Eye Burn. Staying in the dark.",
-            "The dark side has better code.",
-            "Retinal safety protocol active.",
-            "Nice try! But we stay in the shadows.",
-            "Error: Sun is too bright. Stay in the room.",
-            "Light mode is for lightbulbs.",
-            "We don't do that here.",
-            "Is it morning already? No thanks.",
-            "My eyes are happier this way.",
-            "Save your eyes, stay in the dark.",
-            "Too bright! Switching back...",
-            "Dark mode: 100%, Light mode: 0%."
+            "// Safety Protocol Active",
+            "// My eyes! It's way too bright!",
+            "// Dark mode is the only way, sorry!",
+            "// Once you go dark, you never go back.",
+            "// Who actually uses light mode?",
+            "// Eyes haven't seen the sun in years.",
+            "// Keeping things easy on the eyes.",
+            "// Light Mode = Eye Burn. Staying in the dark.",
+            "// The dark side has better code.",
+            "// Retinal safety protocol active.",
+            "// Nice try! But we stay in the shadows.",
+            "// Error: Sun is too bright. Stay in the room.",
+            "// Light mode is for lightbulbs.",
+            "// We don't do that here.",
+            "// Is it morning already? No thanks.",
+            "// My eyes are happier this way.",
+            "// Save your eyes, stay in the dark.",
+            "// Too bright! Switching back...",
+            "// Dark mode: 100%, Light mode: 0%.",
+            "// Light mode not found. Did you mean: dark?",
+            "// 404: sunlight not available in this region"
         ];
 
         let lastMsgIndex = -1;
 
-        const updateMessage = () => {
+        const getRandomMessage = () => {
             let randomIdx;
-            // Ensure we don't pick the same message twice in a row
             do {
                 randomIdx = Math.floor(Math.random() * darkMessages.length);
             } while (randomIdx === lastMsgIndex);
-            
             lastMsgIndex = randomIdx;
-            themeTooltip.textContent = `# ${darkMessages[randomIdx]}`;
+            return darkMessages[randomIdx];
         };
 
-        themeToggle.addEventListener('mouseenter', updateMessage);
-        
+        themeToggle.addEventListener('mouseenter', () => {
+            themeTooltip.textContent = getRandomMessage();
+        });
+
         themeToggle.addEventListener('click', () => {
-            updateMessage();
-            themeTooltip.classList.add('error-pulse');
-            setTimeout(() => {
-                themeTooltip.classList.remove('error-pulse');
-            }, 600);
+            // Brief icon scramble
+            themeToggle.classList.add('toggle-glitch');
+            setTimeout(() => themeToggle.classList.remove('toggle-glitch'), 400);
+
+            const msg = getRandomMessage();
+            typeLines(themeTooltip, [
+                '> breach detected',
+                msg
+            ], () => {
+                themeTooltip.classList.remove('visible');
+            });
         });
     }
 
@@ -507,7 +522,7 @@
                 });
 
                 if (response.ok) {
-                    // Success State: Plain English
+                    // Success State
                     const successIcon = `
                         <span class="success-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -551,4 +566,124 @@
             }
         });
     }
+
+    // Scroll Progress Indicator
+    const progress = document.getElementById('scrollProgress');
+    if (progress) {
+        window.addEventListener('scroll', () => {
+            const val = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            progress.style.transform = `scaleX(${val})`;
+        }, { passive: true });
+    }
+
+    // Scroll to Top Button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        }, { passive: true });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // GitHub Live Star & Fork Counts
+    const GH_CACHE_KEY = 'gh-stats';
+    const GH_CACHE_TTL = 3600000; // 1 hour
+
+    function getFreshCache() {
+        try {
+            const raw = localStorage.getItem(GH_CACHE_KEY);
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            if (Date.now() - parsed.timestamp < GH_CACHE_TTL) return parsed.data;
+            return null;
+        } catch { return null; }
+    }
+
+    function getStaleCache() {
+        try {
+            const raw = localStorage.getItem(GH_CACHE_KEY);
+            return raw ? JSON.parse(raw).data : null;
+        } catch { return null; }
+    }
+
+    function setCachedStats(data) {
+        try {
+            localStorage.setItem(GH_CACHE_KEY, JSON.stringify({
+                timestamp: Date.now(),
+                data
+            }));
+        } catch {}
+    }
+
+    function applyStats(data) {
+        const badges = document.querySelectorAll('.status-tag.stats');
+        badges.forEach(badge => {
+            const repo = badge.getAttribute('data-repo');
+            const info = data[repo];
+            if (!info) return;
+            const star = badge.querySelector('.star-count');
+            const fork = badge.querySelector('.fork-count');
+            if (star) star.textContent = info.stargazers_count ?? info.stars;
+            if (fork) fork.textContent = info.forks_count ?? info.forks;
+        });
+    }
+
+    async function fetchGitHubStats() {
+        const badges = document.querySelectorAll('.status-tag.stats');
+        if (!badges.length) return;
+
+        // Fresh cache — skip API call entirely
+        const fresh = getFreshCache();
+        if (fresh) {
+            applyStats(fresh);
+            return;
+        }
+
+        // Stale cache — show it while fetching in background
+        const stale = getStaleCache();
+        if (stale) applyStats(stale);
+
+        // Fetch only when cache is missing or expired
+        const repos = [...new Set(Array.from(badges).map(b => b.getAttribute('data-repo')).filter(Boolean))];
+        const results = await Promise.allSettled(
+            repos.map(repo =>
+                fetch(`https://api.github.com/repos/${repo}`)
+                    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            )
+        );
+
+        const data = {};
+        results.forEach((res, i) => {
+            if (res.status === 'fulfilled') data[repos[i]] = res.value;
+        });
+
+        if (Object.keys(data).length) {
+            setCachedStats(data);
+            applyStats(data);
+        }
+    }
+
+    fetchGitHubStats();
+
+    // Scroll-Triggered Fade-In Reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target); // Reveal only once
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.project-card, .skills-category, .research-card, .timeline-item').forEach(el => {
+        el.classList.add('reveal-on-scroll');
+        revealObserver.observe(el);
+    });
 })();
