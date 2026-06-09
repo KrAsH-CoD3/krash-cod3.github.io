@@ -7,21 +7,17 @@
     <meta name="description" content="Samuel Alewi - Backend Engineer & Web Automation Specialist">
     <meta name="keywords" content="Python, Backend, FastAPI, Web Automation, Software Engineer">
     <title>Samuel Alewi | Backend Engineer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="src/styles/main.css">
 </head>
 
 <body class="loading">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Glitch Interference Overlay -->
     <div id="glitchOverlay" class="glitch-overlay"></div>
 
-    <canvas id="matrix-canvas"></canvas>
-    <div class="cursor-trail"></div>
-    <div class="cursor-dot"></div>
+
 
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
@@ -60,7 +56,7 @@
     <section class="hero" id="hero">
         <div class="hero-grid">
             <div class="hero-text">
-                <p class="hero-greeting anim-stagger" style="--i:0">>> hello world, I'm</p>
+                <p class="hero-greeting anim-stagger" style="--i:0">>> Hello world, I'm</p>
                 <h1 class="hero-title anim-stagger" style="--i:1" data-text="Samuel Alewi">Samuel Alewi</h1>
                 <h2 class="hero-subtitle anim-stagger" style="--i:2">
                     <span class="typed-role"></span><span class="typed-cursor">|</span>
@@ -73,16 +69,14 @@
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
                 </div>
             </div>
-            <div class="hero-image-wrapper anim-stagger" style="--i:2">
+            <div class="hero-image-wrapper" style="--i:2">
                 <div class="hero-image-container">
                     <div class="hero-image-ring"></div>
                     <div class="hero-image-ring ring-2"></div>
                     <div class="hero-image-ring ring-3"></div>
-                    <img src="https://github.com/KrAsH-CoD3.png" alt="Samuel Alewi - Backend Engineer"
+                    <img src="src/assets/profile.png" alt="Samuel Alewi - Backend Engineer"
                         class="hero-image" loading="eager">
                     <div class="hero-image-glow"></div>
-                    <!-- Floating orbit dot -->
-                    <div class="orbit-dot" style="--angle: 0deg; --speed: 8s;"></div>
                 </div>
                 <div class="hero-image-dots"></div>
             </div>
@@ -155,25 +149,17 @@
                     </div>
                     <div class="skill-tags">
                         <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Django + DRF</span>
                         <span class="skill-tag">Flask</span>
                         <span class="skill-tag">Celery</span>
                         <span class="skill-tag">SQLAlchemy</span>
                         <span class="skill-tag">Pydantic</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Automation & Scraping</h3>
-                    </div>
-                    <div class="skill-tags">
                         <span class="skill-tag">Playwright</span>
                         <span class="skill-tag">Selenium</span>
                         <span class="skill-tag">Scrapy</span>
                         <span class="skill-tag">BeautifulSoup</span>
-                        <span class="skill-tag">Puppeteer</span>
                         <span class="skill-tag">Scrapling</span>
+
                     </div>
                 </div>
 
@@ -201,7 +187,14 @@
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">GitHub Actions</span>
                         <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Cloudflare</span>
+                        <span class="skill-tag">Google Cloud</span>
+                        <span class="skill-tag">Vercel</span>
+                        <span class="skill-tag">Render</span>
+                        <span class="skill-tag">Railway</span>
+                        <span class="skill-tag">Netlify</span>
                         <span class="skill-tag">Nginx</span>
+                        <span class="skill-tag">HAProxy</span>
                     </div>
                 </div>
 
@@ -228,7 +221,7 @@
             <h2 class="section-title" id="projects-title"><span class="hacker-trigger">Projects</span></h2>
             <div class="projects-grid">
                 <!-- Fingrasp -->
-                <article class="project-card featured">
+                <article class="project-card featured" data-repo="KrAsH-CoD3/Fingrasp">
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
@@ -236,6 +229,19 @@
                             </div>
                             <div class="project-main-header">
                                 <h3 class="project-title">Fingerprint Intelligence</h3>
+                                <span class="status-tag stats" data-repo="KrAsH-CoD3/Fingrasp">
+                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    <span class="star-count">-</span>
+                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <line x1="6" y1="3" x2="6" y2="15"></line>
+                                        <circle cx="18" cy="6" r="3"></circle>
+                                        <circle cx="6" cy="18" r="3"></circle>
+                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                    </svg>
+                                    <span class="fork-count">-</span>
+                                </span>
                                 <div class="project-links">
                                     <a href="https://github.com/KrAsH-CoD3/Fingrasp" target="_blank"
                                         rel="noopener noreferrer" aria-label="GitHub">
@@ -278,7 +284,7 @@
                 </article>
 
                 <!-- WhatsAppStatusViewer -->
-                <article class="project-card featured">
+                <article class="project-card featured" data-repo="KrAsH-CoD3/WhatsApp-Status-Checker">
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
@@ -286,19 +292,19 @@
                             </div>
                             <div class="project-main-header">
                                 <h3 class="project-title">Status Monitor</h3>
-                                <span class="status-tag stats">
-    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-    </svg>
-    21
-    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <line x1="6" y1="3" x2="6" y2="15"></line>
-        <circle cx="18" cy="6" r="3"></circle>
-        <circle cx="6" cy="18" r="3"></circle>
-        <path d="M18 9a9 9 0 0 1-9 9"></path>
-    </svg>
-    71
-</span>
+                                <span class="status-tag stats" data-repo="KrAsH-CoD3/WhatsApp-Status-Checker">
+                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    <span class="star-count">-</span>
+                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <line x1="6" y1="3" x2="6" y2="15"></line>
+                                        <circle cx="18" cy="6" r="3"></circle>
+                                        <circle cx="6" cy="18" r="3"></circle>
+                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                    </svg>
+                                    <span class="fork-count">-</span>
+                                </span>
                                 <div class="project-links">
                                     <a href="https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker" target="_blank"
                                         rel="noopener noreferrer" aria-label="GitHub">
@@ -311,6 +317,13 @@
                                         </svg>
                                         GitHub
                                     </a>
+                                    <span class="cli-tag">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="4 17 10 11 4 5"></polyline>
+                                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                                        </svg>
+                                        CLI Tool
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -327,55 +340,8 @@
                     </div>
                 </article>
 
-                <!-- Portfolio -->
-                <article class="project-card featured">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div class="project-meta">
-                                <span class="project-folder">Portfolio</span>
-                            </div>
-                            <div class="project-main-header">
-                                <h3 class="project-title">This Portfolio</h3>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/Portfolio" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    <a href="https://krash-cod3.github.io/Portfolio" target="_blank" rel="noopener noreferrer"
-                                        aria-label="Live Demo">
-                                        <span class="live-dot" aria-hidden="true"></span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                            <polyline points="15 3 21 3 21 9" />
-                                            <line x1="10" y1="14" x2="21" y2="3" />
-                                        </svg>
-                                        Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            This current portfolio.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                    </div>
-                </article>
-
                 <!-- Betking-VF-Autobet -->
-                <article class="project-card featured">
+                <article class="project-card featured" data-repo="KrAsH-CoD3/Betking-VF-Autobet">
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
@@ -383,6 +349,19 @@
                             </div>
                             <div class="project-main-header">
                                 <h3 class="project-title">Autobet System</h3>
+                                <span class="status-tag stats" data-repo="KrAsH-CoD3/Betking-VF-Autobet">
+                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    <span class="star-count">-</span>
+                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <line x1="6" y1="3" x2="6" y2="15"></line>
+                                        <circle cx="18" cy="6" r="3"></circle>
+                                        <circle cx="6" cy="18" r="3"></circle>
+                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                    </svg>
+                                    <span class="fork-count">-</span>
+                                </span>
                                 <div class="project-links">
                                     <a href="https://github.com/KrAsH-CoD3/Betking-VF-Autobet" target="_blank"
                                         rel="noopener noreferrer" aria-label="GitHub">
@@ -395,6 +374,13 @@
                                         </svg>
                                         GitHub
                                     </a>
+                                    <span class="cli-tag">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="4 17 10 11 4 5"></polyline>
+                                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                                        </svg>
+                                        CLI Tool
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -413,15 +399,28 @@
                 </article>
 
                 <!-- BotasHuman -->
-                <article class="project-card featured">
+                <!-- <article class="project-card featured" data-repo="KrAsH-CoD3/botashuman">
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
                                 <span class="project-folder">BotasHuman</span>
-                                <!-- <span class="status-tag">PRIVATE</span> -->
+                                <span class="status-tag">PRIVATE</span>
                             </div>
                             <div class="project-main-header">
                                 <h3 class="project-title">BotasHuman</h3>
+                                <span class="status-tag stats" data-repo="KrAsH-CoD3/botashuman">
+                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    <span class="star-count">-</span>
+                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <line x1="6" y1="3" x2="6" y2="15"></line>
+                                        <circle cx="18" cy="6" r="3"></circle>
+                                        <circle cx="6" cy="18" r="3"></circle>
+                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                    </svg>
+                                    <span class="fork-count">-</span>
+                                </span>
                                 <div class="project-links">
                                     <a href="https://github.com/KrAsH-CoD3/botashuman" target="_blank"
                                         rel="noopener noreferrer" aria-label="GitHub">
@@ -460,10 +459,10 @@
                             <span class="tech-tag">Automation</span>
                         </div>
                     </div>
-                </article>
+                </article> -->
 
                 <!-- TheBotify -->
-                <article class="project-card featured">
+                <!-- <article class="project-card featured">
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
@@ -497,10 +496,10 @@
                             <span class="tech-tag">Automation</span>
                         </div>
                     </div>
-                </article>
+                </article> -->
 
                 <!-- Plu-Auto-Trading -->
-                <article class="project-card featured">
+                <article class="project-card featured" data-repo="KrAsH-CoD3/Plu-Auto-Trading">
                     <div class="project-content">
                         <div class="project-header">
                             <div class="project-meta">
@@ -508,6 +507,19 @@
                             </div>
                             <div class="project-main-header">
                                 <h3 class="project-title">Trading Automator</h3>
+                                <span class="status-tag stats" data-repo="KrAsH-CoD3/Plu-Auto-Trading">
+                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    <span class="star-count">-</span>
+                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <line x1="6" y1="3" x2="6" y2="15"></line>
+                                        <circle cx="18" cy="6" r="3"></circle>
+                                        <circle cx="6" cy="18" r="3"></circle>
+                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                    </svg>
+                                    <span class="fork-count">-</span>
+                                </span>
                                 <div class="project-links">
                                     <a href="https://github.com/KrAsH-CoD3/Plu-Auto-Trading" target="_blank"
                                         rel="noopener noreferrer" aria-label="GitHub">
@@ -520,6 +532,13 @@
                                         </svg>
                                         GitHub
                                     </a>
+                                    <span class="cli-tag">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="4 17 10 11 4 5"></polyline>
+                                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                                        </svg>
+                                        CLI Tool
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -534,6 +553,68 @@
                         </div>
                     </div>
                 </article>
+
+
+                <!-- Portfolio -->
+                <article class="project-card featured" data-repo="KrAsH-CoD3/Portfolio">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div class="project-meta">
+                                <span class="project-folder">Portfolio</span>
+                            </div>
+                            <div class="project-main-header">
+                                <h3 class="project-title">This Portfolio</h3>
+                                <span class="status-tag stats" data-repo="KrAsH-CoD3/Portfolio">
+                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                    <span class="star-count">-</span>
+                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                        <line x1="6" y1="3" x2="6" y2="15"></line>
+                                        <circle cx="18" cy="6" r="3"></circle>
+                                        <circle cx="6" cy="18" r="3"></circle>
+                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                    </svg>
+                                    <span class="fork-count">-</span>
+                                </span>
+                                <div class="project-links">
+                                    <a href="https://github.com/KrAsH-CoD3/Portfolio" target="_blank"
+                                        rel="noopener noreferrer" aria-label="GitHub">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                            <path d="M9 18c-4.51 2-5-2-7-2" />
+                                        </svg>
+                                        GitHub
+                                    </a>
+                                    <a href="https://krash-cod3.github.io/Portfolio" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Live Demo">
+                                        <span class="live-dot" aria-hidden="true"></span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                            <polyline points="15 3 21 3 21 9" />
+                                            <line x1="10" y1="14" x2="21" y2="3" />
+                                        </svg>
+                                        Live Demo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            This current portfolio.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </article>
+
             </div>
         </div>
     </section>
@@ -677,7 +758,7 @@
                             </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        samuelalewi@gmail.com
+                        Email
                     </a>
                     <a href="https://github.com/KrAsH-CoD3" class="contact-btn" target="_blank"
                         rel="noopener noreferrer">
@@ -689,7 +770,7 @@
                         </svg>
                         GitHub
                     </a>
-                    <a href="https://www.linkedin.com/in/samuel-alewi" class="contact-btn" target="_blank"
+                    <a href="https://www.linkedin.com/in/samuel-alewi/?lipi=urn%3Ali%3Apage%3Ad_flagship3_detail_base%3BtbvlRPibQqujwv4PlUNRWA%3D%3D" class="contact-btn" target="_blank"
                         rel="noopener noreferrer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -713,20 +794,16 @@
         </div>
     </footer>
 
+    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
     <script src="src/scripts/main.js"></script>
 
-    <!-- Realistic Glitch Assets -->
-    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
-        <filter id="glitch-filter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.00001" numOctaves="1" result="noise">
-                <animate attributeName="baseFrequency" from="0.00001" to="0.02" dur="15s" repeatCount="indefinite" />
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" result="displacement">
-                <animate attributeName="scale" values="0;0;0;10;0;20;0;0" dur="20s" repeatCount="indefinite" />
-            </feDisplacementMap>
-        </filter>
-    </svg>
-    <div class="scanlines" aria-hidden="true"></div>
+    
+
 </body>
 
 </html>

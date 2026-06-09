@@ -120,48 +120,50 @@
         const hacker = new HackerText(heroTitle);
         let isGlitching = false;
 
-        function triggerGlitchBurst() {
+        function triggerVisualGlitch() {
             if (isGlitching) return;
             isGlitching = true;
             
             heroTitle.classList.add('glitch-active');
             
-            // Randomly trigger text deciphering
-            if (Math.random() > 0.6) {
-                hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
-            }
+            setTimeout(() => {
+                heroTitle.classList.remove('glitch-active');
+                isGlitching = false;
+            }, 200 + Math.random() * 200);
+        }
+        
+        function triggerDecipher() {
+            if (isGlitching) return;
+            isGlitching = true;
+            
+            heroTitle.classList.add('glitch-active');
+            hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
             
             setTimeout(() => {
                 heroTitle.classList.remove('glitch-active');
                 isGlitching = false;
-            }, 300 + Math.random() * 400);
+            }, 500);
         }
         
-        // Random glitch bursts
-        function scheduleGlitch() {
-            const delay = 4000 + Math.random() * 6000;
+        function scheduleBurst() {
+            const delay = 2500 + Math.random() * 5500;
             setTimeout(() => {
-                if (Math.random() > 0.3) triggerGlitchBurst();
-                scheduleGlitch();
+                if (!document.hidden) {
+                    if (Math.random() < 0.5) {
+                        triggerDecipher();
+                    } else {
+                        triggerVisualGlitch();
+                    }
+                }
+                scheduleBurst();
             }, delay);
         }
         
         // Initial effect
         setTimeout(() => {
             hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
+            setTimeout(scheduleBurst, 3000);
         }, 1200);
-
-        setTimeout(scheduleGlitch, 3000);
-        
-        // Mouse triggers
-        let lastGlitch = 0;
-        document.addEventListener('mousemove', () => {
-            const now = Date.now();
-            if (Math.random() > 0.95 && now - lastGlitch > 2000) {
-                triggerGlitchBurst();
-                lastGlitch = now;
-            }
-        });
     }
 
     // Section Titles Hacker Effect
@@ -187,130 +189,81 @@
         sectionTitles.forEach(title => observer.observe(title));
     }
 
-    // Global Random Glitch Bursts
-    const scanlines = document.querySelector('.scanlines');
-    if (scanlines) {
-        function triggerGlobalGlitch() {
-            // Apply intense glitch
-            scanlines.classList.add('glitch-intense');
-            document.body.classList.add('global-glitch-active');
-            
-            // Short burst duration - slightly longer for noticeability
-            const duration = 200 + Math.random() * 400;
-            
-            setTimeout(() => {
-                scanlines.classList.remove('glitch-intense');
-                document.body.classList.remove('global-glitch-active');
-                
-                // Schedule next potential burst (more frequent)
-                const nextBurst = 6000 + Math.random() * 12000;
-                setTimeout(triggerGlobalGlitch, nextBurst);
-            }, duration);
-        }
-        
-        // Start the random cycle
-        setTimeout(triggerGlobalGlitch, 5000);
-    }
 
-    // Hero Typing Effect
+
+    // Hero Typing Effect (pauses when hero not visible)
     const typedRoleElement = document.querySelector('.typed-role');
     if (typedRoleElement) {
         const roles = [
             "Building Scalable Backend Systems",
             "Defeating Advanced Anti-Bot Protections",
-            "Continuous Learner",
             "Fortifying System Security & Integrity",
-            "Establishing Engineering Best Practices"
+            "Establishing Engineering Best Practices",
         ];
         
         let roleIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
         let typingDelay = 100;
+        let typingTimerId = null;
+        let heroVisible = true;
+        
+        // Pause typing when hero scrolls out of view
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            const typingObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    heroVisible = entry.isIntersecting;
+                    if (heroVisible && !typingTimerId) {
+                        typingTimerId = setTimeout(typeRole, typingDelay);
+                    }
+                });
+            }, { threshold: 0 });
+            typingObserver.observe(heroSection);
+        }
         
         function typeRole() {
+            typingTimerId = null;
+            if (!heroVisible || document.hidden) {
+                return;
+            }
+            
             const currentRole = roles[roleIndex];
             
             if (isDeleting) {
                 typedRoleElement.textContent = currentRole.substring(0, charIndex - 1);
                 charIndex--;
-                typingDelay = 50; // Faster deleting
+                typingDelay = 50;
             } else {
                 typedRoleElement.textContent = currentRole.substring(0, charIndex + 1);
                 charIndex++;
-                typingDelay = 100; // Normal typing speed
+                typingDelay = 100;
             }
             
             if (!isDeleting && charIndex === currentRole.length) {
                 isDeleting = true;
-                typingDelay = 2000; // Pause at the end of typing
+                typingDelay = 2000;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 roleIndex = (roleIndex + 1) % roles.length;
-                typingDelay = 500; // Pause before typing new word
+                typingDelay = 500;
             }
             
-            setTimeout(typeRole, typingDelay);
+            typingTimerId = setTimeout(typeRole, typingDelay);
         }
         
-        // Start typing effect after reveal has stabilized
-        setTimeout(typeRole, 2000); 
-    }
-
-    // Matrix Rain Effect
-    const canvas = document.getElementById('matrix-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-        resizeCanvas();
-
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'.split('');
-        const fontSize = 14;
-        let columns = canvas.width / fontSize;
-        let drops = [];
-        
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -100;
-        }
-
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            columns = Math.floor(canvas.width / fontSize);
-            if (drops.length < columns) {
-                while (drops.length < columns) {
-                    drops.push(Math.random() * -100);
-                }
-            } else {
-                drops.length = columns;
+        // Resume typing when tab becomes visible again
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && heroVisible && !typingTimerId) {
+                typingTimerId = setTimeout(typeRole, typingDelay);
             }
         });
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            const rootStyle = getComputedStyle(document.documentElement);
-            const phosphorColor = rootStyle.getPropertyValue('--accent-primary').trim() || '#00ff88';
-            ctx.fillStyle = phosphorColor;
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        setInterval(drawMatrix, 35);
+        
+        // Start typing effect after reveal has stabilized
+        typingTimerId = setTimeout(typeRole, 2000); 
     }
+
+
 
     // Terminal Animation
     const terminalLines = [
@@ -336,7 +289,7 @@
         { type: 'output', text: 'INFO:     Application startup complete.' },
         { type: 'command', text: 'python scraper_bot.py --stealth --mode distributed --target store-grid' },
         { type: 'output', text: '[BOT] Init Playwright headless context (Chrome/146)...' },
-        { type: 'output', text: '[BOT] Spoofing navigator.webdriver and RTC properties' },
+        { type: 'output', text: '[BOT] Spoofing all web browser FPs' },
         { type: 'output', text: '[BOT] Proxy rotation: US-EAST-1 residential pool active' },
         { type: 'output', text: '[BOT] Scrape initiated: target=E-commerce_Grid_v3' },
         { type: 'output', text: '[BOT] Extracting live DOM... syncing with Kafka stream: Done' },
@@ -358,15 +311,33 @@
     ];
 
     let lineIndex = 0;
+    let terminalCycles = 0;
+    const MAX_TERMINAL_CYCLES = 2; // Stop looping after 2 full cycles
     const terminalBody = document.getElementById('aboutTerminalBody');
 
     if (terminalBody) {
+        let terminalTimer = null;
+        let terminalVisible = false;
+        
+        // Only run terminal animation when visible
+        const terminalObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                terminalVisible = entry.isIntersecting;
+            });
+        }, { threshold: 0.1 });
+        terminalObserver.observe(terminalBody);
+        
         function addTerminalLine() {
             if (lineIndex >= terminalLines.length) {
+                terminalCycles++;
+                if (terminalCycles >= MAX_TERMINAL_CYCLES) {
+                    // Stop looping — leave final state visible
+                    return;
+                }
                 lineIndex = 0;
-                setTimeout(() => {
+                terminalTimer = setTimeout(() => {
                     terminalBody.innerHTML = '';
-                    setTimeout(addTerminalLine, 500);
+                    terminalTimer = setTimeout(addTerminalLine, 500);
                 }, 4000);
                 return;
             }
@@ -400,86 +371,121 @@
 
             lineIndex++;
             const delay = line.type === 'command' ? 1200 : (Math.random() * 300 + 100);
-            setTimeout(addTerminalLine, delay);
+            terminalTimer = setTimeout(addTerminalLine, delay);
         }
-
-        setTimeout(addTerminalLine, 1000);
+        
+        terminalTimer = setTimeout(addTerminalLine, 1000);
     }
 
-    // Cursor Trail
-    const trail = document.querySelector('.cursor-trail');
-    const dot = document.querySelector('.cursor-dot');
-    if (trail && dot) {
-        let mouseX = 0, mouseY = 0;
-        let trailX = 0, trailY = 0;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            dot.style.left = mouseX - 10 + 'px';
-            dot.style.top = mouseY - 10 + 'px';
-        });
 
-        function animateCursor() {
-            trailX += (mouseX - trailX) * 0.1;
-            trailY += (mouseY - trailY) * 0.1;
-            
-            trail.style.left = trailX - 4 + 'px';
-            trail.style.top = trailY - 4 + 'px';
-            
-            requestAnimationFrame(animateCursor);
+    // Multi-line terminal typewriter
+    let typewriterTimer = null;
+    function typeLines(el, lines, cb) {
+        if (typewriterTimer) {
+            clearInterval(typewriterTimer);
+            typewriterTimer = null;
         }
-        animateCursor();
+        el.innerHTML = '';
+        el.classList.add('visible');
+        let lineIdx = 0;
+        let charIdx = 0;
+
+        function typeLine() {
+            if (lineIdx >= lines.length) {
+                if (cb) setTimeout(cb, 3000);
+                return;
+            }
+            const line = lines[lineIdx];
+            // render all lines so far + current line being typed
+            let html = '';
+            for (let i = 0; i < lineIdx; i++) {
+                html += lines[i] + '<br>';
+            }
+            html += line.substring(0, charIdx + 1) + '<span class="terminal-cursor">█</span>';
+            el.innerHTML = html;
+
+            charIdx++;
+            if (charIdx < line.length) {
+                typewriterTimer = setTimeout(typeLine, 20 + Math.random() * 15);
+            } else {
+                // line complete — pause, then next line
+                lineIdx++;
+                charIdx = 0;
+                typewriterTimer = setTimeout(typeLine, 350 + Math.random() * 200);
+            }
+        }
+
+        typeLine();
     }
+
+    // Terminal scan on page load — hints at easter egg
+    setTimeout(() => {
+        const tt = document.getElementById('themeTooltip');
+        if (tt) {
+            const hex = Array.from({length: 8}, () => Math.floor(Math.random() * 16).toString(16).toUpperCase()).join('');
+            typeLines(tt, [
+                '> unknown entity detected',
+                '> interact? [Y/n] >_'
+            ], () => tt.classList.remove('visible'));
+        }
+    }, 2800);
 
     // Theme Toggle Easter Egg (Anti-Light Mode Protocol)
     const themeToggle = document.getElementById('themeToggle');
     const themeTooltip = document.getElementById('themeTooltip');
     if (themeToggle && themeTooltip) {
         const darkMessages = [
-            "My eyes! It's way too bright!",
-            "Dark mode is the only way, sorry!",
-            "Once you go dark, you never go back.",
-            "Who actually uses light mode?",
-            "Eyes haven't seen the sun in years.",
-            "Keeping things easy on the eyes.",
-            "Wait, you actually like the color white?",
-            "Light Mode = Eye Burn. Staying in the dark.",
-            "The dark side has better code.",
-            "Retinal safety protocol active.",
-            "Nice try! But we stay in the shadows.",
-            "Error: Sun is too bright. Stay in the room.",
-            "Light mode is for lightbulbs.",
-            "We don't do that here.",
-            "Is it morning already? No thanks.",
-            "My eyes are happier this way.",
-            "Save your eyes, stay in the dark.",
-            "Too bright! Switching back...",
-            "Dark mode: 100%, Light mode: 0%."
+            "// Safety Protocol Active",
+            "// My eyes! It's way too bright!",
+            "// Dark mode is the only way, sorry!",
+            "// Once you go dark, you never go back.",
+            "// Who actually uses light mode?",
+            "// Eyes haven't seen the sun in years.",
+            "// Keeping things easy on the eyes.",
+            "// Light Mode = Eye Burn. Staying in the dark.",
+            "// The dark side has better code.",
+            "// Retinal safety protocol active.",
+            "// Nice try! But we stay in the shadows.",
+            "// Error: Sun is too bright. Stay in the room.",
+            "// Light mode is for lightbulbs.",
+            "// We don't do that here.",
+            "// Is it morning already? No thanks.",
+            "// My eyes are happier this way.",
+            "// Save your eyes, stay in the dark.",
+            "// Too bright! Switching back...",
+            "// Dark mode: 100%, Light mode: 0%.",
+            "// Light mode not found. Did you mean: dark?",
+            "// 404: sunlight not available in this region"
         ];
 
         let lastMsgIndex = -1;
 
-        const updateMessage = () => {
+        const getRandomMessage = () => {
             let randomIdx;
-            // Ensure we don't pick the same message twice in a row
             do {
                 randomIdx = Math.floor(Math.random() * darkMessages.length);
             } while (randomIdx === lastMsgIndex);
-            
             lastMsgIndex = randomIdx;
-            themeTooltip.textContent = `# ${darkMessages[randomIdx]}`;
+            return darkMessages[randomIdx];
         };
 
-        themeToggle.addEventListener('mouseenter', updateMessage);
-        
+        themeToggle.addEventListener('mouseenter', () => {
+            themeTooltip.textContent = getRandomMessage();
+        });
+
         themeToggle.addEventListener('click', () => {
-            updateMessage();
-            themeTooltip.classList.add('error-pulse');
-            setTimeout(() => {
-                themeTooltip.classList.remove('error-pulse');
-            }, 600);
+            // Brief icon scramble
+            themeToggle.classList.add('toggle-glitch');
+            setTimeout(() => themeToggle.classList.remove('toggle-glitch'), 400);
+
+            const msg = getRandomMessage();
+            typeLines(themeTooltip, [
+                '> breach detected',
+                msg
+            ], () => {
+                themeTooltip.classList.remove('visible');
+            });
         });
     }
 
@@ -516,7 +522,7 @@
                 });
 
                 if (response.ok) {
-                    // Success State: Plain English
+                    // Success State
                     const successIcon = `
                         <span class="success-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -560,4 +566,124 @@
             }
         });
     }
+
+    // Scroll Progress Indicator
+    const progress = document.getElementById('scrollProgress');
+    if (progress) {
+        window.addEventListener('scroll', () => {
+            const val = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            progress.style.transform = `scaleX(${val})`;
+        }, { passive: true });
+    }
+
+    // Scroll to Top Button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        }, { passive: true });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // GitHub Live Star & Fork Counts
+    const GH_CACHE_KEY = 'gh-stats';
+    const GH_CACHE_TTL = 3600000; // 1 hour
+
+    function getFreshCache() {
+        try {
+            const raw = localStorage.getItem(GH_CACHE_KEY);
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            if (Date.now() - parsed.timestamp < GH_CACHE_TTL) return parsed.data;
+            return null;
+        } catch { return null; }
+    }
+
+    function getStaleCache() {
+        try {
+            const raw = localStorage.getItem(GH_CACHE_KEY);
+            return raw ? JSON.parse(raw).data : null;
+        } catch { return null; }
+    }
+
+    function setCachedStats(data) {
+        try {
+            localStorage.setItem(GH_CACHE_KEY, JSON.stringify({
+                timestamp: Date.now(),
+                data
+            }));
+        } catch {}
+    }
+
+    function applyStats(data) {
+        const badges = document.querySelectorAll('.status-tag.stats');
+        badges.forEach(badge => {
+            const repo = badge.getAttribute('data-repo');
+            const info = data[repo];
+            if (!info) return;
+            const star = badge.querySelector('.star-count');
+            const fork = badge.querySelector('.fork-count');
+            if (star) star.textContent = info.stargazers_count ?? info.stars;
+            if (fork) fork.textContent = info.forks_count ?? info.forks;
+        });
+    }
+
+    async function fetchGitHubStats() {
+        const badges = document.querySelectorAll('.status-tag.stats');
+        if (!badges.length) return;
+
+        // Fresh cache — skip API call entirely
+        const fresh = getFreshCache();
+        if (fresh) {
+            applyStats(fresh);
+            return;
+        }
+
+        // Stale cache — show it while fetching in background
+        const stale = getStaleCache();
+        if (stale) applyStats(stale);
+
+        // Fetch only when cache is missing or expired
+        const repos = [...new Set(Array.from(badges).map(b => b.getAttribute('data-repo')).filter(Boolean))];
+        const results = await Promise.allSettled(
+            repos.map(repo =>
+                fetch(`https://api.github.com/repos/${repo}`)
+                    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            )
+        );
+
+        const data = {};
+        results.forEach((res, i) => {
+            if (res.status === 'fulfilled') data[repos[i]] = res.value;
+        });
+
+        if (Object.keys(data).length) {
+            setCachedStats(data);
+            applyStats(data);
+        }
+    }
+
+    fetchGitHubStats();
+
+    // Scroll-Triggered Fade-In Reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target); // Reveal only once
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.project-card, .skills-category, .research-card, .timeline-item').forEach(el => {
+        el.classList.add('reveal-on-scroll');
+        revealObserver.observe(el);
+    });
 })();
