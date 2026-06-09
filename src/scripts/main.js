@@ -120,53 +120,50 @@
         const hacker = new HackerText(heroTitle);
         let isGlitching = false;
 
-        function triggerGlitchBurst() {
+        function triggerVisualGlitch() {
             if (isGlitching) return;
             isGlitching = true;
             
             heroTitle.classList.add('glitch-active');
             
-            // Randomly trigger text deciphering
-            if (Math.random() > 0.6) {
-                hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
-            }
+            setTimeout(() => {
+                heroTitle.classList.remove('glitch-active');
+                isGlitching = false;
+            }, 200 + Math.random() * 200);
+        }
+        
+        function triggerDecipher() {
+            if (isGlitching) return;
+            isGlitching = true;
+            
+            heroTitle.classList.add('glitch-active');
+            hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
             
             setTimeout(() => {
                 heroTitle.classList.remove('glitch-active');
                 isGlitching = false;
-            }, 300 + Math.random() * 400);
+            }, 500);
         }
         
-        // Random glitch bursts
-        function scheduleGlitch() {
-            const delay = 4000 + Math.random() * 6000;
+        function scheduleBurst() {
+            const delay = 2500 + Math.random() * 5500;
             setTimeout(() => {
-                if (!document.hidden && Math.random() > 0.3) triggerGlitchBurst();
-                scheduleGlitch();
+                if (!document.hidden) {
+                    if (Math.random() < 0.5) {
+                        triggerDecipher();
+                    } else {
+                        triggerVisualGlitch();
+                    }
+                }
+                scheduleBurst();
             }, delay);
         }
         
         // Initial effect
         setTimeout(() => {
             hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
+            setTimeout(scheduleBurst, 3000);
         }, 1200);
-
-        setTimeout(scheduleGlitch, 3000);
-        
-        // Mouse triggers (throttled)
-        let lastGlitch = 0;
-        let mouseMoveRAF = null;
-        document.addEventListener('mousemove', () => {
-            if (mouseMoveRAF) return;
-            mouseMoveRAF = requestAnimationFrame(() => {
-                mouseMoveRAF = null;
-                const now = Date.now();
-                if (Math.random() > 0.95 && now - lastGlitch > 2000) {
-                    triggerGlitchBurst();
-                    lastGlitch = now;
-                }
-            });
-        });
     }
 
     // Section Titles Hacker Effect
@@ -192,33 +189,7 @@
         sectionTitles.forEach(title => observer.observe(title));
     }
 
-    // Global Random Glitch Bursts
-    const scanlines = document.querySelector('.scanlines');
-    if (scanlines) {
-        let glitchTimerId = null;
 
-        function triggerGlobalGlitch() {
-            if (document.hidden) {
-                glitchTimerId = setTimeout(triggerGlobalGlitch, 8000);
-                return;
-            }
-
-            scanlines.classList.add('glitch-intense');
-            document.body.classList.add('global-glitch-active');
-
-            const duration = 150 + Math.random() * 250;
-
-            setTimeout(() => {
-                scanlines.classList.remove('glitch-intense');
-                document.body.classList.remove('global-glitch-active');
-
-                const nextBurst = 8000 + Math.random() * 15000;
-                glitchTimerId = setTimeout(triggerGlobalGlitch, nextBurst);
-            }, duration);
-        }
-
-        glitchTimerId = setTimeout(triggerGlobalGlitch, 5000);
-    }
 
     // Hero Typing Effect (pauses when hero not visible)
     const typedRoleElement = document.querySelector('.typed-role');
@@ -226,9 +197,8 @@
         const roles = [
             "Building Scalable Backend Systems",
             "Defeating Advanced Anti-Bot Protections",
-            "Continuous Learner",
             "Fortifying System Security & Integrity",
-            "Establishing Engineering Best Practices"
+            "Establishing Engineering Best Practices",
         ];
         
         let roleIndex = 0;
@@ -293,103 +263,7 @@
         typingTimerId = setTimeout(typeRole, 2000); 
     }
 
-    // Matrix Rain Effect (optimized: rAF + visibility gating)
-    const canvas = document.getElementById('matrix-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-        resizeCanvas();
 
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'.split('');
-        const fontSize = 14;
-        let columns = Math.floor(canvas.width / fontSize);
-        let drops = [];
-        
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -100;
-        }
-
-        // Cache the accent color — only re-read on resize
-        const rootStyle = getComputedStyle(document.documentElement);
-        let phosphorColor = rootStyle.getPropertyValue('--accent-primary').trim() || '#00ff88';
-
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                resizeCanvas();
-                columns = Math.floor(canvas.width / fontSize);
-                if (drops.length < columns) {
-                    while (drops.length < columns) {
-                        drops.push(Math.random() * -100);
-                    }
-                } else {
-                    drops.length = columns;
-                }
-                phosphorColor = rootStyle.getPropertyValue('--accent-primary').trim() || '#00ff88';
-            }, 150);
-        });
-
-        let matrixRAFId = null;
-        let lastMatrixFrame = 0;
-        const MATRIX_FRAME_INTERVAL = 35;
-
-        function drawMatrix(timestamp) {
-            // Throttle to ~28fps
-            if (timestamp - lastMatrixFrame < MATRIX_FRAME_INTERVAL) {
-                matrixRAFId = requestAnimationFrame(drawMatrix);
-                return;
-            }
-            lastMatrixFrame = timestamp;
-
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = phosphorColor;
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-
-            matrixRAFId = requestAnimationFrame(drawMatrix);
-        }
-
-        function startMatrix() {
-            if (matrixRAFId !== null) return; // already running
-            lastMatrixFrame = 0;
-            matrixRAFId = requestAnimationFrame(drawMatrix);
-        }
-
-        function stopMatrix() {
-            if (matrixRAFId !== null) {
-                cancelAnimationFrame(matrixRAFId);
-                matrixRAFId = null;
-            }
-        }
-
-        // Start immediately
-        startMatrix();
-
-        // Pause/resume on tab visibility
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                stopMatrix();
-            } else {
-                startMatrix();
-            }
-        });
-    }
 
     // Terminal Animation
     const terminalLines = [
@@ -415,7 +289,7 @@
         { type: 'output', text: 'INFO:     Application startup complete.' },
         { type: 'command', text: 'python scraper_bot.py --stealth --mode distributed --target store-grid' },
         { type: 'output', text: '[BOT] Init Playwright headless context (Chrome/146)...' },
-        { type: 'output', text: '[BOT] Spoofing navigator.webdriver and RTC properties' },
+        { type: 'output', text: '[BOT] Spoofing all web browser FPs' },
         { type: 'output', text: '[BOT] Proxy rotation: US-EAST-1 residential pool active' },
         { type: 'output', text: '[BOT] Scrape initiated: target=E-commerce_Grid_v3' },
         { type: 'output', text: '[BOT] Extracting live DOM... syncing with Kafka stream: Done' },
