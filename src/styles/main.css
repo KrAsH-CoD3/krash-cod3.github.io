@@ -1522,10 +1522,17 @@ body:not(.loading) .hero-image-wrapper {
 
 .project-main-header {
     display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.project-title-row {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.2rem;
+    gap: 0.6rem;
+    width: 100%;
 }
 
 .project-meta {
@@ -1563,6 +1570,7 @@ body:not(.loading) .hero-image-wrapper {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    margin-left: 0;
 }
 
 .status-tag.stats .icon-star {
