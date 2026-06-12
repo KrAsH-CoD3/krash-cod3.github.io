@@ -757,6 +757,73 @@ body:not(.loading) .orbit-dot {
     z-index: 0;
 }
 
+.hero-status-bar {
+    position: absolute;
+    top: -25px;
+    right: -10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.65rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 136, 0.12);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    opacity: 0;
+    animation: fadeInBar 0.6s ease 2.5s forwards;
+}
+
+@keyframes fadeInBar {
+    to { opacity: 1; }
+}
+
+.hero-status-bar .status-prompt {
+    color: var(--accent-primary);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+.hero-status-bar .status-colon {
+    color: var(--text-muted);
+}
+
+.hero-status-bar .status-value {
+    color: #ffffff;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.hero-status-bar .status-ellipsis span {
+    color: #ffffff;
+    animation: dotsBlink 1.4s ease-in-out infinite;
+}
+
+.hero-status-bar .status-ellipsis span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.hero-status-bar .status-ellipsis span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dotsBlink {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+.hero-status-bar .status-pipe {
+    color: rgba(0, 255, 136, 0.2);
+}
+
+.hero-status-bar .status-time {
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.05em;
+}
+
 /* Mobile — no glitch on image wrapper */
 @media (max-width: 768px) {
     .hero {
@@ -838,6 +905,10 @@ body:not(.loading) .orbit-dot {
     .project-card {
         flex: 0 0 100%;
         max-width: 100%;
+    }
+
+    .hero-status-bar {
+        display: none;
     }
 }
 

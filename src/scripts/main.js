@@ -567,6 +567,17 @@
         });
     }
 
+    // Hero Status Clock
+    const statusTime = document.getElementById('heroStatusTime');
+    if (statusTime) {
+        function updateStatusTime() {
+            const now = new Date();
+            statusTime.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
+        }
+        updateStatusTime();
+        setInterval(updateStatusTime, 10000);
+    }
+
     // Scroll Progress Indicator
     const progress = document.getElementById('scrollProgress');
     if (progress) {
