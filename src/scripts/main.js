@@ -605,7 +605,7 @@
 
     // GitHub Live Star & Fork Counts
     const GH_CACHE_KEY = 'gh-stats';
-    const GH_CACHE_TTL = 3600000; // 1 hour
+    const GH_CACHE_TTL = 21600000; // 6 hours
 
     function getFreshCache() {
         try {
@@ -663,17 +663,32 @@
 
         // Fetch only when cache is missing or expired
         const repos = [...new Set(Array.from(badges).map(b => b.getAttribute('data-repo')).filter(Boolean))];
-        const results = await Promise.allSettled(
-            repos.map(repo =>
-                fetch(`https://api.github.com/repos/${repo}`)
-                    .then(r => r.ok ? r.json() : Promise.reject(r.status))
-            )
-        );
 
+        // Throttle into small batches so a long repo list never floods the
+        // unauthenticated GitHub API (60 requests/hour per IP).
+        const GH_BATCH_SIZE = 6;
         const data = {};
-        results.forEach((res, i) => {
-            if (res.status === 'fulfilled') data[repos[i]] = res.value;
-        });
+
+        for (let i = 0; i < repos.length; i += GH_BATCH_SIZE) {
+            const batch = repos.slice(i, i + GH_BATCH_SIZE);
+            const results = await Promise.allSettled(
+                batch.map(repo =>
+                    fetch(`https://api.github.com/repos/${repo}`)
+                        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+                )
+            );
+
+            let succeeded = 0;
+            results.forEach((res, j) => {
+                if (res.status === 'fulfilled') {
+                    data[batch[j]] = res.value;
+                    succeeded++;
+                }
+            });
+
+            // Whole batch failed — almost certainly rate limited, stop hammering.
+            if (succeeded === 0) break;
+        }
 
         if (Object.keys(data).length) {
             setCachedStats(data);
@@ -693,7 +708,7 @@
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.project-card, .skills-category, .research-card, .timeline-item').forEach(el => {
+    document.querySelectorAll('.project-card, .skills-category, .research-card, .timeline-item, .contrib-card').forEach(el => {
         el.classList.add('reveal-on-scroll');
         revealObserver.observe(el);
     });
