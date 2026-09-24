@@ -708,7 +708,7 @@
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.project-card, .skills-category, .research-card, .timeline-item, .contrib-card').forEach(el => {
+    document.querySelectorAll('.project-card, .skills-category, .contrib-card').forEach(el => {
         el.classList.add('reveal-on-scroll');
         revealObserver.observe(el);
     });
