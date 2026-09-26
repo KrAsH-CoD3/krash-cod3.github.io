@@ -60,6 +60,8 @@
     --log-h: 132px;
     --tree-w: 236px;
     --stack-w: 306px;
+    --scroll-top-size: 38px;
+    --scroll-top-gap: 1rem;
 }
 
 * {
@@ -1542,13 +1544,13 @@ textarea.form-control {
 
 .scroll-top {
     position: fixed;
-    right: 1rem;
-    bottom: 1rem;
+    right: var(--scroll-top-gap);
+    bottom: var(--scroll-top-gap);
     z-index: 90;
     display: grid;
     place-items: center;
-    width: 38px;
-    height: 38px;
+    width: var(--scroll-top-size);
+    height: var(--scroll-top-size);
     background: var(--bg-raised);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -1722,6 +1724,10 @@ textarea.form-control {
         min-height: 100dvh;
         grid-template-rows: none;
         overflow: visible;
+        /* Reserve a strip at the end of the document so that, once the reader
+           reaches the bottom, the floating scroll-to-top control lands on empty
+           background instead of on top of the status bar. */
+        padding-bottom: calc(var(--scroll-top-size) + var(--scroll-top-gap) * 2);
     }
 
     body.is-booting {
