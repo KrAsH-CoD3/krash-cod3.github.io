@@ -42,6 +42,13 @@
     --warn: #c3a878;
     --warn-dim: rgba(195, 168, 120, 0.12);
 
+    /* macOS window controls. The one place the real hues are worth keeping —
+       they are what makes the title bar read as a terminal window. */
+    --win-close: #ff5f57;
+    --win-min: #febc2e;
+    --win-max: #28c840;
+    --win-ring: rgba(0, 0, 0, 0.22);
+
     --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --radius: 4px;
     --transition: 0.18s ease;
@@ -216,12 +223,22 @@ code {
     flex-shrink: 0;
 }
 
+/* Close / minimise / zoom, in the macOS order and hues. The inset ring stands
+   in for the hairline border a real window control carries. */
 .titlebar-lights i {
-    width: 9px;
-    height: 9px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
-    background: #2b3a49;
-    border: 1px solid #354759;
+    background: var(--win-close);
+    box-shadow: inset 0 0 0 0.5px var(--win-ring);
+}
+
+.titlebar-lights i:nth-child(2) {
+    background: var(--win-min);
+}
+
+.titlebar-lights i:nth-child(3) {
+    background: var(--win-max);
 }
 
 .titlebar-title {
