@@ -1,272 +1,177 @@
-(function() {
+(function () {
     'use strict';
 
-    // Page Initialization Logic (Matrix -> Glitch Reveal)
-    const glitchOverlay = document.getElementById('glitchOverlay');
-    
-    if (glitchOverlay) {
-        // Trigger interference flash immediately
-        setTimeout(() => {
-            glitchOverlay.classList.add('glitch-flash');
-            
-            // Fast reveal
-            setTimeout(() => {
-                document.body.classList.remove('loading');
-                
-                // Final cleanup of overlay
-                setTimeout(() => {
-                    glitchOverlay.style.display = 'none';
-                }, 1000);
-            }, 300);
-        }, 100); 
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------------------------------------------------------------------
+       Boot sequence
+       --------------------------------------------------------------------- */
+
+    var bootScreen = document.getElementById('bootScreen');
+
+    function finishBoot() {
+        document.body.classList.remove('is-booting');
+        if (!bootScreen) return;
+        bootScreen.classList.add('is-done');
+        window.setTimeout(function () {
+            if (bootScreen.parentNode) bootScreen.parentNode.removeChild(bootScreen);
+        }, 420);
     }
 
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', !isExpanded);
-            navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-link').forEach(function(link) {
-            link.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                navToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
+    if (bootScreen && !prefersReducedMotion) {
+        window.setTimeout(finishBoot, 640);
+    } else {
+        finishBoot();
     }
 
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href && href !== '#') {
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+    /* ---------------------------------------------------------------------
+       View routing
+       --------------------------------------------------------------------- */
+
+    var VIEW_FILES = {
+        about: 'about.md',
+        work: 'work/',
+        contributions: 'contributions.md',
+        contact: 'contact.md'
+    };
+
+    // Older links pointed at section anchors. Keep them working.
+    var LEGACY_HASH = {
+        about: 'about',
+        skills: 'about',
+        projects: 'work',
+        research: 'contributions',
+        contact: 'contact'
+    };
+
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+    var treeItems = Array.prototype.slice.call(document.querySelectorAll('.tree-item'));
+    var mainPaneBody = document.getElementById('mainPaneBody');
+    var mainPaneHead = document.getElementById('mainPaneHead');
+    var currentView = null;
+
+    function parseHash() {
+        var raw = window.location.hash.replace(/^#/, '').trim();
+        if (!raw) return { view: 'about', anchor: null };
+        if (LEGACY_HASH[raw]) return { view: LEGACY_HASH[raw], anchor: null };
+        if (VIEW_FILES[raw]) return { view: raw, anchor: null };
+
+        var target = document.getElementById(raw);
+        if (target) {
+            var owner = target.closest ? target.closest('.view') : null;
+            if (owner && owner.dataset.view) {
+                return { view: owner.dataset.view, anchor: raw };
             }
+        }
+        return { view: 'about', anchor: null };
+    }
+
+    function activate(view, options) {
+        var opts = options || {};
+        if (!VIEW_FILES[view]) view = 'about';
+
+        tabs.forEach(function (tab) {
+            var on = tab.dataset.view === view;
+            tab.classList.toggle('is-active', on);
+            tab.setAttribute('aria-selected', on ? 'true' : 'false');
+            tab.setAttribute('tabindex', on ? '0' : '-1');
+        });
+
+        views.forEach(function (section) {
+            section.classList.toggle('is-active', section.dataset.view === view);
+        });
+
+        treeItems.forEach(function (item) {
+            var on = item.dataset.view === view &&
+                (!item.dataset.anchor || item.dataset.anchor === opts.anchor);
+            item.classList.toggle('is-active', on);
+            if (on) {
+                item.setAttribute('aria-current', 'true');
+            } else {
+                item.removeAttribute('aria-current');
+            }
+        });
+
+        if (mainPaneHead) mainPaneHead.textContent = VIEW_FILES[view];
+
+        currentView = view;
+
+        if (opts.anchor) {
+            var el = document.getElementById(opts.anchor);
+            if (el) {
+                el.scrollIntoView({
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                    block: 'start'
+                });
+                return;
+            }
+        }
+
+        if (opts.resetScroll !== false && mainPaneBody) {
+            mainPaneBody.scrollTop = 0;
+        }
+    }
+
+    function navigate(view, anchor, push) {
+        activate(view, { anchor: anchor || null });
+        if (push === false) return;
+        var hash = anchor ? '#' + anchor : '#' + view;
+        if (window.location.hash !== hash) {
+            window.history.pushState({ view: view, anchor: anchor || null }, '', hash);
+        }
+    }
+
+    // Tabs
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            navigate(tab.dataset.view, null, true);
+        });
+
+        tab.addEventListener('keydown', function (event) {
+            var index = tabs.indexOf(tab);
+            var next = null;
+
+            if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+            else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+            else if (event.key === 'Home') next = 0;
+            else if (event.key === 'End') next = tabs.length - 1;
+            else return;
+
+            event.preventDefault();
+            tabs[next].focus();
+            navigate(tabs[next].dataset.view, null, true);
         });
     });
 
-    // Hacker Text Decipher Effect
-    class HackerText {
-        constructor(el) {
-            this.el = el;
-            this.originalText = el.innerText;
-            this.chars = '!<>-_\\/[]{}—=+*^?#________';
-            this.update = this.update.bind(this);
-        }
-
-        setText(newText) {
-            const oldText = this.el.innerText;
-            const length = Math.max(oldText.length, newText.length);
-            const promise = new Promise((resolve) => (this.resolve = resolve));
-            this.queue = [];
-            for (let i = 0; i < length; i++) {
-                const from = oldText[i] || '';
-                const to = newText[i] || '';
-                const start = Math.floor(Math.random() * 40);
-                const end = start + Math.floor(Math.random() * 40);
-                this.queue.push({ from, to, start, end });
-            }
-            cancelAnimationFrame(this.frameRequest);
-            this.frame = 0;
-            this.update();
-            return promise;
-        }
-
-        update() {
-            let output = '';
-            let complete = 0;
-            for (let i = 0, n = this.queue.length; i < n; i++) {
-                let { from, to, start, end, char } = this.queue[i];
-                if (this.frame >= end) {
-                    complete++;
-                    output += to;
-                } else if (this.frame >= start) {
-                    if (!char || Math.random() < 0.28) {
-                        char = this.randomChar();
-                        this.queue[i].char = char;
-                    }
-                    output += `<span class="dud">${char}</span>`;
-                } else {
-                    output += from;
-                }
-            }
-            this.el.innerHTML = output;
-            if (complete === this.queue.length) {
-                this.resolve();
-            } else {
-                this.frameRequest = requestAnimationFrame(this.update);
-                this.frame++;
-            }
-        }
-
-        randomChar() {
-            return this.chars[Math.floor(Math.random() * this.chars.length)];
-        }
-    }
-
-    // Dynamic Glitch Effect
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const hacker = new HackerText(heroTitle);
-        let isGlitching = false;
-
-        function triggerVisualGlitch() {
-            if (isGlitching) return;
-            isGlitching = true;
-            
-            heroTitle.classList.add('glitch-active');
-            
-            setTimeout(() => {
-                heroTitle.classList.remove('glitch-active');
-                isGlitching = false;
-            }, 200 + Math.random() * 200);
-        }
-        
-        function triggerDecipher() {
-            if (isGlitching) return;
-            isGlitching = true;
-            
-            heroTitle.classList.add('glitch-active');
-            hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
-            
-            setTimeout(() => {
-                heroTitle.classList.remove('glitch-active');
-                isGlitching = false;
-            }, 500);
-        }
-        
-        function scheduleBurst() {
-            const delay = 2500 + Math.random() * 5500;
-            setTimeout(() => {
-                if (!document.hidden) {
-                    if (Math.random() < 0.5) {
-                        triggerDecipher();
-                    } else {
-                        triggerVisualGlitch();
-                    }
-                }
-                scheduleBurst();
-            }, delay);
-        }
-        
-        // Initial effect
-        setTimeout(() => {
-            hacker.setText(heroTitle.getAttribute('data-text') || heroTitle.innerText);
-            setTimeout(scheduleBurst, 3000);
-        }, 1200);
-    }
-
-    // Section Titles Hacker Effect
-    const sectionTitles = document.querySelectorAll('.section-title');
-    if (sectionTitles.length > 0) {
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const trigger = entry.target.querySelector('.hacker-trigger');
-                    if (trigger) {
-                        const hacker = new HackerText(trigger);
-                        hacker.setText(trigger.innerText);
-                    }
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        sectionTitles.forEach(title => observer.observe(title));
-    }
-
-
-
-    // Hero Typing Effect (pauses when hero not visible)
-    const typedRoleElement = document.querySelector('.typed-role');
-    if (typedRoleElement) {
-        const roles = [
-            "Building Scalable Backend Systems",
-            "Defeating Advanced Anti-Bot Protections",
-            "Fortifying System Security & Integrity",
-            "Establishing Engineering Best Practices",
-        ];
-        
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingDelay = 100;
-        let typingTimerId = null;
-        let heroVisible = true;
-        
-        // Pause typing when hero scrolls out of view
-        const heroSection = document.querySelector('.hero');
-        if (heroSection) {
-            const typingObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    heroVisible = entry.isIntersecting;
-                    if (heroVisible && !typingTimerId) {
-                        typingTimerId = setTimeout(typeRole, typingDelay);
-                    }
-                });
-            }, { threshold: 0 });
-            typingObserver.observe(heroSection);
-        }
-        
-        function typeRole() {
-            typingTimerId = null;
-            if (!heroVisible || document.hidden) {
-                return;
-            }
-            
-            const currentRole = roles[roleIndex];
-            
-            if (isDeleting) {
-                typedRoleElement.textContent = currentRole.substring(0, charIndex - 1);
-                charIndex--;
-                typingDelay = 50;
-            } else {
-                typedRoleElement.textContent = currentRole.substring(0, charIndex + 1);
-                charIndex++;
-                typingDelay = 100;
-            }
-            
-            if (!isDeleting && charIndex === currentRole.length) {
-                isDeleting = true;
-                typingDelay = 2000;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                typingDelay = 500;
-            }
-            
-            typingTimerId = setTimeout(typeRole, typingDelay);
-        }
-        
-        // Resume typing when tab becomes visible again
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden && heroVisible && !typingTimerId) {
-                typingTimerId = setTimeout(typeRole, typingDelay);
-            }
+    // File tree + in-page buttons that carry data-view
+    document.querySelectorAll('[data-view]').forEach(function (el) {
+        if (el.classList.contains('tab')) return;
+        el.addEventListener('click', function () {
+            navigate(el.dataset.view, el.dataset.anchor || null, true);
         });
-        
-        // Start typing effect after reveal has stabilized
-        typingTimerId = setTimeout(typeRole, 2000); 
-    }
+    });
 
+    window.addEventListener('popstate', function () {
+        var parsed = parseHash();
+        activate(parsed.view, { anchor: parsed.anchor });
+    });
 
+    window.addEventListener('hashchange', function () {
+        var parsed = parseHash();
+        if (parsed.view !== currentView) {
+            activate(parsed.view, { anchor: parsed.anchor });
+        }
+    });
 
-    // Terminal Animation
-    const terminalLines = [
+    var initial = parseHash();
+    activate(initial.view, { anchor: initial.anchor });
+
+    /* ---------------------------------------------------------------------
+       Session log
+       --------------------------------------------------------------------- */
+
+    var LOG_LINES = [
         { type: 'command', text: 'docker-compose up -d --build backend-services' },
         { type: 'output', text: '[+] Running 6/6' },
         { type: 'output', text: ' ✔ Container postgres-cluster    Started' },
@@ -310,447 +215,448 @@
         { type: 'output', text: '2026-04-18 10:22:20 [INFO] All nodes reporting healthy' }
     ];
 
-    let lineIndex = 0;
-    let terminalCycles = 0;
-    const MAX_TERMINAL_CYCLES = 2; // Stop looping after 2 full cycles
-    const terminalBody = document.getElementById('aboutTerminalBody');
+    var logBody = document.getElementById('aboutTerminalBody');
+    var logPane = document.querySelector('.pane-log');
+    var logToggle = document.getElementById('logToggle');
 
-    if (terminalBody) {
-        let terminalTimer = null;
-        let terminalVisible = false;
-        
-        // Only run terminal animation when visible
-        const terminalObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                terminalVisible = entry.isIntersecting;
-            });
-        }, { threshold: 0.1 });
-        terminalObserver.observe(terminalBody);
-        
-        function addTerminalLine() {
-            if (lineIndex >= terminalLines.length) {
-                terminalCycles++;
-                if (terminalCycles >= MAX_TERMINAL_CYCLES) {
-                    // Stop looping — leave final state visible
-                    return;
-                }
+    if (logBody) {
+        var lineIndex = 0;
+        var cycles = 0;
+        var MAX_CYCLES = 2;
+        var logTimer = null;
+
+        function addLogLine() {
+            if (lineIndex >= LOG_LINES.length) {
+                cycles += 1;
+                if (cycles >= MAX_CYCLES) return;
                 lineIndex = 0;
-                terminalTimer = setTimeout(() => {
-                    terminalBody.innerHTML = '';
-                    terminalTimer = setTimeout(addTerminalLine, 500);
-                }, 4000);
+                logTimer = window.setTimeout(function () {
+                    logBody.innerHTML = '';
+                    logTimer = window.setTimeout(addLogLine, 500);
+                }, 4200);
                 return;
             }
 
-            const line = terminalLines[lineIndex];
-            const div = document.createElement('div');
-            div.className = 'line';
-            div.style.animationDelay = '0s';
+            var entry = LOG_LINES[lineIndex];
+            var line = document.createElement('div');
+            line.className = 'line';
 
-            if (line.type === 'command') {
-                div.innerHTML = `<span class="prompt">~$</span> <span class="command">${line.text}</span>`;
+            if (entry.type === 'command') {
+                line.innerHTML = '<span class="prompt">~$</span><span class="command"></span>';
+                line.querySelector('.command').textContent = entry.text;
             } else {
-                div.innerHTML = `<span class="output">${line.text}</span>`;
+                line.innerHTML = '<span class="output"></span>';
+                line.querySelector('.output').textContent = entry.text;
             }
 
-            terminalBody.appendChild(div);
+            logBody.appendChild(line);
 
-            const activeCursor = terminalBody.querySelector('.cursor') || document.createElement('span');
-            if (!activeCursor.parentElement) {
-                activeCursor.className = 'cursor';
+            var cursor = logBody.querySelector('.cursor');
+            if (!cursor) {
+                cursor = document.createElement('span');
+                cursor.className = 'cursor';
             }
-            div.appendChild(activeCursor);
+            line.appendChild(cursor);
 
-            // Only auto-scroll if the user is already at the bottom (or very close to it)
-            const threshold = 60; // pixels
-            const isAtBottom = terminalBody.scrollHeight - terminalBody.scrollTop - terminalBody.clientHeight < threshold;
-
-            if (isAtBottom) {
-                terminalBody.scrollTop = terminalBody.scrollHeight;
+            // Only follow the tail when the reader is already there.
+            var distance = logBody.scrollHeight - logBody.scrollTop - logBody.clientHeight;
+            if (distance < 60) {
+                logBody.scrollTop = logBody.scrollHeight;
             }
 
-            lineIndex++;
-            const delay = line.type === 'command' ? 1200 : (Math.random() * 300 + 100);
-            terminalTimer = setTimeout(addTerminalLine, delay);
+            lineIndex += 1;
+            var delay = entry.type === 'command' ? 1200 : (Math.random() * 300 + 100);
+            logTimer = window.setTimeout(addLogLine, delay);
         }
-        
-        terminalTimer = setTimeout(addTerminalLine, 1000);
+
+        logTimer = window.setTimeout(addLogLine, 900);
+
+        if (logToggle && logPane) {
+            logToggle.addEventListener('click', function () {
+                var collapsed = logPane.classList.toggle('is-collapsed');
+                logToggle.textContent = collapsed ? 'show' : 'hide';
+                logToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+            });
+        }
     }
 
+    /* ---------------------------------------------------------------------
+       Tagline typing
+       --------------------------------------------------------------------- */
 
+    var typedRole = document.querySelector('.typed-role');
 
-    // Multi-line terminal typewriter
-    let typewriterTimer = null;
-    function typeLines(el, lines, cb) {
-        if (typewriterTimer) {
-            clearInterval(typewriterTimer);
-            typewriterTimer = null;
-        }
-        el.innerHTML = '';
-        el.classList.add('visible');
-        let lineIdx = 0;
-        let charIdx = 0;
-
-        function typeLine() {
-            if (lineIdx >= lines.length) {
-                if (cb) setTimeout(cb, 3000);
-                return;
-            }
-            const line = lines[lineIdx];
-            // render all lines so far + current line being typed
-            let html = '';
-            for (let i = 0; i < lineIdx; i++) {
-                html += lines[i] + '<br>';
-            }
-            html += line.substring(0, charIdx + 1) + '<span class="terminal-cursor">█</span>';
-            el.innerHTML = html;
-
-            charIdx++;
-            if (charIdx < line.length) {
-                typewriterTimer = setTimeout(typeLine, 20 + Math.random() * 15);
-            } else {
-                // line complete — pause, then next line
-                lineIdx++;
-                charIdx = 0;
-                typewriterTimer = setTimeout(typeLine, 350 + Math.random() * 200);
-            }
-        }
-
-        typeLine();
-    }
-
-    // Terminal scan on page load — hints at easter egg
-    setTimeout(() => {
-        const tt = document.getElementById('themeTooltip');
-        if (tt) {
-            const hex = Array.from({length: 8}, () => Math.floor(Math.random() * 16).toString(16).toUpperCase()).join('');
-            typeLines(tt, [
-                '> unknown entity detected',
-                '> interact? [Y/n] >_'
-            ], () => tt.classList.remove('visible'));
-        }
-    }, 2800);
-
-    // Theme Toggle Easter Egg (Anti-Light Mode Protocol)
-    const themeToggle = document.getElementById('themeToggle');
-    const themeTooltip = document.getElementById('themeTooltip');
-    if (themeToggle && themeTooltip) {
-        const darkMessages = [
-            "// Safety Protocol Active",
-            "// My eyes! It's way too bright!",
-            "// Dark mode is the only way, sorry!",
-            "// Once you go dark, you never go back.",
-            "// Who actually uses light mode?",
-            "// Eyes haven't seen the sun in years.",
-            "// Keeping things easy on the eyes.",
-            "// Light Mode = Eye Burn. Staying in the dark.",
-            "// The dark side has better code.",
-            "// Retinal safety protocol active.",
-            "// Nice try! But we stay in the shadows.",
-            "// Error: Sun is too bright. Stay in the room.",
-            "// Light mode is for lightbulbs.",
-            "// We don't do that here.",
-            "// Is it morning already? No thanks.",
-            "// My eyes are happier this way.",
-            "// Save your eyes, stay in the dark.",
-            "// Too bright! Switching back...",
-            "// Dark mode: 100%, Light mode: 0%.",
-            "// Light mode not found. Did you mean: dark?",
-            "// 404: sunlight not available in this region"
+    if (typedRole) {
+        var roles = [
+            'Building Scalable Backend Systems',
+            'Defeating Advanced Anti-Bot Protections',
+            'Fortifying System Security & Integrity',
+            'Establishing Engineering Best Practices'
         ];
 
-        let lastMsgIndex = -1;
+        var roleIndex = 0;
+        var charIndex = 0;
+        var deleting = false;
+        var typingTimer = null;
 
-        const getRandomMessage = () => {
-            let randomIdx;
-            do {
-                randomIdx = Math.floor(Math.random() * darkMessages.length);
-            } while (randomIdx === lastMsgIndex);
-            lastMsgIndex = randomIdx;
-            return darkMessages[randomIdx];
-        };
+        function typeRole() {
+            typingTimer = null;
+            if (document.hidden) return;
 
-        themeToggle.addEventListener('mouseenter', () => {
-            themeTooltip.textContent = getRandomMessage();
-        });
+            var role = roles[roleIndex];
 
-        themeToggle.addEventListener('click', () => {
-            // Brief icon scramble
-            themeToggle.classList.add('toggle-glitch');
-            setTimeout(() => themeToggle.classList.remove('toggle-glitch'), 400);
+            if (deleting) {
+                typedRole.textContent = role.substring(0, charIndex - 1);
+                charIndex -= 1;
+            } else {
+                typedRole.textContent = role.substring(0, charIndex + 1);
+                charIndex += 1;
+            }
 
-            const msg = getRandomMessage();
-            typeLines(themeTooltip, [
-                '> breach detected',
-                msg
-            ], () => {
-                themeTooltip.classList.remove('visible');
-            });
+            var delay = deleting ? 42 : 78;
+
+            if (!deleting && charIndex === role.length) {
+                deleting = true;
+                delay = 2100;
+            } else if (deleting && charIndex === 0) {
+                deleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                delay = 480;
+            }
+
+            typingTimer = window.setTimeout(typeRole, delay);
+        }
+
+        if (prefersReducedMotion) {
+            typedRole.textContent = roles[0];
+        } else {
+            typingTimer = window.setTimeout(typeRole, 1200);
+        }
+
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && !typingTimer && !prefersReducedMotion) {
+                typingTimer = window.setTimeout(typeRole, 400);
+            }
         });
     }
 
-    // Contact Form Handler
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+    /* ---------------------------------------------------------------------
+       Theme toggle easter egg
+       --------------------------------------------------------------------- */
+
+    var themeToggle = document.getElementById('themeToggle');
+    var themeTooltip = document.getElementById('themeTooltip');
+
+    if (themeToggle && themeTooltip) {
+        var messages = [
+            '// Safety Protocol Active',
+            "// My eyes! It's way too bright!",
+            '// Dark mode is the only way, sorry!',
+            '// Once you go dark, you never go back.',
+            '// Who actually uses light mode?',
+            '// Eyes haven\'t seen the sun in years.',
+            '// Keeping things easy on the eyes.',
+            '// Light Mode = Eye Burn. Staying in the dark.',
+            '// The dark side has better code.',
+            '// Retinal safety protocol active.',
+            '// Nice try! But we stay in the shadows.',
+            '// Error: Sun is too bright. Stay in the room.',
+            '// Light mode is for lightbulbs.',
+            "// We don't do that here.",
+            '// Is it morning already? No thanks.',
+            '// My eyes are happier this way.',
+            '// Save your eyes, stay in the dark.',
+            '// Too bright! Switching back...',
+            '// Dark mode: 100%, Light mode: 0%.',
+            '// Light mode not found. Did you mean: dark?',
+            '// 404: sunlight not available in this region'
+        ];
+
+        var lastMessage = -1;
+        var tooltipTimer = null;
+
+        function randomMessage() {
+            var index;
+            do {
+                index = Math.floor(Math.random() * messages.length);
+            } while (index === lastMessage && messages.length > 1);
+            lastMessage = index;
+            return messages[index];
+        }
+
+        function showTooltip(text) {
+            if (tooltipTimer) window.clearTimeout(tooltipTimer);
+            themeTooltip.textContent = text;
+            themeTooltip.classList.add('visible');
+            tooltipTimer = window.setTimeout(function () {
+                themeTooltip.classList.remove('visible');
+            }, 3200);
+        }
+
+        themeToggle.addEventListener('mouseenter', function () {
+            themeTooltip.textContent = randomMessage();
+            themeTooltip.classList.add('visible');
+        });
+
+        themeToggle.addEventListener('mouseleave', function () {
+            if (tooltipTimer) window.clearTimeout(tooltipTimer);
+            themeTooltip.classList.remove('visible');
+        });
+
+        themeToggle.addEventListener('click', function () {
+            showTooltip(randomMessage());
+        });
+    }
+
+    /* ---------------------------------------------------------------------
+       Contact form
+       --------------------------------------------------------------------- */
+
+    var contactForm = document.getElementById('contactForm');
+    var formStatus = document.getElementById('formStatus');
+    var submitBtn = document.getElementById('submitBtn');
+    var btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
 
     if (contactForm && formStatus && submitBtn && btnText) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // UI Feedback: Loading State (Scanner Effect)
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var originalText = btnText.textContent;
+
             submitBtn.classList.add('loading');
-            const originalText = btnText.textContent;
-            btnText.textContent = ">> SENDING...";
+            btnText.textContent = '>> SENDING...';
             formStatus.className = 'status-message';
             formStatus.style.display = 'none';
-            formStatus.innerHTML = "";
+            formStatus.innerHTML = '';
 
-            const formData = new FormData(contactForm);
-            
-            // Slight delay for smooth transitions
-            await new Promise(resolve => setTimeout(resolve, 800));
+            var formData = new FormData(contactForm);
 
-            try {
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+                .then(function (response) {
+                    if (response.ok) {
+                        formStatus.innerHTML = '>> MESSAGE SENT SUCCESSFULLY.';
+                        formStatus.style.display = 'block';
+                        formStatus.classList.add('success');
+                        contactForm.reset();
+                        btnText.textContent = '>> SENT';
+
+                        window.setTimeout(function () {
+                            btnText.textContent = originalText;
+                            submitBtn.classList.remove('loading');
+                            formStatus.classList.remove('success');
+                            formStatus.style.display = 'none';
+                        }, 5000);
+                        return null;
                     }
-                });
 
-                if (response.ok) {
-                    // Success State
-                    const successIcon = `
-                        <span class="success-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                <polyline points="9 11 12 14 15 9"></polyline>
-                            </svg>
-                        </span>
-                    `;
-                    
-                    formStatus.innerHTML = `${successIcon} >> MESSAGE SENT SUCCESSFULLY.`;
-                    formStatus.style.display = 'block';
-                    formStatus.classList.add('success');
-                    contactForm.reset();
-                    btnText.textContent = ">> SENT";
-                    
-                    // Reset button after 5 seconds
-                    setTimeout(() => {
+                    return response.json().then(function (data) {
+                        if (data && Object.prototype.hasOwnProperty.call(data, 'errors')) {
+                            formStatus.textContent = '>> ERROR: ' +
+                                data.errors.map(function (error) { return error.message; }).join(', ');
+                        } else {
+                            formStatus.textContent = '>> ERROR: FAILED TO SEND. PLEASE TRY AGAIN LATER.';
+                        }
+                        formStatus.style.display = 'block';
+                        formStatus.classList.add('error');
                         btnText.textContent = originalText;
                         submitBtn.classList.remove('loading');
-                        formStatus.classList.remove('success');
-                        formStatus.style.display = 'none';
-                    }, 5000);
-                } else {
-                    const data = await response.json();
-                    if (Object.hasOwn(data, 'errors')) {
-                        formStatus.textContent = ">> ERROR: " + data.errors.map(error => error.message).join(", ");
-                    } else {
-                        formStatus.textContent = ">> ERROR: FAILED TO SEND. PLEASE TRY AGAIN LATER.";
-                    }
+                    }).catch(function () {
+                        formStatus.textContent = '>> ERROR: FAILED TO SEND. PLEASE TRY AGAIN LATER.';
+                        formStatus.style.display = 'block';
+                        formStatus.classList.add('error');
+                        btnText.textContent = originalText;
+                        submitBtn.classList.remove('loading');
+                    });
+                })
+                .catch(function () {
+                    formStatus.textContent = '>> ERROR: CONNECTION FAILED. PLEASE CHECK YOUR INTERNET.';
                     formStatus.style.display = 'block';
                     formStatus.classList.add('error');
                     btnText.textContent = originalText;
                     submitBtn.classList.remove('loading');
-                }
-            } catch (error) {
-                formStatus.textContent = ">> ERROR: CONNECTION FAILED. PLEASE CHECK YOUR INTERNET.";
-                formStatus.style.display = 'block';
-                formStatus.classList.add('error');
-                btnText.textContent = originalText;
-                submitBtn.classList.remove('loading');
-            }
+                });
         });
     }
 
-    // Hero Status Clock
-    const statusTime = document.getElementById('heroStatusTime');
-    if (statusTime) {
-        function updateStatusTime() {
-            const now = new Date();
-            statusTime.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
-        }
-        updateStatusTime();
-        setInterval(updateStatusTime, 10000);
+    /* ---------------------------------------------------------------------
+       Status bar clock
+       --------------------------------------------------------------------- */
+
+    var statusClock = document.getElementById('heroStatusTime');
+
+    if (statusClock) {
+        var tickClock = function () {
+            statusClock.textContent = new Date().toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZoneName: 'short'
+            });
+        };
+        tickClock();
+        window.setInterval(tickClock, 10000);
     }
 
-    // Scroll Progress Indicator
-    const progress = document.getElementById('scrollProgress');
-    if (progress) {
-        window.addEventListener('scroll', () => {
-            const val = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            progress.style.transform = `scaleX(${val})`;
-        }, { passive: true });
-    }
+    /* ---------------------------------------------------------------------
+       Scroll to top (page scroll on narrow screens)
+       --------------------------------------------------------------------- */
 
-    // Scroll to Top Button
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    var scrollTopBtn = document.getElementById('scrollTopBtn');
+
     if (scrollTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
+        window.addEventListener('scroll', function () {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
         }, { passive: true });
 
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        scrollTopBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
         });
     }
 
-    // GitHub Live Star & Fork Counts
-    const GH_CACHE_KEY = 'gh-stats';
-    const GH_CACHE_TTL = 21600000; // 6 hours
+    /* ---------------------------------------------------------------------
+       GitHub star / fork counts
+       --------------------------------------------------------------------- */
 
-    function getFreshCache() {
+    var GH_CACHE_KEY = 'gh-stats';
+    var GH_CACHE_TTL = 21600000; // 6 hours
+
+    function readCache() {
         try {
-            const raw = localStorage.getItem(GH_CACHE_KEY);
-            if (!raw) return null;
-            const parsed = JSON.parse(raw);
-            if (Date.now() - parsed.timestamp < GH_CACHE_TTL) return parsed.data;
+            var raw = localStorage.getItem(GH_CACHE_KEY);
+            return raw ? JSON.parse(raw) : null;
+        } catch (error) {
             return null;
-        } catch { return null; }
+        }
     }
 
-    function getStaleCache() {
-        try {
-            const raw = localStorage.getItem(GH_CACHE_KEY);
-            return raw ? JSON.parse(raw).data : null;
-        } catch { return null; }
+    function freshCache() {
+        var cached = readCache();
+        if (!cached) return null;
+        return Date.now() - cached.timestamp < GH_CACHE_TTL ? cached.data : null;
     }
 
-    function setCachedStats(data) {
+    function writeCache(data) {
         try {
-            localStorage.setItem(GH_CACHE_KEY, JSON.stringify({
-                timestamp: Date.now(),
-                data
-            }));
-        } catch {}
+            localStorage.setItem(GH_CACHE_KEY, JSON.stringify({ timestamp: Date.now(), data: data }));
+        } catch (error) { /* storage unavailable */ }
     }
 
     function applyStats(data) {
-        const badges = document.querySelectorAll('.status-tag.stats');
-        badges.forEach(badge => {
-            const repo = badge.getAttribute('data-repo');
-            const info = data[repo];
+        document.querySelectorAll('.status-tag.stats').forEach(function (badge) {
+            var info = data[badge.getAttribute('data-repo')];
             if (!info) return;
-            const star = badge.querySelector('.star-count');
-            const fork = badge.querySelector('.fork-count');
-            if (star) star.textContent = info.stargazers_count ?? info.stars;
-            if (fork) fork.textContent = info.forks_count ?? info.forks;
+            var star = badge.querySelector('.star-count');
+            var fork = badge.querySelector('.fork-count');
+            if (star) star.textContent = info.stargazers_count != null ? info.stargazers_count : info.stars;
+            if (fork) fork.textContent = info.forks_count != null ? info.forks_count : info.forks;
         });
     }
 
-    async function fetchGitHubStats() {
-        const badges = document.querySelectorAll('.status-tag.stats');
+    function fetchGitHubStats() {
+        var badges = document.querySelectorAll('.status-tag.stats');
         if (!badges.length) return;
 
-        // Fresh cache — skip API call entirely
-        const fresh = getFreshCache();
+        var fresh = freshCache();
         if (fresh) {
             applyStats(fresh);
             return;
         }
 
-        // Stale cache — show it while fetching in background
-        const stale = getStaleCache();
-        if (stale) applyStats(stale);
+        var cached = readCache();
+        if (cached) applyStats(cached.data);
 
-        // Fetch only when cache is missing or expired
-        const repos = [...new Set(Array.from(badges).map(b => b.getAttribute('data-repo')).filter(Boolean))];
+        var repos = [];
+        badges.forEach(function (badge) {
+            var repo = badge.getAttribute('data-repo');
+            if (repo && repos.indexOf(repo) === -1) repos.push(repo);
+        });
 
-        // Throttle into small batches so a long repo list never floods the
-        // unauthenticated GitHub API (60 requests/hour per IP).
-        const GH_BATCH_SIZE = 6;
-        const data = {};
+        // Batch so a long repo list never floods the unauthenticated API.
+        var BATCH = 6;
+        var collected = {};
 
-        for (let i = 0; i < repos.length; i += GH_BATCH_SIZE) {
-            const batch = repos.slice(i, i + GH_BATCH_SIZE);
-            const results = await Promise.allSettled(
-                batch.map(repo =>
-                    fetch(`https://api.github.com/repos/${repo}`)
-                        .then(r => r.ok ? r.json() : Promise.reject(r.status))
-                )
-            );
-
-            let succeeded = 0;
-            results.forEach((res, j) => {
-                if (res.status === 'fulfilled') {
-                    data[batch[j]] = res.value;
-                    succeeded++;
+        function runBatch(offset) {
+            if (offset >= repos.length) {
+                if (Object.keys(collected).length) {
+                    writeCache(collected);
+                    applyStats(collected);
                 }
+                return Promise.resolve();
+            }
+
+            var batch = repos.slice(offset, offset + BATCH);
+
+            return Promise.allSettled(batch.map(function (repo) {
+                return fetch('https://api.github.com/repos/' + repo)
+                    .then(function (response) {
+                        return response.ok ? response.json() : Promise.reject(response.status);
+                    });
+            })).then(function (results) {
+                var succeeded = 0;
+                results.forEach(function (result, index) {
+                    if (result.status === 'fulfilled') {
+                        collected[batch[index]] = result.value;
+                        succeeded += 1;
+                    }
+                });
+
+                // A fully failed batch almost always means rate limiting.
+                if (succeeded === 0) return;
+
+                return runBatch(offset + BATCH);
             });
-
-            // Whole batch failed — almost certainly rate limited, stop hammering.
-            if (succeeded === 0) break;
         }
 
-        if (Object.keys(data).length) {
-            setCachedStats(data);
-            applyStats(data);
-        }
+        runBatch(0);
     }
 
     fetchGitHubStats();
 
-    // Scroll-Triggered Fade-In Reveal
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target); // Reveal only once
-            }
-        });
-    }, { threshold: 0.1 });
+    /* ---------------------------------------------------------------------
+       Image lightbox
+       --------------------------------------------------------------------- */
 
-    document.querySelectorAll('.project-card, .skills-category, .contrib-card').forEach(el => {
-        el.classList.add('reveal-on-scroll');
-        revealObserver.observe(el);
-    });
+    var lightbox = document.getElementById('imageLightbox');
 
-    // Image Lightbox
-    const lightbox = document.getElementById('imageLightbox');
     if (lightbox) {
-        const lightboxImg = lightbox.querySelector('img');
-        const lightboxCaption = lightbox.querySelector('.lightbox-caption');
-        const lightboxClose = lightbox.querySelector('.lightbox-close');
+        var lightboxImg = lightbox.querySelector('img');
+        var lightboxCaption = lightbox.querySelector('.lightbox-caption');
+        var lightboxClose = lightbox.querySelector('.lightbox-close');
 
-        document.querySelectorAll('.project-image').forEach(container => {
-            container.addEventListener('click', () => {
-                const img = container.querySelector('img');
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.project-image').forEach(function (container) {
+            container.addEventListener('click', function () {
+                var img = container.querySelector('img');
                 if (!img) return;
+
                 lightboxImg.src = img.src;
                 lightboxImg.alt = img.alt;
-                if (lightboxCaption) {
-                    lightboxCaption.textContent = '';
-                }
+                if (lightboxCaption) lightboxCaption.textContent = img.alt;
+
                 lightbox.classList.add('active');
+                lightbox.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
             });
         });
 
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
 
-        if (lightboxClose) {
-            lightboxClose.addEventListener('click', closeLightbox);
-        }
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-backdrop')) {
+        lightbox.addEventListener('click', function (event) {
+            if (event.target === lightbox || event.target.classList.contains('lightbox-backdrop')) {
                 closeLightbox();
             }
         });
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && lightbox.classList.contains('active')) {
                 closeLightbox();
             }
         });

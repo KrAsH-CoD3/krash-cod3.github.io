@@ -1,1019 +1,860 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page-node-id="t8oACp8rfBdqXOihM6mYpf">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Samuel Alewi - Backend Engineer & Web Automation Specialist">
-    <meta name="keywords" content="Python, Backend, FastAPI, Web Automation, Software Engineer">
+<head data-page-node-id="OE3uO0ByCjMwMOIMopOZDp">
+    <meta charset="UTF-8" data-page-node-id="6lgQNUwswX38EFCR73xMUj">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="RDTKA05dFcd468A5a0bHeD">
+    <meta name="description" content="Samuel Alewi - Backend Engineer &amp; Web Automation Specialist" data-page-node-id="bnxOxX5lmkNaGn5GB875Pp">
+    <meta name="keywords" content="Python, Backend, FastAPI, Web Automation, Software Engineer" data-page-node-id="Ap8Ouf7MSOesW0PdEArZUe">
+    <meta name="theme-color" content="#0f151c" data-page-node-id="tEkWboayympzyA71Pp6Ula">
     <title>Samuel Alewi | Backend Engineer</title>
-    <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="stylesheet" href="src/styles/main.css" data-page-node-id="50A5ZKXQLEKXwP3eBzlbou">
 </head>
 
-<body class="loading">
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- Glitch Interference Overlay -->
-    <div id="glitchOverlay" class="glitch-overlay"></div>
+<body class="is-booting" data-page-node-id="PBkVKnyrcwBFA7DFFX9RVF">
+    <!-- Boot sequence -->
+    <div class="boot" id="bootScreen" aria-hidden="true" data-page-node-id="bAVwx2bScwHNq9xdekJFAU">
+        <div class="boot-inner" data-page-node-id="Fnrjqx4B7KRgW58SxMOMsX">
+            <p class="boot-line" data-page-node-id="Ptk9VPhB9I3NuTRTwmoDf5"><span class="boot-user" data-page-node-id="U6l1EazF101MTKJ7skqHwQ">samuel@workbench</span><span class="boot-sep" data-page-node-id="FEROnrqvmDhcAEz4t901BH">:</span><span class="boot-path" data-page-node-id="hRJGzGEN8QVL4hBl3BcdKM">~</span><span class="boot-sigil" data-page-node-id="sxxmdvdlpUQ84qBim2HR04">$</span> ./portfolio --interactive</p>
+            <p class="boot-line" data-page-node-id="QpYvTN1dXB1uJSPpEKlPoK">mounting panes <span class="boot-ok" data-page-node-id="VU9IeH3IPTrmgSm0JepfUL">ok</span></p>
+            <p class="boot-line" data-page-node-id="6oNmUtFmYUykP2aP8iWnSB">restoring session <span class="boot-ok" data-page-node-id="FF7Aj4fK4h15lvMSHaRQcf">ok</span></p>
+        </div>
+    </div>
 
     <!-- Icon Sprite -->
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-        <symbol id="icon-star" viewBox="0 0 24 24">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false" data-page-node-id="Ddbo2nDnBYRSaiRbFITX8r">
+        <symbol id="icon-star" viewBox="0 0 24 24" data-page-node-id="pKw9RFhh0Muf70dBaNO9rF">
             <path
-                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" data-page-node-id="6rSteZK6FRvD0XLsjBZIiR" />
         </symbol>
     </svg>
 
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <a href="/" class="nav-logo" aria-label="Home">&lt;SA/&gt;<span class="logo-cursor">_</span></a>
-            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="hamburger"></span>
-            </button>
-            <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
-                <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
-                <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
-                <li role="none"><a href="#research" class="nav-link" role="menuitem">Contribution & Research</a></li>
-                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
-                <li role="none">
-                    <div class="theme-wrapper">
-                        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme (Experimental)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="5"></circle>
-                                <line x1="12" y1="1" x2="12" y2="3"></line>
-                                <line x1="12" y1="21" x2="12" y2="23"></line>
-                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                <line x1="1" y1="12" x2="3" y2="12"></line>
-                                <line x1="21" y1="12" x2="23" y2="12"></line>
-                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                            </svg>
-                        </button>
-                        <div id="themeTooltip" class="theme-tooltip">// Safety Protocol Active</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="hero" id="hero">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <p class="hero-greeting anim-stagger" style="--i:0">>> Hello world, I'm</p>
-                <h1 class="hero-title anim-stagger" style="--i:1" data-text="Samuel Alewi">Samuel Alewi</h1>
-                <h2 class="hero-subtitle anim-stagger" style="--i:2">
-                    <span class="typed-role"></span><span class="typed-cursor">|</span>
-                </h2>
-                <p class="hero-description anim-stagger" style="--i:3">
-                    Architecting high-scale distributed systems and specialized stealth automation frameworks.
-                </p>
-                <div class="hero-buttons anim-stagger" style="--i:4">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                </div>
+    <div class="workbench" data-page-node-id="ndRuWJlqDcg2FeOilqdk1q">
+        <!-- Title bar -->
+        <header class="titlebar" data-page-node-id="LkWjGIn8gTsq6MBLhZkFHQ">
+            <div class="titlebar-lights" aria-hidden="true" data-page-node-id="BxGKFBANwCh5boQHLn2PY1">
+                <i data-page-node-id="G09IuI319JvSdpHRNExnJp"></i><i data-page-node-id="koE54xQueD60kGaOQ8AFUX"></i><i data-page-node-id="YBDVke1BsdKfb70lYJrFE3"></i>
             </div>
-            <div class="hero-image-wrapper" style="--i:2">
-                <div class="hero-image-container">
-                    <div class="hero-image-ring"></div>
-                    <div class="hero-image-ring ring-2"></div>
-                    <div class="hero-image-ring ring-3"></div>
-                    <img src="src/assets/profile.png" alt="Samuel Alewi - Backend Engineer"
-                        class="hero-image" loading="eager">
-                    <div class="hero-image-glow"></div>
-                </div>
-                <div class="hero-image-dots"></div>
-                <div class="hero-status-bar">
-                    <span class="status-prompt">STATUS</span>
-                    <span class="status-colon">:</span>
-                    <span class="status-value">DEBUGGING</span>
-                    <span class="status-ellipsis">
-                        <span>.</span><span>.</span><span>.</span>
-                    </span>
-                    <span class="status-pipe">|</span>
-                    <span class="status-time" id="heroStatusTime">00:00</span>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator" aria-hidden="true">
-            <span></span>
-        </div>
-    </section>
-
-    <section class="section" id="about" aria-labelledby="about-title">
-        <div class="container">
-            <h2 class="section-title" id="about-title"><span class="hacker-trigger">About Me</span></h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="info-container">
-                        <p>
-                            As a <strong>Backend Architect</strong>, I specialize in building Python ecosystems that
-                            handle massive concurrency without breaking. My work focuses on creating resilient
-                            server-side foundations that power products at scale.
-                        </p>
-                        <p>
-                            Beyond traditional backend, I engineer <strong>Stealth Automation</strong> frameworks. I
-                            design specialized orchestrators and headless pipelines that bypass advanced anti-bot
-                            protections and operate where others are detected.
-                        </p>
-                        <p>
-                            Leveraging my expertise in automation, I am currently pioneering
-                            research into specialized <strong>Cybersecurity</strong> domains. My focus lies in protocol
-                            analysis, anti-telemetry heuristics, and the development of defensive methodologies that
-                            bridge the gap between high-scale architecture and system integrity.
-                        </p>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="terminal-window">
-                        <div class="terminal-header">
-                            <span class="terminal-btn close"></span>
-                            <span class="terminal-btn minimize"></span>
-                            <span class="terminal-btn maximize"></span>
-                            <span class="terminal-title">sys_monitor.py</span>
-                        </div>
-                        <div class="terminal-body" id="aboutTerminalBody">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="skills" aria-labelledby="skills-title">
-        <div class="container">
-            <h2 class="section-title" id="skills-title"><span class="hacker-trigger">Skills</span></h2>
-            <div class="skills-grid">
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Languages</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Bash</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Databases</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Redis</span>
-                        <span class="skill-tag">SQLite</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Frameworks & Libraries</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Django + DRF</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">Celery</span>
-                        <span class="skill-tag">SQLAlchemy</span>
-                        <span class="skill-tag">Pydantic</span>
-                        <span class="skill-tag">Playwright</span>
-                        <span class="skill-tag">Selenium</span>
-                        <span class="skill-tag">Scrapy</span>
-                        <span class="skill-tag">BeautifulSoup</span>
-                        <span class="skill-tag">Scrapling</span>
-
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Infrastructure</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Kafka</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub Actions</span>
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Cloudflare</span>
-                        <span class="skill-tag">Google Cloud</span>
-                        <span class="skill-tag">Vercel</span>
-                        <span class="skill-tag">Render</span>
-                        <span class="skill-tag">Railway</span>
-                        <span class="skill-tag">Netlify</span>
-                        <span class="skill-tag">Nginx</span>
-                        <span class="skill-tag">HAProxy</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Security</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Kali Linux</span>
-                        <span class="skill-tag">Burp Suite</span>
-                        <span class="skill-tag">Nmap</span>
-                        <span class="skill-tag">Wireshark</span>
-                        <span class="skill-tag">Metasploit</span>
-                        <span class="skill-tag">Pegasus</span>
-                        <span class="skill-tag">John the Ripper</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <section class="section" id="projects" aria-labelledby="projects-title">
-        <div class="container">
-            <h2 class="section-title" id="projects-title"><span class="hacker-trigger">Projects</span></h2>
-            <div class="projects-grid">
-                <!-- Fingrasp -->
-                <article class="project-card featured" data-repo="KrAsH-CoD3/Fingrasp">
-                    <div class="project-content">
-                        <div class="project-image">
-                            <img src="src/assets/projects/fingrasp.png" alt="Fingrasp — browser fingerprint intelligence dashboard" loading="lazy">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-main-header">
-                                <div class="project-title-row">
-                                <h3 class="project-title">Fingrasp</h3>
-                                <span class="status-tag stats" data-repo="KrAsH-CoD3/Fingrasp">
-                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                    <span class="star-count">-</span>
-                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <line x1="6" y1="3" x2="6" y2="15"></line>
-                                        <circle cx="18" cy="6" r="3"></circle>
-                                        <circle cx="6" cy="18" r="3"></circle>
-                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                    </svg>
-                                    <span class="fork-count">-</span>
-                                </span>
-                            </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/Fingrasp" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    <a href="https://fingrasp.vercel.app" target="_blank" rel="noopener noreferrer"
-                                        aria-label="Live Demo">
-                                        <span class="live-dot" aria-hidden="true"></span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                            <polyline points="15 3 21 3 21 9" />
-                                            <line x1="10" y1="14" x2="21" y2="3" />
-                                        </svg>
-                                        Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            An advanced device-integrity platform engineered to differentiate between legitimate
-                            hardware
-                            and simulated environments. Focuses on eliminating false positives in browser fingerprinting
-                            to ensure high-fidelity authentication.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Redis</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- WhatsAppStatusViewer -->
-                <article class="project-card featured" data-repo="KrAsH-CoD3/WhatsApp-Status-Checker">
-                    <div class="project-content">
-                        <div class="project-image">
-                            <img src="src/assets/projects/whatsapp-status-checker.png" alt="WhatsAppStatusViewer — contact status monitoring CLI" loading="lazy">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-main-header">
-                                <div class="project-title-row">
-                                <h3 class="project-title">WhatsAppStatusViewer</h3>
-                                <span class="status-tag stats" data-repo="KrAsH-CoD3/WhatsApp-Status-Checker">
-                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                    <span class="star-count">-</span>
-                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <line x1="6" y1="3" x2="6" y2="15"></line>
-                                        <circle cx="18" cy="6" r="3"></circle>
-                                        <circle cx="6" cy="18" r="3"></circle>
-                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                    </svg>
-                                    <span class="fork-count">-</span>
-                                </span>
-                            </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    <span class="cli-tag">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <polyline points="4 17 10 11 4 5"></polyline>
-                                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                                        </svg>
-                                        CLI Tool
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            Continuously monitors targeted contact status updates and either immediately sends you a
-                            message or at specified time intervals (30m — 6h).
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">CLI</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Selenium</span>
-                            <span class="tech-tag">Automation</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- PriceDiffs -->
-                <article class="project-card featured" data-repo="KrAsH-CoD3/PriceDiffs">
-                    <div class="project-content">
-                        <div class="project-image">
-                            <img src="src/assets/projects/pricediffs.png" alt="PriceDiffs — e-commerce price tracking dashboard" loading="lazy">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-main-header">
-                                <div class="project-title-row">
-                                <h3 class="project-title">PriceDiffs</h3>
-                                <span class="status-tag stats" data-repo="KrAsH-CoD3/PriceDiffs">
-                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                    <span class="star-count">-</span>
-                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <line x1="6" y1="3" x2="6" y2="15"></line>
-                                        <circle cx="18" cy="6" r="3"></circle>
-                                        <circle cx="6" cy="18" r="3"></circle>
-                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                    </svg>
-                                    <span class="fork-count">-</span>
-                                </span>
-                            </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/PriceDiffs" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    <a href="https://pricediffs.up.railway.app" target="_blank" rel="noopener noreferrer"
-                                        aria-label="Live Demo">
-                                        <span class="live-dot" aria-hidden="true"></span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                            <polyline points="15 3 21 3 21 9" />
-                                            <line x1="10" y1="14" x2="21" y2="3" />
-                                        </svg>
-                                        Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            Multi-phase e-commerce price tracker with stealth browser scraping, historical snapshots, and a Django + DRF dashboard for monitoring price fluctuations across retailers.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Django</span>
-                            <span class="tech-tag">DRF</span>
-                            <span class="tech-tag">Playwright</span>
-                            <span class="tech-tag">Price Tracking</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Betking-VF-Autobet -->
-                <article class="project-card featured" data-repo="KrAsH-CoD3/Betking-VF-Autobet">
-                    <div class="project-content">
-                        <div class="project-image">
-                            <img src="src/assets/projects/betking-vf-autobet.png" alt="Betking-VF-Autobet — virtual football betting automation CLI" loading="lazy">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-main-header">
-                                <div class="project-title-row">
-                                <h3 class="project-title">Betking-VF-Autobet</h3>
-                                <span class="status-tag stats" data-repo="KrAsH-CoD3/Betking-VF-Autobet">
-                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                    <span class="star-count">-</span>
-                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <line x1="6" y1="3" x2="6" y2="15"></line>
-                                        <circle cx="18" cy="6" r="3"></circle>
-                                        <circle cx="6" cy="18" r="3"></circle>
-                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                    </svg>
-                                    <span class="fork-count">-</span>
-                                </span>
-                            </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/Betking-VF-Autobet" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    <span class="cli-tag">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <polyline points="4 17 10 11 4 5"></polyline>
-                                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                                        </svg>
-                                        CLI Tool
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            A high-performance automation engine that autonomously executes virtual football bets based
-                            on <strong>Realnaps</strong> predictions. Optimized for continuous real-time stake
-                            management.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">CLI</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Playwright</span>
-                            <span class="tech-tag">Betting</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- BotasHuman -->
-                <!-- <article class="project-card featured" data-repo="KrAsH-CoD3/botashuman">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div class="project-meta">
-                                <span class="project-folder">BotasHuman</span>
-                                <span class="status-tag">PRIVATE</span>
-                            </div>
-                            <div class="project-main-header">
-                                <h3 class="project-title">BotasHuman</h3>
-                                <span class="status-tag stats" data-repo="KrAsH-CoD3/botashuman">
-                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                    <span class="star-count">-</span>
-                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <line x1="6" y1="3" x2="6" y2="15"></line>
-                                        <circle cx="18" cy="6" r="3"></circle>
-                                        <circle cx="6" cy="18" r="3"></circle>
-                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                    </svg>
-                                    <span class="fork-count">-</span>
-                                </span>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/botashuman" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    <a href="https://botashuman.com" target="_blank" rel="noopener noreferrer"
-                                        aria-label="Live Demo">
-                                        <span class="live-dot" aria-hidden="true"></span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                            <polyline points="15 3 21 3 21 9" />
-                                            <line x1="10" y1="14" x2="21" y2="3" />
-                                        </svg>
-                                        Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            A specialized automation platform for universal web orchestration with a zero-detection
-                            footprint. Bypasses advanced anti-bot defenses with indistinguishable
-                            human-interaction and other patterns.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">SaaS</span>
-                            <span class="tech-tag">Anti-Detection</span>
-                            <span class="tech-tag">Automation</span>
-                        </div>
-                    </div>
-                </article> -->
-
-                <!-- TheBotify -->
-                <!-- <article class="project-card featured">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div class="project-meta">
-                                <span class="project-folder">TheBotify</span>
-                                <span class="status-tag">PRIVATE</span>
-                            </div>
-                            <div class="project-main-header">
-                                <h3 class="project-title">TheBotify Framework</h3>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/TheBotify" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                            <p class="project-description">
-                                My personal portfolio — built from scratch with just HTML, CSS, and JavaScript. No frameworks, no libraries. Backend engineers can ship frontends too.
-                            </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- HumanScroll -->
-                <article class="project-card featured" data-repo="KrAsH-CoD3/HumanScroll">
-                    <div class="project-content">
-                        <div class="project-image">
-                            <img src="src/assets/projects/humanscroll.png" alt="HumanScroll — physics-based human-like scrolling library" loading="lazy">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-main-header">
-                                <div class="project-title-row">
-                                <h3 class="project-title">HumanScroll</h3>
-                                <span class="status-tag stats" data-repo="KrAsH-CoD3/HumanScroll">
-                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                    <span class="star-count">-</span>
-                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <line x1="6" y1="3" x2="6" y2="15"></line>
-                                        <circle cx="18" cy="6" r="3"></circle>
-                                        <circle cx="6" cy="18" r="3"></circle>
-                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                    </svg>
-                                    <span class="fork-count">-</span>
-                                </span>
-                            </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/HumanScroll" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    <span class="cli-tag">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <polyline points="4 17 10 11 4 5"></polyline>
-                                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                                        </svg>
-                                        CLI Tool
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            Physics-based human-like scrolling library for Playwright automation. Models inertia, overshoot, rest periods, and trackpad vs. mouse scroll patterns with anti-detection features.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Playwright</span>
-                            <span class="tech-tag">Anti-Detection</span>
-                            <span class="tech-tag">Behavioral Biometrics</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Portfolio -->
-                <article class="project-card featured" data-repo="KrAsH-CoD3/Portfolio">
-                    <div class="project-content">
-                        <div class="project-image">
-                            <img src="src/assets/projects/portfolio.png" alt="Portfolio — this portfolio website" loading="lazy">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-main-header">
-                                <div class="project-title-row">
-                                <h3 class="project-title">Portfolio</h3>
-                                <span class="status-tag stats" data-repo="KrAsH-CoD3/Portfolio">
-                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                    <span class="star-count">-</span>
-                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <line x1="6" y1="3" x2="6" y2="15"></line>
-                                        <circle cx="18" cy="6" r="3"></circle>
-                                        <circle cx="6" cy="18" r="3"></circle>
-                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                    </svg>
-                                    <span class="fork-count">-</span>
-                                </span>
-                            </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/Portfolio" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    <a href="https://krash-cod3.github.io" target="_blank" rel="noopener noreferrer"
-                                        aria-label="Live Demo">
-                                        <span class="live-dot" aria-hidden="true"></span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                            <polyline points="15 3 21 3 21 9" />
-                                            <line x1="10" y1="14" x2="21" y2="3" />
-                                        </svg>
-                                        Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                                My personal portfolio — built from scratch with just HTML, CSS, and JavaScript. No frameworks, no libraries. Backend engineers can ship frontends too.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Plu-Auto-Trading -->
-                <article class="project-card featured" data-repo="KrAsH-CoD3/Plu-Auto-Trading">
-                    <div class="project-content">
-                        <div class="project-image">
-                            <img src="src/assets/projects/plu-auto-trading.png" alt="Plu-Auto-Trading — automated trading engine CLI" loading="lazy">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-main-header">
-                                <div class="project-title-row">
-                                <h3 class="project-title">Plu-Auto-Trading</h3>
-                                <span class="status-tag stats" data-repo="KrAsH-CoD3/Plu-Auto-Trading">
-                                    <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                    <span class="star-count">-</span>
-                                    <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <line x1="6" y1="3" x2="6" y2="15"></line>
-                                        <circle cx="18" cy="6" r="3"></circle>
-                                        <circle cx="6" cy="18" r="3"></circle>
-                                        <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                    </svg>
-                                    <span class="fork-count">-</span>
-                                </span>
-                            </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/KrAsH-CoD3/Plu-Auto-Trading" target="_blank"
-                                        rel="noopener noreferrer" aria-label="GitHub">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    <span class="cli-tag">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <polyline points="4 17 10 11 4 5"></polyline>
-                                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                                        </svg>
-                                        CLI Tool
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                           A high-precision trading engine that automatically executes trades at pre-defined intervals for consistent daily growth. Focuses on temporal reliability and automated stake management.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">CLI</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Automation</span>
-                            <span class="tech-tag">Trading</span>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="research" aria-labelledby="research-title">
-        <div class="container">
-            <h2 class="section-title" id="research-title"><span class="hacker-trigger">Contribution & Research</span></h2>
-
-            <div class="footprint">
-                <h3 class="footprint-group-label">Open Source Contributions</h3>
-                <div class="footprint-grid">
-                    <!-- camouchat-whatsapp -->
-                    <a class="contrib-card" href="https://github.com/CamouChat-Team/camouchat-whatsapp" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">CamouChat-Team</span><span class="contrib-name">camouchat-whatsapp</span></span>
-                            <span class="status-tag stats" data-repo="CamouChat-Team/camouchat-whatsapp">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            The WhatsApp plugin layer for the CamouChat stealth automation framework. Expanded its
-                            competitor matrix and hardened the plugin against a JavaScript injection vector, a path
-                            traversal flaw and log leakage.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #10 merged</span>
-                            <span class="contrib-tag open">PR #24 open</span>
-                            <span class="contrib-tag closed">PR #9 closed</span>
-                        </div>
-                    </a>
-                    <!-- pydoll -->
-                    <a class="contrib-card" href="https://github.com/autoscrape-labs/pydoll" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">autoscrape-labs</span><span class="contrib-name">pydoll</span></span>
-                            <span class="status-tag stats" data-repo="autoscrape-labs/pydoll">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            A WebDriver-less Chromium automation library that drives the browser directly over the
-                            DevTools Protocol. Authored a merged fix pass covering resource leaks, incorrect runtime
-                            behaviour and deprecation warnings, filed from a self-reproduced defect report.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #427 merged</span>
-                            <span class="contrib-tag commits">16 commits</span>
-                            <span class="contrib-tag issue">Issue #426</span>
-                        </div>
-                    </a>
-                    <!-- HumanTyping -->
-                    <a class="contrib-card" href="https://github.com/Lax3n/HumanTyping" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">Lax3n</span><span class="contrib-name">HumanTyping</span></span>
-                            <span class="status-tag stats" data-repo="Lax3n/HumanTyping">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            A Python library that simulates realistic human keyboard typing for web automation
-                            (Playwright/Selenium), using Markov chains to model errors, corrections and fatigue.
-                            Improved error correction and modernized the packaging.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #2 merged</span>
-                            <span class="contrib-tag commits">6 commits</span>
-                            <span class="contrib-tag issue">Issue #1</span>
-                        </div>
-                    </a>
-                    <!-- StealthBrowserController -->
-                    <a class="contrib-card" href="https://github.com/sarperavci/StealthBrowserController" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">sarperavci</span><span class="contrib-name">StealthBrowserController</span></span>
-                            <span class="status-tag stats" data-repo="sarperavci/StealthBrowserController">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            Natural browser control through mouse movement and screen detection. Diagnosed two
-                            packaging defects from a clean install - a wrong Python version floor and a missing
-                            <code>mss</code> dependency - then landed the merged fix.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #5 merged</span>
-                            <span class="contrib-tag commits">4 commits</span>
-                            <span class="contrib-tag issue">Issues #3, #4</span>
-                        </div>
-                    </a>
-                    <!-- callmebot -->
-                    <a class="contrib-card" href="https://github.com/gabrielrih/callmebot" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">gabrielrih</span><span class="contrib-name">callmebot</span></span>
-                            <span class="status-tag stats" data-repo="gabrielrih/callmebot">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            A Python wrapper for the free CallMeBot WhatsApp messaging API, with session management
-                            and environment-based configuration. Modernized the interface with a new
-                            <code>send_message</code> function.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #4 merged</span>
-                            <span class="contrib-tag commits">6 commits</span>
-                        </div>
-                    </a>
-                    <!-- playwright_stealth -->
-                    <a class="contrib-card" href="https://github.com/AtuboDad/playwright_stealth" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">AtuboDad</span><span class="contrib-name">playwright_stealth</span></span>
-                            <span class="status-tag stats" data-repo="AtuboDad/playwright_stealth">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            A stealth plugin for Playwright that patches the most common automation leaks. Rewrote
-                            the README for clearer setup and usage.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag open">PR #26 open</span>
-                        </div>
-                    </a>
-                </div>
-
-                <h3 class="footprint-group-label">Research</h3>
-                <div class="footprint-grid">
-                    <!-- Fingrasp research -->
-                    <a class="contrib-card" href="https://fingrasp.vercel.app" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">KrAsH-CoD3</span><span class="contrib-name">Fingrasp</span></span>
-                        </div>
-                        <p class="contrib-desc">
-                            Exploring a device-integrity platform that differentiates legitimate hardware from
-                            simulated environments - multi-layered integrity protection, behavioural scoring and
-                            transient session security to eliminate false positives.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag research">Research</span>
-                            <span class="contrib-tag live">Live Demo</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="contact" aria-labelledby="contact-title">
-        <div class="container">
-            <h2 class="section-title" id="contact-title"><span class="hacker-trigger">Contact</span></h2>
-            <div class="contact-content">
-                <form id="contactForm" class="contact-form" action="https://formspree.io/f/mkoyboky" method="POST">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Adam Smith"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" class="form-control"
-                                placeholder="adamsmith@example.com" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Job Offer"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" class="form-control" rows="5"
-                            placeholder="Enter your message..." required></textarea>
-                    </div>
-                    <button type="submit" id="submitBtn" class="contact-btn submit-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                        <span class="btn-text">Send Message</span>
-                    </button>
-                    <div id="formStatus" class="status-message"></div>
-                </form>
-
-                <div class="contact-links">
-                    <a href="mailto:samuelalewi@gmail.com" class="contact-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        Email
-                    </a>
-                    <a href="https://github.com/KrAsH-CoD3" class="contact-btn" target="_blank"
-                        rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                            </path>
-                        </svg>
-                        GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/samuel-alewi/?lipi=urn%3Ali%3Apage%3Ad_flagship3_detail_base%3BtbvlRPibQqujwv4PlUNRWA%3D%3D" class="contact-btn" target="_blank"
-                        rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                            </path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                        LinkedIn
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Samuel Alewi. 
-                <br> # KrAsH-CoD3
+            <p class="titlebar-title" data-page-node-id="CYgDIVI2UDw8EbOs8R3diF">
+                <span class="titlebar-user" data-page-node-id="CLEbbPGrV5MS02jDByzlWs">samuel@workbench</span><span class="titlebar-sep" data-page-node-id="pqhoI0seYBgPILsAtbfhMV">:</span><span class="titlebar-path" data-page-node-id="Egvt3Yq2B3eCmIN7me3CUE">~/portfolio</span>
             </p>
-        </div>
-    </footer>
+            <div class="titlebar-actions" data-page-node-id="Ni42htb8X68NPN33rubKLl">
+                <div class="theme-wrapper" data-page-node-id="5yteHnP0LTEs8RMyArHuB6">
+                    <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme (Experimental)" data-page-node-id="Jm3QsFbKrA60FlweTiHeCh">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="gudCp8iwOKPwrv8ZdcGWR1">
+                            <circle cx="12" cy="12" r="5" data-page-node-id="n6VqTp8XIzBIBHt2CLyRv5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3" data-page-node-id="EBc5gbY6A47gw31YBa5Q7t"></line>
+                            <line x1="12" y1="21" x2="12" y2="23" data-page-node-id="jOReDrrlWBgpHYW06QH5cH"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" data-page-node-id="ImximUY2fqayueNLtsGgNw"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" data-page-node-id="dcyNaoxAqnP9luH560BItQ"></line>
+                            <line x1="1" y1="12" x2="3" y2="12" data-page-node-id="WeKuYr8XzXPho5YGwupZ8E"></line>
+                            <line x1="21" y1="12" x2="23" y2="12" data-page-node-id="BqG13djQ9YlxGi93BfNvEQ"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" data-page-node-id="0ytGDqDHDPyTVQJiJXMkfb"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" data-page-node-id="ZMSIKfWVn9tAOrW8nmtgI7"></line>
+                        </svg>
+                    </button>
+                    <div id="themeTooltip" class="theme-tooltip" data-page-node-id="QzK99QkwU3R5hYx7OgOWuR">// Safety Protocol Active</div>
+                </div>
+            </div>
+        </header>
 
-    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
+        <!-- Window tabs -->
+        <div class="tabbar" role="tablist" aria-label="Portfolio sections" data-page-node-id="aSaKf3zdZrQhdSGCsQizBs">
+            <button class="tab is-active" role="tab" id="tab-about" data-view="about" aria-selected="true"
+                aria-controls="view-about" type="button" data-page-node-id="v6vSNqGnpzokDjCXWE46Ci"><span class="tab-index" data-page-node-id="J7ykGpW4VDWYqKSGEvuDwW">1</span>about</button>
+            <button class="tab" role="tab" id="tab-work" data-view="work" aria-selected="false"
+                aria-controls="view-work" type="button" data-page-node-id="9NjEgSjOQYmmoBPT9CRAI2"><span class="tab-index" data-page-node-id="aoeT8mDwmo2mXwVl4avg4F">2</span>work</button>
+            <button class="tab" role="tab" id="tab-contributions" data-view="contributions" aria-selected="false"
+                aria-controls="view-contributions" type="button" data-page-node-id="TrgeZG7OfcbD02K7MMVxBF"><span class="tab-index" data-page-node-id="ELQp8jAvJrq5ZgPeZVvVul">3</span>contributions</button>
+            <button class="tab" role="tab" id="tab-contact" data-view="contact" aria-selected="false"
+                aria-controls="view-contact" type="button" data-page-node-id="wjVXCXJH56U3m3MljPhUjE"><span class="tab-index" data-page-node-id="uHpyXvnRKXSC1LQyZwXyGT">4</span>contact</button>
+        </div>
+
+        <!-- Panes -->
+        <div class="panes" data-page-node-id="FQrVh9fDo97cSM2OvlWe57">
+            <!-- File tree -->
+            <nav class="pane pane-tree" aria-label="Project files" data-page-node-id="z2ldoIGIuqDa6tzeEifwCt">
+                <p class="pane-head" data-page-node-id="Hhai2ES8YNAe54kOaDU87s"><span class="pane-dot" aria-hidden="true" data-page-node-id="DbIbLxhSPTUjfWXVoD3BwG"></span>~/portfolio</p>
+                <div class="pane-body" data-page-node-id="vQ5bzC9q31A4W7Tb91RUZF">
+                    <ul class="tree" data-page-node-id="C09lLxSl0Wx7ckKNfCSE2I">
+                        <li data-page-node-id="w24GnBPEA1Ba7cjmyjS6hm">
+                            <button class="tree-item is-active" data-view="about" type="button" data-page-node-id="kYBvOY5zR0Rym1EwZxuhib">
+                                <span class="tree-icon" aria-hidden="true" data-page-node-id="wb1ECkwIceDECYTm6GGULq">md</span>about.md
+                            </button>
+                        </li>
+                        <li data-page-node-id="BG9HIG5t21mZ951yuLMc77">
+                            <p class="tree-dir" data-page-node-id="yGoh7fzNHltUyZKZIySMIP">work/</p>
+                            <ul class="tree-children" data-page-node-id="C3y07NNnfYPKb8ctVSjioP">
+                                <li data-page-node-id="mYDVLWqCgCTkszN91AotyV"><button class="tree-item" data-view="work" data-anchor="work-fingrasp" type="button" data-page-node-id="e9BsaOSqzZ3smvk4eVeYMV"><span class="tree-icon" aria-hidden="true" data-page-node-id="xqkEC1pda92QB56Bee4wp0">py</span>fingrasp</button></li>
+                                <li data-page-node-id="2256wI7bBxua2wKw9g4Ioc"><button class="tree-item" data-view="work" data-anchor="work-whatsapp" type="button" data-page-node-id="DgkTnHpMPZmxlOMQ9XWch5"><span class="tree-icon" aria-hidden="true" data-page-node-id="3kEafXq2C3RWkFwKhWszTs">py</span>whatsapp-status</button></li>
+                                <li data-page-node-id="4JwUYsE4DY1RBbcKoTszXx"><button class="tree-item" data-view="work" data-anchor="work-pricediffs" type="button" data-page-node-id="Q8TEuli4uW9eQg4iEnsOxB"><span class="tree-icon" aria-hidden="true" data-page-node-id="ymgjhfa5wfcdRBa3SdStMw">py</span>pricediffs</button></li>
+                                <li data-page-node-id="15E0SosYZ3DxvjDm8AER8N"><button class="tree-item" data-view="work" data-anchor="work-betking" type="button" data-page-node-id="MSl1JmJGtVR4m5gnXpHM7W"><span class="tree-icon" aria-hidden="true" data-page-node-id="vy0rDrQuddWp0vQHCLeG5c">py</span>betking-vf-autobet</button></li>
+                                <li data-page-node-id="uphY2Hcv4J7NW1eRahaRYh"><button class="tree-item" data-view="work" data-anchor="work-humanscroll" type="button" data-page-node-id="JcxVyOcIfJLcOA4l8eOceH"><span class="tree-icon" aria-hidden="true" data-page-node-id="R32czFznIxGNxI2NcyrUdL">py</span>humanscroll</button></li>
+                                <li data-page-node-id="tgKFCs4zUfC5FsOLENI0Uz"><button class="tree-item" data-view="work" data-anchor="work-portfolio" type="button" data-page-node-id="tHafwtIlVBjQDSEAjmRDzD"><span class="tree-icon" aria-hidden="true" data-page-node-id="IMRWzU6cFKKsTRcHawy3aw">js</span>portfolio</button></li>
+                                <li data-page-node-id="x5snoIr6Dp3TxHCyflCLcq"><button class="tree-item" data-view="work" data-anchor="work-plu" type="button" data-page-node-id="i4J9B989k76wECJvHG3nzW"><span class="tree-icon" aria-hidden="true" data-page-node-id="iwgca0s41cwoEaVGZDePZC">py</span>plu-auto-trading</button></li>
+                            </ul>
+                        </li>
+                        <li data-page-node-id="igOhq0NqV95jw60CnPDY2d">
+                            <button class="tree-item" data-view="contributions" type="button" data-page-node-id="YQ5CBdVdoLMQktE2i4BpLm">
+                                <span class="tree-icon" aria-hidden="true" data-page-node-id="Yl0hi61yEPMfCpexVtnVzA">md</span>contributions.md
+                            </button>
+                        </li>
+                        <li data-page-node-id="xwzi9cXsbX8MVEBm2DRSVX">
+                            <button class="tree-item" data-view="contact" type="button" data-page-node-id="3u0mrgMmjz1z2oIbl7BLXz">
+                                <span class="tree-icon" aria-hidden="true" data-page-node-id="8glVZCJLf5heATbRbbNwSG">md</span>contact.md
+                            </button>
+                        </li>
+                    </ul>
+                    <p class="tree-note" data-page-node-id="Y3mzTd3DR2k8pX2s8WZjV7">7 projects &middot; 6 upstream repos &middot; 1 research thread</p>
+                </div>
+            </nav>
+
+            <!-- Main pane -->
+            <main class="pane pane-main" data-page-node-id="zAGNi5LJ4DGrJQcmCycViA">
+                <p class="pane-head" data-page-node-id="s6K3WR7CspNCq91hu2N2uH"><span class="pane-dot" aria-hidden="true" data-page-node-id="HxBsFBoBJ3GIePYeS21Jus"></span><span
+                        id="mainPaneHead" data-page-node-id="aeVb4jEci5vpUnHQv3ca9n">about.md</span></p>
+                <div class="pane-body" id="mainPaneBody" data-page-node-id="W2MgLQ96zWQhCD2myH3bjG">
+
+                    <!-- ABOUT -->
+                    <section class="view is-active" id="view-about" role="tabpanel" aria-labelledby="tab-about"
+                        data-view="about" tabindex="0" data-page-node-id="ivgk62Yk1LG2QlZfKEpQcW">
+                        <p class="cmd" data-page-node-id="3jh31UcuPMCnjIbcEidKXS"><span class="cmd-user" data-page-node-id="yCAy3hxotwND7kElqRWANU">samuel@workbench</span><span class="cmd-sep" data-page-node-id="tbASsGJlcrdY90GB4B1uUj">:</span><span
+                                class="cmd-path" data-page-node-id="PiicP2F9GVSjqbLWkCgaTQ">~/portfolio</span><span class="cmd-sigil" data-page-node-id="LpVABIBD6i6v8Acg77mrfc">$</span> <span
+                                class="cmd-text" data-page-node-id="xAkAETWkW6393o594IUPhI">cat about.md</span></p>
+
+                        <div class="profile" data-page-node-id="U7BhvWsSqI7CEl0L9B10Bx">
+                            <img class="profile-avatar" src="src/assets/profile.png"
+                                alt="Samuel Alewi - Backend Engineer" width="88" height="88" loading="eager" data-page-node-id="pYlkxFaHGFjdZMlCiuzGfN">
+                            <div class="profile-id" data-page-node-id="Ku9OI4JX3TKCvG22KBj6He">
+                                <h1 class="profile-name" data-page-node-id="qzq1vRfliCifLKVH4lHFO2">Samuel Alewi</h1>
+                                <p class="profile-role" data-page-node-id="iPsctt7cpuSQu5g6f7nfJD"><span class="typed-role" data-page-node-id="n3CbIVsdwFw4M6fMU1LWD7"></span><span
+                                        class="typed-cursor" data-page-node-id="JNUHQE8C0rMsTJaMAHlU0T">|</span></p>
+                            </div>
+                        </div>
+
+                        <p class="lede" data-page-node-id="hXErwJDCYLkZNvVWgEn8ES">Architecting high-scale distributed systems and specialized stealth automation
+                            frameworks.</p>
+
+                        <h2 class="h-block" data-page-node-id="1hLbwahKTgk5KJZGQw7rEL">focus</h2>
+                        <ul class="dash-list" data-page-node-id="Q6KJ4FIBNoObPZoksGOBFZ">
+                            <li data-page-node-id="QstBQ4WYmxUrEo0IRmW5y0">High-concurrency backend architecture</li>
+                            <li data-page-node-id="G5gO7nbyRGx1MO5T4V4mCQ">Browser automation and orchestration</li>
+                            <li data-page-node-id="adSSnCKn6PtYHGtNpGxDgK">Device integrity and protocol research</li>
+                        </ul>
+
+                        <h2 class="h-block" data-page-node-id="hNKfEFopCnjEEaaZAdR6Lw">background</h2>
+                        <div class="prose" data-page-node-id="9sqITRjSQO8JHopasTvZSP">
+                            <p data-page-node-id="qrOcwe0VOiEQsSmgJVNOhs">
+                                As a <strong data-page-node-id="4mq4EiCaB7F9t02fYUePxg">Backend Architect</strong>, I specialize in building Python ecosystems
+                                that handle massive concurrency without breaking. My work focuses on creating resilient
+                                server-side foundations that power products at scale.
+                            </p>
+                            <p data-page-node-id="2LRfPZilCWAkcVtEGzic45">
+                                Beyond traditional backend, I engineer <strong data-page-node-id="Xf0DEdOfgVqApLpmf0qzII">Stealth Automation</strong> frameworks.
+                                I design specialized orchestrators and headless pipelines that bypass advanced
+                                anti-bot protections and operate where others are detected.
+                            </p>
+                            <p data-page-node-id="7BBdblYGlpHjkC6GcFmCzO">
+                                Leveraging my expertise in automation, I am currently pioneering research into
+                                specialized <strong data-page-node-id="heyAyUYaeuNQXAMgCEa3F8">Cybersecurity</strong> domains. My focus lies in protocol
+                                analysis, anti-telemetry heuristics, and the development of defensive methodologies
+                                that bridge the gap between high-scale architecture and system integrity.
+                            </p>
+                        </div>
+
+                        <div class="actions" data-page-node-id="S4fCBzxAgfBknYvvD1DFmw">
+                            <button class="btn btn-primary" data-view="work" type="button" data-page-node-id="0NeEBIConUVCMF0HqmggK1">Open work/</button>
+                            <button class="btn" data-view="contact" type="button" data-page-node-id="XcB8B1XAtTBNQUlUG7bKur">Get in touch</button>
+                        </div>
+                    </section>
+
+                    <!-- WORK -->
+                    <section class="view" id="view-work" role="tabpanel" aria-labelledby="tab-work" data-view="work"
+                        tabindex="0" data-page-node-id="aljrtMsmIHP11k78vam2bs">
+                        <p class="cmd" data-page-node-id="OQqqISHMXQxgBYaHsDcn1u"><span class="cmd-user" data-page-node-id="eBuxzZq2Fcf8g2rICBJGlU">samuel@workbench</span><span class="cmd-sep" data-page-node-id="1CrPNdnOuef8dEiqBSqODT">:</span><span
+                                class="cmd-path" data-page-node-id="ZlG7oCHvK8PBDx4gzuFiRY">~/portfolio</span><span class="cmd-sigil" data-page-node-id="NTq41KK3MV7H2kVm1vLzfO">$</span> <span
+                                class="cmd-text" data-page-node-id="L7sKM0s65ABjXiLQoNcALG">ls -l ./work</span></p>
+
+                        <ol class="project-list" data-page-node-id="BrbEhGK4EENN7yQQLjz00r">
+
+                            <!-- Fingrasp -->
+                            <li class="project-card" id="work-fingrasp" data-page-node-id="8t0YrOJ5qVvlZuHtpefKkX">
+                                <div class="project-head" data-page-node-id="mCP9MhvpkSVnzRd2qYNSUv">
+                                    <h3 class="project-title" data-page-node-id="v2ifYzQTmfun5m7ubjk8Hx"><span class="project-index" data-page-node-id="LCM5eAuKhG5Cf0uxS7tZuU">01</span>Fingrasp</h3>
+                                    <div class="project-meta" data-page-node-id="FXWMLmh865za6LdNpjKnK7">
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/Fingrasp" data-page-node-id="uvTDyOZEBE6UbHo4wj0OBg">
+                                            <svg class="icon-star" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="currentColor" aria-hidden="true" data-page-node-id="JMXH2Pt2DN3jpV25OyJY32"><use href="#icon-star" data-page-node-id="mLWGIXMdfUE0kJBEM0zUgm" /></svg>
+                                            <span class="star-count" data-page-node-id="TpvW4ahME3gCZK3BT2226T">-</span>
+                                            <svg class="icon-fork" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-page-node-id="LMd9FvDyTux6DKDhFZf3vh">
+                                                <line x1="6" y1="3" x2="6" y2="15" data-page-node-id="MPdetKrmXgqX6xrGoHnQdQ"></line>
+                                                <circle cx="18" cy="6" r="3" data-page-node-id="K1CylMHSbfr8rAweNxlobD"></circle>
+                                                <circle cx="6" cy="18" r="3" data-page-node-id="nfBRNnotFV6zaIQP2ASw4S"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9" data-page-node-id="tQwp0D0maBRMHCbuf4qMg7"></path>
+                                            </svg>
+                                            <span class="fork-count" data-page-node-id="nCLrXUZOipNGmaRoV7uuSJ">-</span>
+                                        </span>
+                                        <a class="chip" href="https://github.com/KrAsH-CoD3/Fingrasp" target="_blank"
+                                            rel="noopener noreferrer" data-page-node-id="jBe2X3mAibIrPoVYCFYJMP">GitHub</a>
+                                        <a class="chip chip-live" href="https://fingrasp.vercel.app" target="_blank"
+                                            rel="noopener noreferrer" data-page-node-id="Ocqjn3ZDWbGLFJJC7MCq96"><span class="live-dot" aria-hidden="true" data-page-node-id="n8VNGAN1CFF8SzXzHG0vPN"></span>Live</a>
+                                    </div>
+                                </div>
+                                <div class="project-image" data-page-node-id="xQcm67zJ98In8aAoPrYYCF">
+                                    <img src="src/assets/projects/fingrasp.png"
+                                        alt="Fingrasp — browser fingerprint intelligence dashboard" loading="lazy" data-page-node-id="7uZyPqC02FvMi1JE4WBkOn">
+                                </div>
+                                <p class="project-description" data-page-node-id="Owr1o9BN7CgaR0yBeA64Dw">
+                                    An advanced device-integrity platform engineered to differentiate between
+                                    legitimate hardware and simulated environments. Focuses on eliminating false
+                                    positives in browser fingerprinting to ensure high-fidelity authentication.
+                                </p>
+                                <div class="project-tech" data-page-node-id="5VtHlPSYjRSI6ybSSoFzab">
+                                    <span class="tech-tag" data-page-node-id="sEkstZAy2qAOBHwDWSyQx6">FastAPI</span>
+                                    <span class="tech-tag" data-page-node-id="50IvXzPYomLRn1kA5ViHGE">MongoDB</span>
+                                    <span class="tech-tag" data-page-node-id="Z5MPPdtOzkOK2o3BAq3mmi">Redis</span>
+                                </div>
+                            </li>
+
+                            <!-- WhatsAppStatusViewer -->
+                            <li class="project-card" id="work-whatsapp" data-page-node-id="CnojGvpAJIpGh6l1jlLkm8">
+                                <div class="project-head" data-page-node-id="JYlmrSxpfkrgk7ctUEVT6E">
+                                    <h3 class="project-title" data-page-node-id="MAW1IYvddQCPGYVqlOQYUy"><span class="project-index" data-page-node-id="vhAW4ApuPbMqNlwfXRvm7X">02</span>WhatsAppStatusViewer
+                                    </h3>
+                                    <div class="project-meta" data-page-node-id="SMViCcMoANY3SWHOsmgp3T">
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/WhatsApp-Status-Checker" data-page-node-id="ohbz7Yfu6zP8gH82m3l4ZR">
+                                            <svg class="icon-star" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="currentColor" aria-hidden="true" data-page-node-id="1AgXBlffnYCxgtq9UE5l8G"><use href="#icon-star" data-page-node-id="lBpQYpFtdBngP1zf6rMpN7" /></svg>
+                                            <span class="star-count" data-page-node-id="nmCtvPB6J5VBUbFoeposN0">-</span>
+                                            <svg class="icon-fork" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-page-node-id="Gv6drGZSlcTiNAMBfZSFTC">
+                                                <line x1="6" y1="3" x2="6" y2="15" data-page-node-id="aRAT9Lsfd503VPlnRZ99Wn"></line>
+                                                <circle cx="18" cy="6" r="3" data-page-node-id="ZGEU0disKI9jgvEtgzB6xW"></circle>
+                                                <circle cx="6" cy="18" r="3" data-page-node-id="B0K9lObIkS2lxGxxFzqKwa"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9" data-page-node-id="9NMOOmU5uRGIG3YWOe9zEl"></path>
+                                            </svg>
+                                            <span class="fork-count" data-page-node-id="YS4qUK8of6pWhl5tonwKNp">-</span>
+                                        </span>
+                                        <a class="chip" href="https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker"
+                                            target="_blank" rel="noopener noreferrer" data-page-node-id="Hk7NzGydsz2AaZJwPHXzcd">GitHub</a>
+                                        <span class="chip chip-quiet" data-page-node-id="xcNPE7lwTYuBkzsVXesOzv">CLI tool</span>
+                                    </div>
+                                </div>
+                                <div class="project-image" data-page-node-id="Tv8Xie72WpqHTLVEIxyPpX">
+                                    <img src="src/assets/projects/whatsapp-status-checker.png"
+                                        alt="WhatsAppStatusViewer — contact status monitoring CLI" loading="lazy" data-page-node-id="CchIk5wHoR2b4iCn4F96uh">
+                                </div>
+                                <p class="project-description" data-page-node-id="wtBGRc7rMEaD8T3YI2EQpR">
+                                    Continuously monitors targeted contact status updates and either immediately sends
+                                    you a message or at specified time intervals (30m &mdash; 6h).
+                                </p>
+                                <div class="project-tech" data-page-node-id="pHLlJ02SHzpTEHZxZyPzkR">
+                                    <span class="tech-tag" data-page-node-id="FbKpZBPuWy1N4bmeu7KAll">CLI</span>
+                                    <span class="tech-tag" data-page-node-id="966ZAz2yFwCDdNClqk8Zkt">Python</span>
+                                    <span class="tech-tag" data-page-node-id="C3An4U9JCONNisv3IXXtiP">Selenium</span>
+                                    <span class="tech-tag" data-page-node-id="jUd67cJmf5a0cE8iCQyIzn">Automation</span>
+                                </div>
+                            </li>
+
+                            <!-- PriceDiffs -->
+                            <li class="project-card" id="work-pricediffs" data-page-node-id="H67TnT9kWwb7qY0s190Oqi">
+                                <div class="project-head" data-page-node-id="T6XA4dnHw0puY3IiqYtQrC">
+                                    <h3 class="project-title" data-page-node-id="P11StPLBJWbFmBlJWpGauk"><span class="project-index" data-page-node-id="DJAhaG7KTBRgpze0jhe5wE">03</span>PriceDiffs</h3>
+                                    <div class="project-meta" data-page-node-id="kPGoKVQhiXvB3Kur5FayQU">
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/PriceDiffs" data-page-node-id="fenyEdbVkvRWVnDKFt4bZk">
+                                            <svg class="icon-star" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="currentColor" aria-hidden="true" data-page-node-id="TBhhdelfchRn1GMoJz2Pe4"><use href="#icon-star" data-page-node-id="GpauHnL2AAawVsZdXGW9tp" /></svg>
+                                            <span class="star-count" data-page-node-id="N6lScG2cNmU9HEwQTwNols">-</span>
+                                            <svg class="icon-fork" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-page-node-id="FlD2X9z0dmbrIbOf56mDcH">
+                                                <line x1="6" y1="3" x2="6" y2="15" data-page-node-id="2DqpmVNqIXeRh1hhAVhLvB"></line>
+                                                <circle cx="18" cy="6" r="3" data-page-node-id="QlxQn0dxheaNToLZX9PySJ"></circle>
+                                                <circle cx="6" cy="18" r="3" data-page-node-id="F9HuTKez6aLGffg5A6fdzw"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9" data-page-node-id="9E5tEr08IqKGZnFBGa2VUG"></path>
+                                            </svg>
+                                            <span class="fork-count" data-page-node-id="iXnTXIl14kSCC5mdFFpn1o">-</span>
+                                        </span>
+                                        <a class="chip" href="https://github.com/KrAsH-CoD3/PriceDiffs" target="_blank"
+                                            rel="noopener noreferrer" data-page-node-id="Tsca2QPTGmerkxbXzSKAdy">GitHub</a>
+                                        <a class="chip chip-live" href="https://pricediffs.up.railway.app"
+                                            target="_blank" rel="noopener noreferrer" data-page-node-id="6nsWCI5tNL7XoJkl6uuL7v"><span class="live-dot"
+                                                aria-hidden="true" data-page-node-id="Px0XXGiLIi2nv19SN4NuDr"></span>Live</a>
+                                    </div>
+                                </div>
+                                <div class="project-image" data-page-node-id="UbHAtLUNsZckc6BXdT6YHn">
+                                    <img src="src/assets/projects/pricediffs.png"
+                                        alt="PriceDiffs — e-commerce price tracking dashboard" loading="lazy" data-page-node-id="ItZkUm8IJDkvC87OGWNAI2">
+                                </div>
+                                <p class="project-description" data-page-node-id="MMco8dHdxFGv8woI4kg2IB">
+                                    Multi-phase e-commerce price tracker with stealth browser scraping, historical
+                                    snapshots, and a Django + DRF dashboard for monitoring price fluctuations across
+                                    retailers.
+                                </p>
+                                <div class="project-tech" data-page-node-id="RjLhEtswVnTQ1l3P1oLrJN">
+                                    <span class="tech-tag" data-page-node-id="Iy1hAVduAnA0i2KHykPm8d">Django</span>
+                                    <span class="tech-tag" data-page-node-id="cOcnSaYAYRAAWFl1spun9K">DRF</span>
+                                    <span class="tech-tag" data-page-node-id="9I8GG5q9IroRinkDyVlQJK">Playwright</span>
+                                    <span class="tech-tag" data-page-node-id="m4XcTmJb0VLnpNGc8rDG8t">Price Tracking</span>
+                                </div>
+                            </li>
+
+                            <!-- Betking-VF-Autobet -->
+                            <li class="project-card" id="work-betking" data-page-node-id="wgHg9j1uiFhBqx6UlTfktA">
+                                <div class="project-head" data-page-node-id="6CaklwnPj2KeebXeFLOAMd">
+                                    <h3 class="project-title" data-page-node-id="coDnzLA1Gf4w68BiYRvoKe"><span class="project-index" data-page-node-id="D9WXhGZnXwT0tCC38c2wuL">04</span>Betking-VF-Autobet
+                                    </h3>
+                                    <div class="project-meta" data-page-node-id="oPvrjl5MH40bcp55EEbAHc">
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/Betking-VF-Autobet" data-page-node-id="9szAJQ8WMCg1GGcFcKBDZr">
+                                            <svg class="icon-star" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="currentColor" aria-hidden="true" data-page-node-id="n0X8O9BJM2FeH7BddvXFCo"><use href="#icon-star" data-page-node-id="8hLrqvXSxyMoCZ52ZGraaU" /></svg>
+                                            <span class="star-count" data-page-node-id="exYxteERVGxbCYDHsH5C7O">-</span>
+                                            <svg class="icon-fork" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-page-node-id="NeAXIKKDPXcew35tqfoZDt">
+                                                <line x1="6" y1="3" x2="6" y2="15" data-page-node-id="a3rUrvyCFV14qCU2wSGR61"></line>
+                                                <circle cx="18" cy="6" r="3" data-page-node-id="8Rzv0FyRK5GJAesKKv1UaL"></circle>
+                                                <circle cx="6" cy="18" r="3" data-page-node-id="x56H3fw9633IZWt3GqUQvh"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9" data-page-node-id="ahuVocyTcyXYyXytAScnPq"></path>
+                                            </svg>
+                                            <span class="fork-count" data-page-node-id="RcQGzE5HX5dlmFGHG07kLG">-</span>
+                                        </span>
+                                        <a class="chip" href="https://github.com/KrAsH-CoD3/Betking-VF-Autobet"
+                                            target="_blank" rel="noopener noreferrer" data-page-node-id="kFuH9BMnrIznTEiqqKKzdY">GitHub</a>
+                                        <span class="chip chip-quiet" data-page-node-id="K7TIoMVuheDOXb1bZCC9t6">CLI tool</span>
+                                    </div>
+                                </div>
+                                <div class="project-image" data-page-node-id="pb44hY40tNmz4QGEIzbCwf">
+                                    <img src="src/assets/projects/betking-vf-autobet.png"
+                                        alt="Betking-VF-Autobet — virtual football betting automation CLI"
+                                        loading="lazy" data-page-node-id="rwfG11nqDLhVZS2RwbDmKV">
+                                </div>
+                                <p class="project-description" data-page-node-id="TwHHci8TE3Wy7yjgS4NdJs">
+                                    A high-performance automation engine that autonomously executes virtual football
+                                    bets based on <strong data-page-node-id="g4e1CVTcHKoAtJWKepb8t6">Realnaps</strong> predictions. Optimized for continuous
+                                    real-time stake management.
+                                </p>
+                                <div class="project-tech" data-page-node-id="8ZrBIpb24UFN1SjtUhgZ1S">
+                                    <span class="tech-tag" data-page-node-id="bjEiZtCV3UmV2IPDqVbjjJ">CLI</span>
+                                    <span class="tech-tag" data-page-node-id="tEpYD2RZAmDhgcfO0uPdOu">Python</span>
+                                    <span class="tech-tag" data-page-node-id="O9VCySASxuaLv5uKD71995">Playwright</span>
+                                    <span class="tech-tag" data-page-node-id="EgeOm1L3mYA0iegHaTyl1G">Betting</span>
+                                </div>
+                            </li>
+
+                            <!-- HumanScroll -->
+                            <li class="project-card" id="work-humanscroll" data-page-node-id="r9Et2rwBNuTq6LS8AyFbog">
+                                <div class="project-head" data-page-node-id="tfFgsrDkWsHp31bxSOl3z7">
+                                    <h3 class="project-title" data-page-node-id="LMRXTYmlfU5dEpVkGF6mHA"><span class="project-index" data-page-node-id="oZKFQMGHYxOPVaj2McJg7V">05</span>HumanScroll</h3>
+                                    <div class="project-meta" data-page-node-id="PEUgFBgSO8Gt4HnrWkFSLi">
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/HumanScroll" data-page-node-id="sQYE9mIywTB6StBhEwEyUF">
+                                            <svg class="icon-star" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="currentColor" aria-hidden="true" data-page-node-id="s1OoNoQeV4FkyETt3Bf1Xi"><use href="#icon-star" data-page-node-id="6neL3CjPiEEcJT9VQjTxJi" /></svg>
+                                            <span class="star-count" data-page-node-id="EO8kbhgLhHDMSRVFtk63vW">-</span>
+                                            <svg class="icon-fork" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-page-node-id="Msrginm8wLwByYwQKjfSsi">
+                                                <line x1="6" y1="3" x2="6" y2="15" data-page-node-id="7g35ms6s0kN7taHSYInIEu"></line>
+                                                <circle cx="18" cy="6" r="3" data-page-node-id="CiVDpg7ee2vlyl5HwldcbD"></circle>
+                                                <circle cx="6" cy="18" r="3" data-page-node-id="zHRSQgPODwkFKdfmPyjlUL"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9" data-page-node-id="GFDN0GwADEu9OVEEKEXRhT"></path>
+                                            </svg>
+                                            <span class="fork-count" data-page-node-id="lWGfx5YTZ5yvE50CBCy2sd">-</span>
+                                        </span>
+                                        <a class="chip" href="https://github.com/KrAsH-CoD3/HumanScroll"
+                                            target="_blank" rel="noopener noreferrer" data-page-node-id="sAIgvNLuSNJ4Py9kBsw9jX">GitHub</a>
+                                        <span class="chip chip-quiet" data-page-node-id="md9i40UnVmNRlgMXNyGfV1">CLI tool</span>
+                                    </div>
+                                </div>
+                                <div class="project-image" data-page-node-id="jeI3Mb5oKioH6kLoo1z4EG">
+                                    <img src="src/assets/projects/humanscroll.png"
+                                        alt="HumanScroll — physics-based human-like scrolling library" loading="lazy" data-page-node-id="DCENlEnd7hzynSzqqWdp1A">
+                                </div>
+                                <p class="project-description" data-page-node-id="DtsUDtyQMKlfdYdgmWEL3c">
+                                    Physics-based human-like scrolling library for Playwright automation. Models
+                                    inertia, overshoot, rest periods, and trackpad vs. mouse scroll patterns with
+                                    anti-detection features.
+                                </p>
+                                <div class="project-tech" data-page-node-id="iQOonfdFRAT2frGKwUJiwO">
+                                    <span class="tech-tag" data-page-node-id="bspyqvzhwnZ2jONpNxPvRT">Python</span>
+                                    <span class="tech-tag" data-page-node-id="7s338jH3HJBr9NgfV1KBDB">Playwright</span>
+                                    <span class="tech-tag" data-page-node-id="ccebSSsIHtcecFFlYJACOu">Anti-Detection</span>
+                                    <span class="tech-tag" data-page-node-id="Jh32rwwKyRQ5AcByAymG3p">Behavioral Biometrics</span>
+                                </div>
+                            </li>
+
+                            <!-- Portfolio -->
+                            <li class="project-card" id="work-portfolio" data-page-node-id="8Q1sRLMxABMOGB13TYBh8j">
+                                <div class="project-head" data-page-node-id="YuFWOOq15egCtFIDqLRbac">
+                                    <h3 class="project-title" data-page-node-id="Poua09F4Y2oczhObhKzNXq"><span class="project-index" data-page-node-id="kAAqcyO2w6tY3nLblvalvw">06</span>Portfolio</h3>
+                                    <div class="project-meta" data-page-node-id="Ck9eLtdRUlDVGcFFxVLHGw">
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/Portfolio" data-page-node-id="2uLHvTtIsZkno7GupcF86z">
+                                            <svg class="icon-star" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="currentColor" aria-hidden="true" data-page-node-id="0uqp8tvCEvy8wu6yVis0Mq"><use href="#icon-star" data-page-node-id="r9sZfLMMEnA7wbHp7lE4Cz" /></svg>
+                                            <span class="star-count" data-page-node-id="5OEDJ6uaY92ik28azYCBYQ">-</span>
+                                            <svg class="icon-fork" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-page-node-id="GV70nABRYz4LvyELaaELhl">
+                                                <line x1="6" y1="3" x2="6" y2="15" data-page-node-id="2gFTLBOln1IdZQwB4WMu6w"></line>
+                                                <circle cx="18" cy="6" r="3" data-page-node-id="tWD2LXNEVVzjd6iXZpACjv"></circle>
+                                                <circle cx="6" cy="18" r="3" data-page-node-id="kYz84of9TzdAPn0iUgWBCD"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9" data-page-node-id="r1OWSQ5lyBwQKGFZUiXiAy"></path>
+                                            </svg>
+                                            <span class="fork-count" data-page-node-id="YNq0oU95DDdpTM7ZZpW5kH">-</span>
+                                        </span>
+                                        <a class="chip" href="https://github.com/KrAsH-CoD3/Portfolio" target="_blank"
+                                            rel="noopener noreferrer" data-page-node-id="Jlb3gKyvFV3vcewBrr9HDS">GitHub</a>
+                                        <a class="chip chip-live" href="https://krash-cod3.github.io" target="_blank"
+                                            rel="noopener noreferrer" data-page-node-id="Gu7ReubTMlvCOmMixq9iLj"><span class="live-dot"
+                                                aria-hidden="true" data-page-node-id="QbVEgv9oJEbj04WNYSh7X4"></span>Live</a>
+                                    </div>
+                                </div>
+                                <div class="project-image" data-page-node-id="6dDHtAfByYrUZlUAkkAehm">
+                                    <img src="src/assets/projects/portfolio.png"
+                                        alt="Portfolio — this portfolio website" loading="lazy" data-page-node-id="MFMBO6GILD7mjmu2ua0eQC">
+                                </div>
+                                <p class="project-description" data-page-node-id="L9z4pfoGkvbDWJXsd4eppZ">
+                                    My personal portfolio &mdash; built from scratch with just HTML, CSS, and
+                                    JavaScript. No frameworks, no libraries. Backend engineers can ship frontends too.
+                                </p>
+                                <div class="project-tech" data-page-node-id="bvDFAQw9emO140JeiAPGev">
+                                    <span class="tech-tag" data-page-node-id="6PNOGNDdWDpLIPI6JhGznx">HTML5</span>
+                                    <span class="tech-tag" data-page-node-id="u9Z2rrVf8Wg5PsD3FbEF94">CSS3</span>
+                                    <span class="tech-tag" data-page-node-id="hTGQzlNoH8gnrN6SQ1qImA">JavaScript</span>
+                                </div>
+                            </li>
+
+                            <!-- Plu-Auto-Trading -->
+                            <li class="project-card" id="work-plu" data-page-node-id="nAtzd007S7pbcyjpIS3nAB">
+                                <div class="project-head" data-page-node-id="ER9NGDKexOHxX8Kmz3Gnw8">
+                                    <h3 class="project-title" data-page-node-id="veKjeZNrHpQm2HVeT1PaUq"><span class="project-index" data-page-node-id="fnWbzmTRV6R9fdxptZnQ95">07</span>Plu-Auto-Trading</h3>
+                                    <div class="project-meta" data-page-node-id="qd0JUEur1ADsTxfSOONdEo">
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/Plu-Auto-Trading" data-page-node-id="kywAXyvWUfRkAYDq8FIgvt">
+                                            <svg class="icon-star" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="currentColor" aria-hidden="true" data-page-node-id="AOgaTV2zDUai430VqUvly6"><use href="#icon-star" data-page-node-id="0GR8EHnf9lxjxdkCDa8Zy7" /></svg>
+                                            <span class="star-count" data-page-node-id="N3QuMv7Q1QpAydjqAZXGFS">-</span>
+                                            <svg class="icon-fork" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" data-page-node-id="8sFOiMpga7HtKCSh3rLa68">
+                                                <line x1="6" y1="3" x2="6" y2="15" data-page-node-id="r4zdRzWg3EVLrXoxIK9UAC"></line>
+                                                <circle cx="18" cy="6" r="3" data-page-node-id="hnRnGKu91XHz2gnDOu7xdC"></circle>
+                                                <circle cx="6" cy="18" r="3" data-page-node-id="werEsUUNZS9HkqaOjMKfrW"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9" data-page-node-id="yWLaSESYSqGUNAZ0rXrqe9"></path>
+                                            </svg>
+                                            <span class="fork-count" data-page-node-id="bPv77hGhCf2mFfxb17D2V0">-</span>
+                                        </span>
+                                        <a class="chip" href="https://github.com/KrAsH-CoD3/Plu-Auto-Trading"
+                                            target="_blank" rel="noopener noreferrer" data-page-node-id="DKWJqfMhuLPTR4Q4WS3X3E">GitHub</a>
+                                        <span class="chip chip-quiet" data-page-node-id="jbUfDilCnnxKO3Pj41AONH">CLI tool</span>
+                                    </div>
+                                </div>
+                                <div class="project-image" data-page-node-id="Iq03CVjpqNAAPX67upt0MJ">
+                                    <img src="src/assets/projects/plu-auto-trading.png"
+                                        alt="Plu-Auto-Trading — automated trading engine CLI" loading="lazy" data-page-node-id="wVZnosm4bHnVc5PjCBdlPz">
+                                </div>
+                                <p class="project-description" data-page-node-id="rauRhQutDDyVsDyu8J2sv7">
+                                    A high-precision trading engine that automatically executes trades at pre-defined
+                                    intervals for consistent daily growth. Focuses on temporal reliability and
+                                    automated stake management.
+                                </p>
+                                <div class="project-tech" data-page-node-id="TvuMWeFlNBEp1URo8QDl48">
+                                    <span class="tech-tag" data-page-node-id="LGzfVcdHQOwEFy6NrVWR48">CLI</span>
+                                    <span class="tech-tag" data-page-node-id="taU5PKs5wCebYmps6aM6aU">Python</span>
+                                    <span class="tech-tag" data-page-node-id="X6SCRead2pkitzDwcENaSF">Automation</span>
+                                    <span class="tech-tag" data-page-node-id="DWnnWVuh8FxU5UCcNDATGv">Trading</span>
+                                </div>
+                            </li>
+
+                        </ol>
+                    </section>
+
+                    <!-- CONTRIBUTIONS -->
+                    <section class="view" id="view-contributions" role="tabpanel" aria-labelledby="tab-contributions"
+                        data-view="contributions" tabindex="0" data-page-node-id="XvGqY7h4FPeT7UFzdb29o9">
+                        <p class="cmd" data-page-node-id="wEohVJwfaX1TI91bhRDizc"><span class="cmd-user" data-page-node-id="k2gWO1dPiKc2oZYjPYNgpb">samuel@workbench</span><span class="cmd-sep" data-page-node-id="4Z54OUJ9oAUjXVbC5XDQ1O">:</span><span
+                                class="cmd-path" data-page-node-id="9RFMHYZLhXYl4dGEEtMlv7">~/portfolio</span><span class="cmd-sigil" data-page-node-id="hkoYX1epSBGWgFrP3PxyAX">$</span> <span
+                                class="cmd-text" data-page-node-id="QCBjFmxgsfQ4gfQoLkCXS1">cat contributions.md</span></p>
+
+                        <p class="lede" data-page-node-id="8bWZs2q7IBbjW9yvLxR7uo">Merged pull requests, upstream commits and reproducible bug reports across 21
+                            external repositories. A selection is below.</p>
+
+                        <h2 class="h-block" data-page-node-id="ikMzKkJqvfTqdHJKneSmtH">open source</h2>
+                        <div class="contrib-list" data-page-node-id="tobejeRzq80P7flHDbetrG">
+
+                            <a class="contrib-card" href="https://github.com/CamouChat-Team/camouchat-whatsapp"
+                                target="_blank" rel="noopener noreferrer" data-page-node-id="HM4o1S1f1fQ9SlfyoOq6xp">
+                                <div class="contrib-top" data-page-node-id="VEyL1ciD5f9tnSNtdB9eDB">
+                                    <span class="contrib-repo" data-page-node-id="5CKDYi2WUYZyOQ4cn43R29"><span
+                                            class="contrib-owner" data-page-node-id="FSDnldGApurMFY8c4FgX0b">CamouChat-Team</span><span
+                                            class="contrib-name" data-page-node-id="DHVo4yiTSNOsrBLcDtEv8F">camouchat-whatsapp</span></span>
+                                    <span class="status-tag stats" data-repo="CamouChat-Team/camouchat-whatsapp" data-page-node-id="eSlZmXiMxIKtdCSCLo73Va">
+                                        <svg class="icon-star" width="14" height="14" fill="currentColor"
+                                            aria-hidden="true" data-page-node-id="SlcUr3fhSWZL8x4ZRnMvbH">
+                                            <use href="#icon-star" data-page-node-id="Yjs3iEKOWtd3GaHwMvrAU6" />
+                                        </svg>
+                                        <span class="star-count" data-page-node-id="fdte2pE2OrNjN8WMoRnVof">-</span>
+                                    </span>
+                                </div>
+                                <p class="contrib-desc" data-page-node-id="fWxdIP3FssxZjQGXcGNk3Q">
+                                    The WhatsApp plugin layer for the CamouChat stealth automation framework. Expanded
+                                    its competitor matrix and hardened the plugin against a JavaScript injection
+                                    vector, a path traversal flaw and log leakage.
+                                </p>
+                                <div class="contrib-tags" data-page-node-id="MwRoa2PsIc2j6DIyCOhxR2">
+                                    <span class="contrib-tag merged" data-page-node-id="KEGRNvwcKit5CxqwPpgSxA">PR #10 merged</span>
+                                    <span class="contrib-tag open" data-page-node-id="Z9Zc1Cij1jO0Hq6KGTr8wS">PR #24 open</span>
+                                    <span class="contrib-tag closed" data-page-node-id="4oswz6HQZjy40qVKZ7srxL">PR #9 closed</span>
+                                </div>
+                            </a>
+
+                            <a class="contrib-card" href="https://github.com/autoscrape-labs/pydoll" target="_blank"
+                                rel="noopener noreferrer" data-page-node-id="Ba8XYYo5WArFntKFLnlwUk">
+                                <div class="contrib-top" data-page-node-id="cb33aKRq9D6ag2i2hYXPrP">
+                                    <span class="contrib-repo" data-page-node-id="GAxlWGf9JdzFtWUwc8ZRKt"><span class="contrib-owner" data-page-node-id="nbWsOweJ0R4NCfFg6keTrb">autoscrape-labs</span><span
+                                            class="contrib-name" data-page-node-id="eKNiBZDGoXmP6t5Wtseawt">pydoll</span></span>
+                                    <span class="status-tag stats" data-repo="autoscrape-labs/pydoll" data-page-node-id="WuDAfZ3d21RAOSQuXAM56J">
+                                        <svg class="icon-star" width="14" height="14" fill="currentColor"
+                                            aria-hidden="true" data-page-node-id="Pb7qFmBMYYyNuUscILwJNB">
+                                            <use href="#icon-star" data-page-node-id="odKIP2ALb8dsEwhIhSuvga" />
+                                        </svg>
+                                        <span class="star-count" data-page-node-id="InYlYbiHHqI3xZdz5kfkBR">-</span>
+                                    </span>
+                                </div>
+                                <p class="contrib-desc" data-page-node-id="irMTauptE3VvttYZXAl2wj">
+                                    A WebDriver-less Chromium automation library that drives the browser directly over
+                                    the DevTools Protocol. Authored a merged fix pass covering resource leaks,
+                                    incorrect runtime behaviour and deprecation warnings, filed from a self-reproduced
+                                    defect report.
+                                </p>
+                                <div class="contrib-tags" data-page-node-id="VuwML5hGPnNxcR0cCfhEZU">
+                                    <span class="contrib-tag merged" data-page-node-id="9YwRze6DY3FyJPsv7Ndzz8">PR #427 merged</span>
+                                    <span class="contrib-tag commits" data-page-node-id="v8Bs8f62ErxB3ysmTTmtMh">16 commits</span>
+                                    <span class="contrib-tag issue" data-page-node-id="DTWUHysfVrugEDPAdYBQye">Issue #426</span>
+                                </div>
+                            </a>
+
+                            <a class="contrib-card" href="https://github.com/Lax3n/HumanTyping" target="_blank"
+                                rel="noopener noreferrer" data-page-node-id="j761zLmgGiHEzv856zyouD">
+                                <div class="contrib-top" data-page-node-id="kEJIrlDjcsMeRIOyRIsAWX">
+                                    <span class="contrib-repo" data-page-node-id="fYEC7AQAOpibsS8VRdBWLG"><span class="contrib-owner" data-page-node-id="jfilfNM0GMDiaIjt5ahop1">Lax3n</span><span
+                                            class="contrib-name" data-page-node-id="SgREdcOce9HWl7pMBKvwHX">HumanTyping</span></span>
+                                    <span class="status-tag stats" data-repo="Lax3n/HumanTyping" data-page-node-id="NRY7d9Oe1BytFM6ZsOCvU1">
+                                        <svg class="icon-star" width="14" height="14" fill="currentColor"
+                                            aria-hidden="true" data-page-node-id="kz0ctJ7npj1fgtL1Egi7Ke">
+                                            <use href="#icon-star" data-page-node-id="lUSe4JV0htqpCQc2IKXPxG" />
+                                        </svg>
+                                        <span class="star-count" data-page-node-id="59usfSFHhMBw6jmFDZMzNE">-</span>
+                                    </span>
+                                </div>
+                                <p class="contrib-desc" data-page-node-id="7XhCf99vWqBmJslOjbyH4P">
+                                    A Python library that simulates realistic human keyboard typing for web automation
+                                    (Playwright/Selenium), using Markov chains to model errors, corrections and
+                                    fatigue. Improved error correction and modernized the packaging.
+                                </p>
+                                <div class="contrib-tags" data-page-node-id="74ZNXH7rXjqgIftd7ywiX7">
+                                    <span class="contrib-tag merged" data-page-node-id="kMTK2Bm9kuAEIDClQR35gb">PR #2 merged</span>
+                                    <span class="contrib-tag commits" data-page-node-id="VBSMIQfazXlUOCiKSAVksu">6 commits</span>
+                                    <span class="contrib-tag issue" data-page-node-id="rCrHWL1Cxh0w51Ng2tsbsF">Issue #1</span>
+                                </div>
+                            </a>
+
+                            <a class="contrib-card" href="https://github.com/sarperavci/StealthBrowserController"
+                                target="_blank" rel="noopener noreferrer" data-page-node-id="4ofTaV90XWSiLZ4vyA0znR">
+                                <div class="contrib-top" data-page-node-id="o69N7tISucnDDirxUEEqCS">
+                                    <span class="contrib-repo" data-page-node-id="9FcwoEGpEQgYhJsvuuDz4r"><span class="contrib-owner" data-page-node-id="zO047cZ2h07O61R7UpKLhi">sarperavci</span><span
+                                            class="contrib-name" data-page-node-id="9asQOQdsrhypKjoug6bCZH">StealthBrowserController</span></span>
+                                    <span class="status-tag stats" data-repo="sarperavci/StealthBrowserController" data-page-node-id="KRnlOHnmSzf75SJ7mxIcDz">
+                                        <svg class="icon-star" width="14" height="14" fill="currentColor"
+                                            aria-hidden="true" data-page-node-id="VfnvosLrqGxOo13a612b6G">
+                                            <use href="#icon-star" data-page-node-id="gOjkuAQ0CfEWln1BrYA3Up" />
+                                        </svg>
+                                        <span class="star-count" data-page-node-id="rgRz34JFozeB33s4l2pWT6">-</span>
+                                    </span>
+                                </div>
+                                <p class="contrib-desc" data-page-node-id="rw88tMCl1KFlrWzcArPE0E">
+                                    Natural browser control through mouse movement and screen detection. Diagnosed two
+                                    packaging defects from a clean install - a wrong Python version floor and a missing
+                                    <code data-page-node-id="RbdiVorFpwAGgGHooqD3Co">mss</code> dependency - then landed the merged fix.
+                                </p>
+                                <div class="contrib-tags" data-page-node-id="OC9A3JrqCIugccfKiKnara">
+                                    <span class="contrib-tag merged" data-page-node-id="PjqG6tCtEROASjkBkEU37U">PR #5 merged</span>
+                                    <span class="contrib-tag commits" data-page-node-id="2KbDxGXDOPFqvBcKjLpFdE">4 commits</span>
+                                    <span class="contrib-tag issue" data-page-node-id="RHmlVrqQdAewSdo3Kp2GZn">Issues #3, #4</span>
+                                </div>
+                            </a>
+
+                            <a class="contrib-card" href="https://github.com/gabrielrih/callmebot" target="_blank"
+                                rel="noopener noreferrer" data-page-node-id="CIk3xSBTNSvuIdBo7JiCu9">
+                                <div class="contrib-top" data-page-node-id="2K5Hl0U456ACW0OsZwNmAp">
+                                    <span class="contrib-repo" data-page-node-id="yl8YyahwmfSeV27UZn77jz"><span class="contrib-owner" data-page-node-id="DrVJXeTI9MJRaM3GJDXRJQ">gabrielrih</span><span
+                                            class="contrib-name" data-page-node-id="HPj9lc8I9UOI4HaPxyzFSP">callmebot</span></span>
+                                    <span class="status-tag stats" data-repo="gabrielrih/callmebot" data-page-node-id="jikF44VpD9SLhbGrTM0G4C">
+                                        <svg class="icon-star" width="14" height="14" fill="currentColor"
+                                            aria-hidden="true" data-page-node-id="s7OKVHJp6jNl3tlXr8mcnw">
+                                            <use href="#icon-star" data-page-node-id="cTxA8pZwwgFeEPqnHKPSOc" />
+                                        </svg>
+                                        <span class="star-count" data-page-node-id="iZrTpCyKjEayFPtp265ovT">-</span>
+                                    </span>
+                                </div>
+                                <p class="contrib-desc" data-page-node-id="pYRWb9UcH9DDDVaifWzeRH">
+                                    A Python wrapper for the free CallMeBot WhatsApp messaging API, with session
+                                    management and environment-based configuration. Modernized the interface with a new
+                                    <code data-page-node-id="StSmJBBOk6hpMirxOOPkOa">send_message</code> function.
+                                </p>
+                                <div class="contrib-tags" data-page-node-id="EvkSUSKQkvPGejMnQmklwX">
+                                    <span class="contrib-tag merged" data-page-node-id="5HO3RazV3pHjq9o3vTt5tv">PR #4 merged</span>
+                                    <span class="contrib-tag commits" data-page-node-id="v15PWOqBQh3nn1vwAkliqg">6 commits</span>
+                                </div>
+                            </a>
+
+                            <a class="contrib-card" href="https://github.com/AtuboDad/playwright_stealth"
+                                target="_blank" rel="noopener noreferrer" data-page-node-id="8Dl73AFCx4VbMT2pdMY2KS">
+                                <div class="contrib-top" data-page-node-id="PNU1B45LxVCmcXYn8AmTTj">
+                                    <span class="contrib-repo" data-page-node-id="ybRHKXYXzJorsqwd5BLXMR"><span class="contrib-owner" data-page-node-id="8tyFqlZYGogFtOZ9ACyXhn">AtuboDad</span><span
+                                            class="contrib-name" data-page-node-id="ax4e25N5q27t9IDUjjDsUx">playwright_stealth</span></span>
+                                    <span class="status-tag stats" data-repo="AtuboDad/playwright_stealth" data-page-node-id="NlexNEnbKyBHBQg2VtXUT2">
+                                        <svg class="icon-star" width="14" height="14" fill="currentColor"
+                                            aria-hidden="true" data-page-node-id="vr4NkAtNMRP6aFsa1DATsU">
+                                            <use href="#icon-star" data-page-node-id="ltHBlIFB8ljKHx9vMobSbj" />
+                                        </svg>
+                                        <span class="star-count" data-page-node-id="dWsRfLGefuaX6aU6za1Rmg">-</span>
+                                    </span>
+                                </div>
+                                <p class="contrib-desc" data-page-node-id="6OCVu313PcGoQELPUmGECO">
+                                    A stealth plugin for Playwright that patches the most common automation leaks.
+                                    Rewrote the README for clearer setup and usage.
+                                </p>
+                                <div class="contrib-tags" data-page-node-id="IY31Yz3QRiFZYQGNpTaq2k">
+                                    <span class="contrib-tag open" data-page-node-id="k7FS0tu17PfdQGGu6F0KtJ">PR #26 open</span>
+                                </div>
+                            </a>
+
+                        </div>
+
+                        <h2 class="h-block" data-page-node-id="LpwWA0lT901FUCSXpbywF0">research</h2>
+                        <div class="contrib-list" data-page-node-id="NcAtFH0m3x1rPa5SVT7HbM">
+                            <a class="contrib-card" href="https://fingrasp.vercel.app" target="_blank"
+                                rel="noopener noreferrer" data-page-node-id="cooZ8HN6yincNnrruz0Hjq">
+                                <div class="contrib-top" data-page-node-id="Su7DBW2bF9Gf8DjEqRTMRE">
+                                    <span class="contrib-repo" data-page-node-id="IpsGlE0mcQjIFfaimCES6F"><span class="contrib-owner" data-page-node-id="ocnjLtR9OlvEAPTATChfs0">KrAsH-CoD3</span><span
+                                            class="contrib-name" data-page-node-id="CLSo06zoMxpz8CCv16l3A0">Fingrasp</span></span>
+                                </div>
+                                <p class="contrib-desc" data-page-node-id="l8DHkt7MFT2Tbes2ywqQFf">
+                                    Exploring a device-integrity platform that differentiates legitimate hardware from
+                                    simulated environments - multi-layered integrity protection, behavioural scoring
+                                    and transient session security to eliminate false positives.
+                                </p>
+                                <div class="contrib-tags" data-page-node-id="EcqnsGFdCmj5sjs4NGfcRf">
+                                    <span class="contrib-tag research" data-page-node-id="Fi8L8DQONIUsgWAIDdQCNN">Research</span>
+                                    <span class="contrib-tag live" data-page-node-id="4QVpljlT0TkGbfPmQIME6i">Live Demo</span>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- CONTACT -->
+                    <section class="view" id="view-contact" role="tabpanel" aria-labelledby="tab-contact"
+                        data-view="contact" tabindex="0" data-page-node-id="E7x2dtCZjvCwpPJHXT6Oiv">
+                        <p class="cmd" data-page-node-id="bOynexnN1pX76ZjdNFaQJ3"><span class="cmd-user" data-page-node-id="DBVD3zDHKnDI56styfR3Qm">samuel@workbench</span><span class="cmd-sep" data-page-node-id="GFFYOqOE8ZhBgsCsDCq5F1">:</span><span
+                                class="cmd-path" data-page-node-id="eDzCKQUJK9UqOA6oICz3uX">~/portfolio</span><span class="cmd-sigil" data-page-node-id="T9uDwW5kw5lxPnKdlaECxC">$</span> <span
+                                class="cmd-text" data-page-node-id="CMzt7m96SpxtGvof1ksseC">cat contact.md</span></p>
+
+                        <p class="lede" data-page-node-id="Aa1YFBuINmcnqfjMDxb6Pl">Open for architectural consulting and high-scale backend engineering roles.</p>
+
+                        <div class="contact-grid" data-page-node-id="GhWiQrRpkLAORMw2xExjvG">
+                            <form id="contactForm" class="contact-form"
+                                action="https://formspree.io/f/mkoyboky" method="POST" data-page-node-id="lbYDSJ2DvXFnkWEuwbvMBL">
+                                <div class="form-row" data-page-node-id="FjYlgID9M5gjXCDAh6QU0J">
+                                    <div class="form-group" data-page-node-id="n2vG6BIMYHGvezFBRBWo01">
+                                        <label for="name" data-page-node-id="3gBCA0SAeKQcp9zajtpJED">Full Name</label>
+                                        <input type="text" id="name" name="name" class="form-control"
+                                            placeholder="Adam Smith" required data-page-node-id="ujrc4TmUxs9N4INTBENFsK">
+                                    </div>
+                                    <div class="form-group" data-page-node-id="3S36IWpcikfEyr1j6YAFGg">
+                                        <label for="email" data-page-node-id="V8wSmvVhsGbvKvLi0jQ5SD">Email Address</label>
+                                        <input type="email" id="email" name="email" class="form-control"
+                                            placeholder="adamsmith@example.com" required data-page-node-id="hPd25R1EGbl5kF41WmOf7o">
+                                    </div>
+                                </div>
+                                <div class="form-group" data-page-node-id="NcBNUsNulp2JoZTHQTIyr8">
+                                    <label for="subject" data-page-node-id="LTiipP1cXRZjg07pCNPJje">Subject</label>
+                                    <input type="text" id="subject" name="subject" class="form-control"
+                                        placeholder="Job Offer" required data-page-node-id="1Ir5qi3n5fAhKuaS8M4YA5">
+                                </div>
+                                <div class="form-group" data-page-node-id="XV46194HmfWBT6WuQGDSOg">
+                                    <label for="message" data-page-node-id="LBTgBoeHmem1x9adMtGgML">Message</label>
+                                    <textarea id="message" name="message" class="form-control" rows="5"
+                                        placeholder="Enter your message..." required></textarea>
+                                </div>
+                                <button type="submit" id="submitBtn" class="btn btn-primary btn-submit" data-page-node-id="ewH94kJZrTl2tb5GC9D5VO">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" data-page-node-id="9kjfEdNiFFq8xZCqYbtFtP">
+                                        <line x1="22" y1="2" x2="11" y2="13" data-page-node-id="eRsalBenuRptn8T2AAvdH1"></line>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2" data-page-node-id="27ZFjdXbtDvfniGGD4cj4j"></polygon>
+                                    </svg>
+                                    <span class="btn-text" data-page-node-id="wiEiqMn8HkrB5ws9twUQjp">Send Message</span>
+                                </button>
+                                <div id="formStatus" class="status-message" data-page-node-id="DHEPV0FW3CYOi1rBN6xN7M"></div>
+                            </form>
+
+                            <div class="contact-links" data-page-node-id="VWkV74LU60lgkz8Xm9yozr">
+                                <a href="mailto:samuelalewi@gmail.com" class="contact-btn" data-page-node-id="DzbFLNmmBftHC99m1Ue56D">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" data-page-node-id="it1D2Qo0VHPZIlYbKjIwVm">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" data-page-node-id="J0pcb7ckJhLqNZ135GSZg5">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6" data-page-node-id="ZzMbHotqOLvvEjFQv2Z0Iz"></polyline>
+                                    </svg>
+                                    <span class="contact-btn-label" data-page-node-id="wTMVBGytLQAI24LjoHZOJY">Email</span>
+                                    <span class="contact-btn-value" data-page-node-id="1ENaR0rGHWqY0PV797yNIM">samuelalewi@gmail.com</span>
+                                </a>
+                                <a href="https://github.com/KrAsH-CoD3" class="contact-btn" target="_blank"
+                                    rel="noopener noreferrer" data-page-node-id="ujQPhLRQXhMN6uGkpaPSSJ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" data-page-node-id="6rziAortmfbfPPCjchEqHf">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-page-node-id="crOe6O0EytUZ8d33oUz2Za">
+                                        </path>
+                                    </svg>
+                                    <span class="contact-btn-label" data-page-node-id="gVV0tl5bYzNpkRiUvUE5q8">GitHub</span>
+                                    <span class="contact-btn-value" data-page-node-id="AEfy2XZrh4sbr0TCJ2M2xx">@KrAsH-CoD3</span>
+                                </a>
+                                <a href="https://www.linkedin.com/in/samuel-alewi/" class="contact-btn"
+                                    target="_blank" rel="noopener noreferrer" data-page-node-id="ohURMLd6rrZPX73Dya9UKL">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" data-page-node-id="B8IMHlGEYUSxw9OheI2YFD">
+                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" data-page-node-id="Lw7TSIEryZQqrguZDEO9yB">
+                                        </path>
+                                        <rect x="2" y="9" width="4" height="12" data-page-node-id="enajPHIezvGH74Q43LV8ay"></rect>
+                                        <circle cx="4" cy="4" r="2" data-page-node-id="v2JDppA7JmFN6fZw3oehQw"></circle>
+                                    </svg>
+                                    <span class="contact-btn-label" data-page-node-id="N9AU7x8yVPadNsiJrjkcOz">LinkedIn</span>
+                                    <span class="contact-btn-value" data-page-node-id="CmSzQ8BJLKKhOwefpzZMm6">samuel-alewi</span>
+                                </a>
+                                <p class="contact-foot" data-page-node-id="AcXdPwMLJL8pN5m0B1bBSn">&copy; 2026 Samuel Alewi &middot; # KrAsH-CoD3</p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </main>
+
+            <!-- Stack -->
+            <aside class="pane pane-stack" aria-label="Technology stack" data-page-node-id="rEVUubNB72Mh5krT22WtBp">
+                <p class="pane-head" data-page-node-id="qtL7yj64hAbCZWqxkqtKbH"><span class="pane-dot" aria-hidden="true" data-page-node-id="3onSvBiliIaHBtv5Wv3Vm9"></span>stack.toml</p>
+                <div class="pane-body" data-page-node-id="iHH3G3K7j3OKSQ588sw1OY">
+                    <div class="toml" data-page-node-id="Y9MyJZzxIX8WZkrHCdv94Z">
+                        <p class="toml-section" data-page-node-id="vwN90JwICSuES9ya8gZIKJ">[backend]</p>
+                        <p class="toml-line" data-page-node-id="zBos7g1cRhB9OQ7f39CGwr"><span class="toml-key" data-page-node-id="JtIHWjKjjJbbTkS0dydRBK">language</span><span class="toml-eq" data-page-node-id="kwm9Ez4Y7n60VtSvxQaZVd">=</span><span
+                                class="toml-val" data-page-node-id="EPEZq29gaZodQDdGXbN2Gj">[<span class="toml-str" data-page-node-id="3TxrkGHOAPVZfSsq9LB1SQ">"Python"</span>, <span
+                                    class="toml-str" data-page-node-id="NPUVDSwPaFeuSJM2HmmH4e">"JavaScript"</span>, <span class="toml-str" data-page-node-id="ahhQF2HTNP45O1nFreI0VA">"SQL"</span>, <span
+                                    class="toml-str" data-page-node-id="7Z8dM6yHgmLWK0tRiKfbpo">"Bash"</span>]</span></p>
+                        <p class="toml-line" data-page-node-id="ovubpoPNR61kX2HV0wNpVX"><span class="toml-key" data-page-node-id="W77BXtZBaXn1dyi6XnozDN">frameworks</span><span class="toml-eq" data-page-node-id="a9Cm4fPONhovSnvF9jVzI3">=</span><span
+                                class="toml-val" data-page-node-id="jQ3S91DWUsunXzlBtIUKdT">[<span class="toml-str" data-page-node-id="dKoJPqKM8Axhaf7VGepXHs">"FastAPI"</span>, <span
+                                    class="toml-str" data-page-node-id="CnEBetBtJJAt4zYGeRAvpI">"Django + DRF"</span>, <span class="toml-str" data-page-node-id="Q2lb7i8I4NmDZrkyDgDmI3">"Flask"</span>, <span
+                                    class="toml-str" data-page-node-id="slL9egSC6et56NMucckgi0">"Celery"</span>, <span class="toml-str" data-page-node-id="yBMtQJ32NMuFoo61jHgoQX">"SQLAlchemy"</span>, <span
+                                    class="toml-str" data-page-node-id="73QFgSokVv6rxNyPYsy3hF">"Pydantic"</span>]</span></p>
+
+                        <p class="toml-section" data-page-node-id="g7twWafMo1ILPrqcrODW9G">[data]</p>
+                        <p class="toml-line" data-page-node-id="SDariGXSU2qnVEeonxV0nw"><span class="toml-key" data-page-node-id="kYtR6peEDe7Z8q7rMcgQp4">stores</span><span class="toml-eq" data-page-node-id="DSvTD7K75oE2bh6IWMzJCR">=</span><span
+                                class="toml-val" data-page-node-id="Q2w9SDvGmgNzil3yTCTmwu">[<span class="toml-str" data-page-node-id="49HN6cOUdCdZpbCYxbhQsQ">"PostgreSQL"</span>, <span
+                                    class="toml-str" data-page-node-id="da9hwOuXC5KoEkcZK3G7tc">"MySQL"</span>, <span class="toml-str" data-page-node-id="6NMflm3ISOgrVAbPUgAv3P">"MongoDB"</span>, <span
+                                    class="toml-str" data-page-node-id="dnhGOISzBErczJctLSkB34">"Redis"</span>, <span class="toml-str" data-page-node-id="KC6AcHH3ARabJTUL4vMTpv">"SQLite"</span>]</span></p>
+
+                        <p class="toml-section" data-page-node-id="JXfSQS7fFxyXaWp7WhKReg">[automation]</p>
+                        <p class="toml-line" data-page-node-id="A3PZqngVJEABCUDBK7kUIf"><span class="toml-key" data-page-node-id="OPE9oFj7BHlffV8cNqLdUl">tools</span><span class="toml-eq" data-page-node-id="0d4zFScz7JCRZ8OVpLoR07">=</span><span
+                                class="toml-val" data-page-node-id="3uRl8JpWbDY40o3nVP4IYj">[<span class="toml-str" data-page-node-id="hjM2ayTBgbagVJWpl4sSa4">"Playwright"</span>, <span
+                                    class="toml-str" data-page-node-id="hRAQFR6c4AmO07CEgWvxUK">"Selenium"</span>, <span class="toml-str" data-page-node-id="DB2iURG711JZ1DFP4p8ZY6">"Scrapy"</span>, <span
+                                    class="toml-str" data-page-node-id="bXtDEvgzdAgo8GNpHClXBb">"BeautifulSoup"</span>, <span
+                                    class="toml-str" data-page-node-id="ItURy2s8PXq6Y1C7amAFMs">"Scrapling"</span>]</span></p>
+
+                        <p class="toml-section" data-page-node-id="0H8L9S17l162iUa705eq3m">[infrastructure]</p>
+                        <p class="toml-line" data-page-node-id="gCnXGMLavb0ltETNujScuR"><span class="toml-key" data-page-node-id="s1CtCigl5LAIFSWpyPIRHS">platform</span><span class="toml-eq" data-page-node-id="Lam2jFetl5ZGLbOTBOtjDl">=</span><span
+                                class="toml-val" data-page-node-id="qseEAF8NNIjPmDCWLF1cpU">[<span class="toml-str" data-page-node-id="QN88hHRxkbdlUqaGlXmgJ1">"Docker"</span>, <span
+                                    class="toml-str" data-page-node-id="npZyifruH5KBoJ5dZGgsuT">"Linux"</span>, <span class="toml-str" data-page-node-id="ZTaEuT8VUIQyN3dQ2PZvOe">"Kafka"</span>, <span
+                                    class="toml-str" data-page-node-id="aEz8z1xcJXsHc1Nv1Fm9eI">"Nginx"</span>, <span class="toml-str" data-page-node-id="0v8cshfUxrrzINIgtKD3JB">"HAProxy"</span>]</span>
+                        </p>
+                        <p class="toml-line" data-page-node-id="fUQe6k0rmZ2y7ZN6qeUCY5"><span class="toml-key" data-page-node-id="HIrUjSbfZJFFWViIzKdKBa">cloud</span><span class="toml-eq" data-page-node-id="lCWvJMGccScunYEelpAnbc">=</span><span
+                                class="toml-val" data-page-node-id="d5Qbb8cEpdSbID4rwnGoMo">[<span class="toml-str" data-page-node-id="KlIMYOdmMVL9wLrGwWF5fS">"AWS"</span>, <span
+                                    class="toml-str" data-page-node-id="B3DYqoFtMD2lYNoeZK4dZA">"Cloudflare"</span>, <span class="toml-str" data-page-node-id="fM6Pl8FOlz4Xdq960hwNdG">"Google
+                                    Cloud"</span>, <span class="toml-str" data-page-node-id="03Re0Ch4oIDcpsqp57nHhy">"Vercel"</span>, <span
+                                    class="toml-str" data-page-node-id="rpAT63Y5u1zUaGZmBgbICU">"Render"</span>, <span class="toml-str" data-page-node-id="1f3u1r3NX3DPWncXLdIWN2">"Railway"</span>, <span
+                                    class="toml-str" data-page-node-id="JfdYxOa692hsj0o6xBv9gc">"Netlify"</span>]</span></p>
+                        <p class="toml-line" data-page-node-id="6mb11ed9NXPpsMyHNcPsmB"><span class="toml-key" data-page-node-id="zvLHgDbe83zzAeXcem8pKA">ci</span><span class="toml-eq" data-page-node-id="Wcj5IlXFlH6dE6NmFP82Od">=</span><span
+                                class="toml-val" data-page-node-id="nBzysF0LxfLAsJGYK5p0d2">[<span class="toml-str" data-page-node-id="SEP0bFUjsLRXXSReqwxHAX">"GitHub Actions"</span>, <span
+                                    class="toml-str" data-page-node-id="DQUFLdERyrSjA1EHcmHW67">"Git"</span>]</span></p>
+
+                        <p class="toml-section" data-page-node-id="CorbPP9AHvnu3yMydUeMvE">[security]</p>
+                        <p class="toml-line" data-page-node-id="17Anx5sYGw2GiAQdfUCqJC"><span class="toml-key" data-page-node-id="ntW8pSSZ1c9qTjAMwVLwJq">toolkit</span><span class="toml-eq" data-page-node-id="gdBYIBGH7ZWLVE7VAXI9XK">=</span><span
+                                class="toml-val" data-page-node-id="dbSjfa7HrV1cCxTqaq4KSv">[<span class="toml-str" data-page-node-id="uutBQZ59SD8mqLoIB6DxxP">"Kali Linux"</span>, <span
+                                    class="toml-str" data-page-node-id="gmOMKP7dM4ac5D7PotvcIA">"Burp Suite"</span>, <span class="toml-str" data-page-node-id="b1iI05R2OWimmXlasdE7F9">"Nmap"</span>, <span
+                                    class="toml-str" data-page-node-id="bHclHXVHHxuTfHdLTFqTl0">"Wireshark"</span>, <span class="toml-str" data-page-node-id="cqB3HVEWzP9aMVEVoQZnR0">"Metasploit"</span>,
+                                <span class="toml-str" data-page-node-id="Ua8XHWPgjkYG9zpUYWRJIN">"Pegasus"</span>, <span class="toml-str" data-page-node-id="u2EEZGu17KebEvdO9kpyfd">"John the
+                                    Ripper"</span>]</span></p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Session log -->
+        <section class="pane pane-log" aria-label="Session log" data-page-node-id="flDBvTGQzmpbA8YYfaZhDE">
+            <p class="pane-head" data-page-node-id="Y73qivfHAxHrZU8C7njW2C">
+                <span class="pane-dot" aria-hidden="true" data-page-node-id="NRAzbb8U0skyzNxgeJoYD2"></span>session.log
+                <button class="pane-head-toggle" id="logToggle" type="button" aria-expanded="true"
+                    aria-controls="aboutTerminalBody" data-page-node-id="hGE1viIC3E6gr96gJ1DSiE">hide</button>
+            </p>
+            <div class="pane-body log-body" id="aboutTerminalBody" data-page-node-id="whU0F5ZhFYaIL2F7kzaK5H"></div>
+        </section>
+
+        <!-- Status bar -->
+        <footer class="statusbar" data-page-node-id="wbL8oshFWSsCvKeiVbeOMZ">
+            <span class="status-mode" data-page-node-id="tA0MrCzrqGqk1HbMpEBOcA">PORTFOLIO</span>
+            <span class="status-path" data-page-node-id="eu5Fkfoli5eOqDVM41OvAk">~/portfolio</span>
+            <span class="status-name" data-page-node-id="GAGxsv5z4d2A1YLRJ6bAcB">Samuel Alewi</span>
+            <span class="status-hint" data-page-node-id="HRwXekIxgeVQOYvowDyVL4">Browse with links &middot; no commands required</span>
+            <time class="status-clock" id="heroStatusTime" data-page-node-id="UViyGfHffYTBL510mkKZkA">00:00</time>
+        </footer>
+    </div>
+
+    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top" data-page-node-id="8O5XHoLxGpP39poNxSLR7p">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="uvCWZ2gnz00BWX1fFNuRWn">
+            <polyline points="18 15 12 9 6 15" data-page-node-id="hANx8v0sJSSwG7O1pvfc8X"></polyline>
         </svg>
     </button>
 
     <!-- Image Lightbox -->
-    <div id="imageLightbox" class="lightbox" role="dialog" aria-label="Image preview" aria-hidden="true">
-        <div class="lightbox-backdrop"></div>
-        <button class="lightbox-close" aria-label="Close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
+    <div id="imageLightbox" class="lightbox" role="dialog" aria-label="Image preview" aria-hidden="true" data-page-node-id="VBrdveuWnyuIBZJR3y6afJ">
+        <div class="lightbox-backdrop" data-page-node-id="mHk334t0iEYueay30pfxuo"></div>
+        <button class="lightbox-close" aria-label="Close" data-page-node-id="78YC1Wd4LoQxW1J3jls3FN">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="dEMhdsEnKHwjPA54FVRjEp">
+                <line x1="18" y1="6" x2="6" y2="18" data-page-node-id="DWU0s7QDkeFZRES6GwnfhE"></line>
+                <line x1="6" y1="6" x2="18" y2="18" data-page-node-id="2qTJypPMGDlnY7iKdDhneS"></line>
             </svg>
         </button>
-        <div class="lightbox-content">
-            <img src="" alt="">
-            <span class="lightbox-caption"></span>
+        <div class="lightbox-content" data-page-node-id="bEHusrN1xvjMjl51K9I7jr">
+            <img src="" alt="" data-page-node-id="CELAMVDnCsIh4238BqHuCn">
+            <span class="lightbox-caption" data-page-node-id="WSgTht6nIFi8DTbuurtYZl"></span>
         </div>
     </div>
+
+    <noscript data-page-node-id="uZaoX1ZVhX8wCu814zWDbf">
+        <style>
+            .boot {
+                display: none !important;
+            }
+
+            .view {
+                display: block !important;
+            }
+
+            body.is-booting {
+                overflow: auto !important;
+            }
+        </style>
+    </noscript>
 
     <script src="src/scripts/main.js"></script>
 
