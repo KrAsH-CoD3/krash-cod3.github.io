@@ -8,9 +8,22 @@
        --------------------------------------------------------------------- */
 
     var bootScreen = document.getElementById('bootScreen');
+    var glitchOverlay = document.getElementById('glitchOverlay');
+
+    // Full-screen interference burst, carried over from the terminal portfolio
+    // where it covered the hand-off from the loader to the page. The overlay is
+    // display:none until it flashes — see the stylesheet for why that matters.
+    function flashGlitch() {
+        if (!glitchOverlay || prefersReducedMotion) return;
+        glitchOverlay.classList.add('glitch-flash');
+        window.setTimeout(function () {
+            glitchOverlay.classList.remove('glitch-flash');
+        }, 600);
+    }
 
     function finishBoot() {
         document.body.classList.remove('is-booting');
+        flashGlitch();
         if (!bootScreen) return;
         bootScreen.classList.add('is-done');
         window.setTimeout(function () {
@@ -50,6 +63,7 @@
     var mainPaneBody = document.getElementById('mainPaneBody');
     var mainPaneHead = document.getElementById('mainPaneHead');
     var currentView = null;
+    var currentAnchor = null;
 
     function parseHash() {
         var raw = window.location.hash.replace(/^#/, '').trim();
@@ -96,6 +110,7 @@
         if (mainPaneHead) mainPaneHead.textContent = VIEW_FILES[view];
 
         currentView = view;
+        currentAnchor = opts.anchor || null;
 
         if (opts.anchor) {
             var el = document.getElementById(opts.anchor);
@@ -108,8 +123,16 @@
             }
         }
 
-        if (opts.resetScroll !== false && mainPaneBody) {
-            mainPaneBody.scrollTop = 0;
+        if (opts.resetScroll !== false) resetScroll();
+    }
+
+    // Desktop scrolls inside the main pane. Below 860px the workbench is
+    // height:auto and the document itself scrolls, so the pane's scrollTop is
+    // inert — resetting it alone would strand the reader mid-page on a new view.
+    function resetScroll() {
+        if (mainPaneBody) mainPaneBody.scrollTop = 0;
+        if (window.scrollY > 0) {
+            window.scrollTo({ top: 0, behavior: 'auto' });
         }
     }
 
@@ -144,9 +167,12 @@
         });
     });
 
-    // File tree + in-page buttons that carry data-view
-    document.querySelectorAll('[data-view]').forEach(function (el) {
-        if (el.classList.contains('tab')) return;
+    // File tree + in-page buttons that carry data-view.
+    // `.view` containers also carry data-view so the router can identify them,
+    // but they must NOT get a click handler: any click inside a view (a GitHub
+    // chip, a project image) would bubble up and re-navigate, wiping the
+    // intended target and resetting the pane scroll.
+    document.querySelectorAll('[data-view]:not(.view):not(.tab)').forEach(function (el) {
         el.addEventListener('click', function () {
             navigate(el.dataset.view, el.dataset.anchor || null, true);
         });
@@ -159,7 +185,8 @@
 
     window.addEventListener('hashchange', function () {
         var parsed = parseHash();
-        if (parsed.view !== currentView) {
+        // Same view but a different anchor still needs to move the reader.
+        if (parsed.view !== currentView || parsed.anchor !== currentAnchor) {
             activate(parsed.view, { anchor: parsed.anchor });
         }
     });
@@ -341,6 +368,158 @@
     }
 
     /* ---------------------------------------------------------------------
+       Name glitch + decipher
+       Ported from the terminal portfolio: each character resolves from noise on
+       its own randomised schedule, so the name looks like it is being pulled
+       out of a corrupted signal rather than typed.
+       --------------------------------------------------------------------- */
+
+    var GLITCH_CHARS = '!<>-_\\/[]{}—=+*^?#________';
+
+    function escapeGlitchChar(ch) {
+        if (ch === '<') return '&lt;';
+        if (ch === '>') return '&gt;';
+        if (ch === '&') return '&amp;';
+        return ch;
+    }
+
+    function HackerText(el) {
+        this.el = el;
+        this.queue = [];
+        this.frame = 0;
+        this.frameRequest = null;
+        this.resolve = null;
+        this.lastOutput = null;
+    }
+
+    HackerText.prototype.randomChar = function () {
+        return GLITCH_CHARS.charAt(Math.floor(Math.random() * GLITCH_CHARS.length));
+    };
+
+    HackerText.prototype.setText = function (newText) {
+        var oldText = this.el.textContent || '';
+        var length = Math.max(oldText.length, newText.length);
+        var self = this;
+
+        this.done = new Promise(function (resolve) { self.resolve = resolve; });
+        this.queue = [];
+
+        for (var i = 0; i < length; i++) {
+            var start = Math.floor(Math.random() * 40);
+            this.queue.push({
+                from: oldText.charAt(i) || '',
+                to: newText.charAt(i) || '',
+                start: start,
+                end: start + Math.floor(Math.random() * 40)
+            });
+        }
+
+        window.cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.lastOutput = null;
+        this.update();
+        return this.done;
+    };
+
+    HackerText.prototype.update = function () {
+        var output = '';
+        var complete = 0;
+
+        for (var i = 0; i < this.queue.length; i++) {
+            var item = this.queue[i];
+
+            if (this.frame >= item.end) {
+                complete += 1;
+                output += item.to;
+            } else if (this.frame >= item.start) {
+                if (!item.char || Math.random() < 0.28) {
+                    item.char = this.randomChar();
+                }
+                output += '<span class="dud">' + escapeGlitchChar(item.char) + '</span>';
+            } else {
+                output += item.from;
+            }
+        }
+
+        // Rewriting innerHTML rebuilds the spans and forces a style recalc, so
+        // skip the write on the frames where nothing actually changed.
+        if (output !== this.lastOutput) {
+            this.el.innerHTML = output;
+            this.lastOutput = output;
+        }
+
+        if (complete === this.queue.length) {
+            if (this.resolve) this.resolve();
+            return;
+        }
+
+        var self = this;
+        this.frameRequest = window.requestAnimationFrame(function () { self.update(); });
+        this.frame += 1;
+    };
+
+    var profileName = document.querySelector('.profile-name');
+
+    if (profileName) {
+        var hacker = new HackerText(profileName);
+        var trueName = profileName.getAttribute('data-text') || profileName.textContent.trim();
+        var isGlitching = false;
+        var nameOnScreen = true;
+
+        // Don't burn frames animating a name the reader has scrolled past.
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    nameOnScreen = entry.isIntersecting;
+                });
+            }, { threshold: 0 }).observe(profileName);
+        }
+
+        function endGlitch(duration) {
+            window.setTimeout(function () {
+                profileName.classList.remove('glitch-active');
+                isGlitching = false;
+            }, duration);
+        }
+
+        function triggerVisualGlitch() {
+            if (isGlitching) return;
+            isGlitching = true;
+            profileName.classList.add('glitch-active');
+            endGlitch(180 + Math.random() * 220);
+        }
+
+        function triggerDecipher() {
+            if (isGlitching) return;
+            isGlitching = true;
+            profileName.classList.add('glitch-active');
+            hacker.setText(trueName);
+            endGlitch(520);
+        }
+
+        function scheduleBurst() {
+            window.setTimeout(function () {
+                // Only spark when the name is actually on screen.
+                if (!document.hidden && nameOnScreen && currentView === 'about') {
+                    if (Math.random() < 0.5) {
+                        triggerDecipher();
+                    } else {
+                        triggerVisualGlitch();
+                    }
+                }
+                scheduleBurst();
+            }, 2600 + Math.random() * 5200);
+        }
+
+        if (!prefersReducedMotion) {
+            window.setTimeout(function () {
+                if (currentView === 'about') hacker.setText(trueName);
+                window.setTimeout(scheduleBurst, 2600);
+            }, 1100);
+        }
+    }
+
+    /* ---------------------------------------------------------------------
        Theme toggle easter egg
        --------------------------------------------------------------------- */
 
@@ -405,6 +584,13 @@
 
         themeToggle.addEventListener('click', function () {
             showTooltip(randomMessage());
+
+            if (!prefersReducedMotion) {
+                themeToggle.classList.add('toggle-glitch');
+                window.setTimeout(function () {
+                    themeToggle.classList.remove('toggle-glitch');
+                }, 420);
+            }
         });
     }
 
