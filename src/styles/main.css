@@ -16,17 +16,69 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* ==========================================================================
+   Design tokens
+   --------------------------------------------------------------------------
+   The accent is a single hue defined once, as an RGB channel triple. Every
+   tint, glow, hairline and wash is derived from `--accent-rgb`, so retheming
+   the site is a one-line change rather than a 90-site find-and-replace.
+
+   Colour carries meaning here, so it is spent deliberately:
+     accent   -> brand + interactive + live/active state
+     neutral  -> structure (borders, dividers, grids, chrome, scrollbars)
+     semantic -> status (info / warn / gold / teal / danger)
+   ========================================================================== */
 :root {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #0f0f0f;
-    --bg-tertiary: #161616;
-    --text-primary: #e5e5e5;
-    --text-secondary: #949494;
-    --text-muted: #666666;
-    --accent-primary: #00d166;
-    --accent-secondary: #00b358;
-    --accent-glow: rgba(0, 209, 102, 0.1);
-    --border-color: #242424;
+    /* Surfaces — cool-shifted neutrals. A hint of blue keeps the greys from
+       reading as muddy next to the accent green. */
+    --bg-primary: #0a0b0d;
+    --bg-secondary: #0f1114;
+    --bg-tertiary: #15181c;
+
+    /* Ink */
+    --text-primary: #e8ebee;
+    --text-secondary: #9aa4ae;
+    --text-muted: #6e7883;
+
+    /* Structure — neutrals for anything that is not a signal */
+    --border-color: #21262d;
+    --border-strong: #2b323a;
+    --border-soft: rgba(255, 255, 255, 0.05);
+
+    /* Accent — one hue, one scale */
+    --accent-rgb: 45, 212, 132;
+    --accent: rgb(var(--accent-rgb));
+    --accent-bright: #6ee7a8;
+    --accent-strong: #24b672;
+    --accent-ink: #04140c;
+
+    /* Derived accent tints — the only place accent opacity is chosen */
+    --accent-04: rgba(var(--accent-rgb), 0.04);
+    --accent-06: rgba(var(--accent-rgb), 0.06);
+    --accent-10: rgba(var(--accent-rgb), 0.10);
+    --accent-16: rgba(var(--accent-rgb), 0.16);
+    --accent-25: rgba(var(--accent-rgb), 0.25);
+    /* semantic alias: the default soft accent wash */
+    --accent-glow: var(--accent-10);
+
+    /* Neutral instrumentation tints */
+    --ink-03: rgba(255, 255, 255, 0.03);
+    --ink-05: rgba(255, 255, 255, 0.05);
+    --ink-08: rgba(255, 255, 255, 0.08);
+    --ink-12: rgba(255, 255, 255, 0.12);
+
+    /* Translucent surfaces, for panels that float over the page */
+    --surface-glass: rgba(15, 17, 20, 0.85);
+    --surface-float: rgba(10, 11, 13, 0.90);
+
+    /* Semantic channels */
+    --info-rgb: 112, 161, 255;
+    --warn-rgb: 255, 180, 84;
+    --gold-rgb: 255, 215, 0;
+    --teal-rgb: 78, 205, 196;
+    --danger-rgb: 255, 0, 64;
+    --danger: rgb(var(--danger-rgb));
+
     --font-mono: 'JetBrains Mono', monospace;
     --font-sans: 'Inter', sans-serif;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -46,12 +98,14 @@ html {
 body {
     font-family: var(--font-sans);
     background-color: var(--bg-primary);
+    /* Terminal grid texture, but neutral — the green cast over the whole page
+       was the single biggest contributor to the "too much green" feeling. */
     background-image:
-        radial-gradient(rgba(0, 255, 102, 0.04) 1px, transparent 1px),
-        radial-gradient(ellipse at 20% 50%, rgba(0, 255, 136, 0.03) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(0, 204, 106, 0.02) 0%, transparent 50%);
+        radial-gradient(var(--ink-05) 1px, transparent 1px),
+        radial-gradient(ellipse at 20% 50%, var(--accent-04) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, var(--accent-04) 0%, transparent 50%);
     background-size: 24px 24px, 100% 100%, 100% 100%;
-    
+
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
@@ -68,10 +122,10 @@ body.loading {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(8, 8, 10, 0.75);
+    background: rgba(10, 11, 13, 0.75);
     backdrop-filter: blur(8px) saturate(1.2);
     -webkit-backdrop-filter: blur(8px) saturate(1.2);
-    border-bottom: 1px solid rgba(0, 255, 102, 0.08);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .navbar::after {
@@ -81,7 +135,7 @@ body.loading {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 209, 102, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, var(--accent-25), transparent);
     pointer-events: none;
 }
 
@@ -98,20 +152,19 @@ body.loading {
     font-family: var(--font-mono);
     font-size: 1.6rem;
     font-weight: 800;
-    color: #00ff88;
+    color: var(--accent);
     display: flex;
     align-items: center;
     text-decoration: none;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.4), 0 0 40px rgba(0, 255, 136, 0.15);
+    text-shadow: 0 0 18px rgba(var(--accent-rgb), 0.25);
     letter-spacing: -0.5px;
 }
 
 .logo-cursor {
-    color: #00ff88;
+    color: var(--accent);
     margin-left: 2px;
     font-weight: 700;
     animation: logoBlink 0.8s step-end infinite;
-    text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
 }
 
 @keyframes logoBlink {
@@ -128,16 +181,19 @@ body.loading {
 .nav-link {
     font-family: var(--font-mono);
     font-size: 0.85rem;
-    color: #c0c0c0;
+    color: var(--text-primary);
+    opacity: 0.78;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    text-shadow: 0 0 12px rgba(192, 192, 192, 0.08);
+    transition: color var(--transition), opacity var(--transition);
+    position: relative;
+    text-decoration: none;
 }
 
 .nav-link:hover {
-    color: #00ff88;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    color: var(--accent);
+    opacity: 1;
 }
 
 .nav-external {
@@ -147,7 +203,7 @@ body.loading {
 }
 
 .nav-external:hover {
-    border-color: var(--accent-primary);
+    border-color: var(--accent);
     background: var(--accent-glow);
 }
 
@@ -163,7 +219,7 @@ body.loading {
     display: block;
     width: 20px;
     height: 2px;
-    background: var(--accent-primary);
+    background: var(--accent);
     position: relative;
     transition: background 0.3s ease;
 }
@@ -174,7 +230,7 @@ body.loading {
     position: absolute;
     width: 20px;
     height: 2px;
-    background: var(--accent-primary);
+    background: var(--accent);
     left: 0;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -268,9 +324,9 @@ body.loading {
 }
 
 .theme-toggle {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--ink-03);
     border: 1px solid var(--border-color);
-    color: var(--accent-primary);
+    color: var(--accent);
     padding: 0.6rem;
     border-radius: 50%;
     cursor: pointer;
@@ -278,29 +334,27 @@ body.loading {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.theme-toggle:hover {
-    border-color: var(--accent-primary);
-    background: var(--accent-glow);
-    transform: rotate(90deg) scale(1.1);
-    box-shadow: 0 0 15px rgba(0, 209, 102, 0.2);
-}
-
-.theme-toggle {
     position: relative;
 }
 
+.theme-toggle:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.2);
+}
+
+
 /* Brief icon hue-shift every few seconds — subtle hint */
 .theme-toggle svg {
-    filter: drop-shadow(0 0 2px var(--accent-primary));
+    filter: drop-shadow(0 0 2px var(--accent));
     animation: iconGlint 12s ease-in-out infinite;
 }
 
 @keyframes iconGlint {
-    0%, 96%, 100% { filter: drop-shadow(0 0 2px var(--accent-primary)); }
+    0%, 96%, 100% { filter: drop-shadow(0 0 2px var(--accent)); }
     97% { filter: drop-shadow(0 0 8px #ff0066) hue-rotate(180deg); }
-    98% { filter: drop-shadow(0 0 2px var(--accent-primary)); }
+    98% { filter: drop-shadow(0 0 2px var(--accent)); }
 }
 
 /* Occasional radar-scan ring — hints at hidden interaction */
@@ -316,8 +370,8 @@ body.loading {
 
 @keyframes hintPing {
     0%, 70%, 100% { opacity: 0; transform: scale(1); }
-    75% { opacity: 0.6; border-color: rgba(0, 255, 136, 0.3); transform: scale(1); }
-    78% { border-color: rgba(0, 255, 136, 0.1); transform: scale(1.3); }
+    75% { opacity: 0.6; border-color: rgba(var(--accent-rgb), 0.3); transform: scale(1); }
+    78% { border-color: rgba(var(--accent-rgb), 0.1); transform: scale(1.3); }
     85% { opacity: 0; transform: scale(1.5); }
 }
 
@@ -325,10 +379,10 @@ body.loading {
     position: absolute;
     top: 150%;
     right: 0;
-    background: #0a0a0a;
-    color: var(--accent-primary);
+    background: var(--bg-primary);
+    color: var(--accent);
     padding: 0.8rem 1rem;
-    border: 1px solid var(--accent-primary);
+    border: 1px solid var(--accent);
     border-radius: 4px;
     font-family: var(--font-mono);
     font-size: 0.7rem;
@@ -338,13 +392,13 @@ body.loading {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease, top 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 209, 102, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(var(--accent-rgb), 0.08);
     z-index: 1001;
     pointer-events: none;
 }
 
 .theme-tooltip .terminal-cursor {
-    color: var(--accent-primary);
+    color: var(--accent);
     animation: tooltipCursorBlink 0.6s step-end infinite;
 }
 
@@ -386,8 +440,8 @@ body.loading {
 }
 
 .error-pulse {
-    color: #ff0040 !important;
-    border-color: #ff0040 !important;
+    color: var(--danger) !important;
+    border-color: var(--danger) !important;
     animation: errorShake 0.4s ease-in-out;
 }
 
@@ -425,7 +479,8 @@ body.loading {
     overflow: hidden;
 }
 
-/* Subtle ambient glow behind hero */
+/* The hero owns the only ambient glow on the page — one atmospheric moment
+   instead of five competing ones. */
 .hero::before {
     content: '';
     position: absolute;
@@ -433,7 +488,7 @@ body.loading {
     left: -10%;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(0, 255, 136, 0.04) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--accent-06) 0%, transparent 70%);
     pointer-events: none;
     animation: ambientDrift 8s ease-in-out infinite alternate;
 }
@@ -445,7 +500,7 @@ body.loading {
     right: -5%;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(0, 204, 106, 0.03) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--accent-04) 0%, transparent 70%);
     pointer-events: none;
     animation: ambientDrift 10s ease-in-out infinite alternate-reverse;
 }
@@ -487,11 +542,11 @@ body.loading {
 
 .hero-greeting {
     font-family: var(--font-mono);
-    color: var(--accent-primary);
+    color: var(--accent);
     font-size: 0.95rem;
     margin-bottom: 1rem;
     letter-spacing: 0.5px;
-    text-shadow: 0 0 20px rgba(0, 209, 102, 0.3);
+    text-shadow: 0 0 18px var(--accent-16);
 }
 
 .hero-title {
@@ -558,13 +613,13 @@ body.loading {
 }
 
 .dud {
-    color: var(--accent-primary);
+    color: var(--accent);
     opacity: 0.7;
     filter: brightness(1.2);
 }
 
 .typed-role {
-    background: linear-gradient(135deg, var(--accent-primary) 0%, #00ff88 40%, #66ffbb 70%, var(--accent-primary) 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -572,7 +627,7 @@ body.loading {
 }
 
 .typed-cursor {
-    color: var(--accent-primary);
+    color: var(--accent);
     font-weight: 300;
     animation: cursorBlink 0.8s step-end infinite;
 }
@@ -583,7 +638,7 @@ body.loading {
 }
 
 .highlight {
-    color: var(--accent-primary);
+    color: var(--accent);
 }
 
 .hero-description {
@@ -626,19 +681,19 @@ body.loading {
     height: 360px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(0, 209, 102, 0.4);
+    border: 3px solid var(--accent-25);
     position: relative;
     z-index: 2;
     filter: grayscale(20%) contrast(1.05);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 40px rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 40px var(--accent-06);
 }
 
 .hero-image:hover {
     filter: grayscale(0%) contrast(1);
     transform: scale(1.05);
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 60px rgba(0, 209, 102, 0.2), 0 0 120px rgba(0, 209, 102, 0.05);
+    border-color: var(--accent);
+    box-shadow: 0 0 60px var(--accent-25), 0 0 120px var(--accent-04);
 }
 
 .hero-image-ring {
@@ -647,7 +702,7 @@ body.loading {
     left: 50%;
     width: 390px;
     height: 390px;
-    border: 1px solid rgba(0, 255, 136, 0.12);
+    border: 1px solid var(--border-strong);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     animation: ringRotate 15s linear infinite;
@@ -660,15 +715,15 @@ body.loading {
     left: 50%;
     width: 8px;
     height: 8px;
-    background: var(--accent-primary);
+    background: var(--accent);
     border-radius: 50%;
-    box-shadow: 0 0 12px var(--accent-primary);
+    box-shadow: 0 0 12px var(--accent);
 }
 
 .hero-image-ring.ring-2 {
     width: 440px;
     height: 440px;
-    border-color: rgba(0, 255, 136, 0.06);
+    border-color: var(--border-color);
     border-style: dashed;
     animation: ringRotate 35s linear infinite reverse;
 }
@@ -677,14 +732,14 @@ body.loading {
 .hero-image-ring.ring-3::before {
     width: 8px;
     height: 8px;
-    background: var(--accent-primary);
-    box-shadow: 0 0 12px var(--accent-primary);
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
 }
 
 .hero-image-ring.ring-3 {
     width: 490px;
     height: 490px;
-    border-color: rgba(0, 255, 136, 0.03);
+    border-color: var(--border-color);
     border-style: dotted;
     animation: ringRotate 10s linear infinite;
 }
@@ -701,9 +756,9 @@ body.loading {
     left: 50%;
     width: 6px;
     height: 6px;
-    background: var(--accent-primary);
+    background: var(--accent);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent);
     z-index: 5;
     animation: orbitFloat var(--speed) linear infinite;
     transform-origin: 0 0;
@@ -734,7 +789,7 @@ body:not(.loading) .orbit-dot {
     left: 50%;
     width: 340px;
     height: 340px;
-    background: radial-gradient(circle, rgba(0, 209, 102, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--accent-06) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     z-index: 1;
     animation: glowPulse 4s ease-in-out infinite;
@@ -751,7 +806,7 @@ body:not(.loading) .orbit-dot {
     right: -15px;
     width: 100px;
     height: 100px;
-    background-image: radial-gradient(rgba(0, 209, 102, 0.2) 1px, transparent 1px);
+    background-image: radial-gradient(var(--ink-08) 1px, transparent 1px);
     background-size: 10px 10px;
     z-index: 0;
 }
@@ -766,7 +821,7 @@ body:not(.loading) .orbit-dot {
     gap: 0.35rem;
     padding: 0.35rem 0.65rem;
     background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(0, 255, 136, 0.12);
+    border: 1px solid var(--border-color);
     border-radius: 3px;
     font-family: var(--font-mono);
     font-size: 0.6rem;
@@ -781,7 +836,7 @@ body:not(.loading) .orbit-dot {
 }
 
 .hero-status-bar .status-prompt {
-    color: var(--accent-primary);
+    color: var(--accent);
     font-weight: 600;
     letter-spacing: 0.06em;
 }
@@ -815,7 +870,7 @@ body:not(.loading) .orbit-dot {
 }
 
 .hero-status-bar .status-pipe {
-    color: rgba(0, 255, 136, 0.2);
+    color: rgba(var(--accent-rgb), 0.2);
 }
 
 .hero-status-bar .status-time {
@@ -1024,10 +1079,10 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .btn-primary {
-    background: var(--accent-primary);
-    color: var(--bg-primary);
-    border: 1px solid var(--accent-primary);
-    box-shadow: 0 4px 15px rgba(0, 209, 102, 0.2);
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 1px solid var(--accent);
+    box-shadow: 0 4px 15px var(--accent-25);
     position: relative;
     overflow: hidden;
 }
@@ -1049,10 +1104,10 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .btn-primary:hover {
-    background: var(--accent-secondary);
-    box-shadow: 0 6px 25px rgba(0, 209, 102, 0.3);
+    background: var(--accent-strong);
+    box-shadow: 0 6px 25px var(--accent-25);
     transform: translateY(-2px);
-    color: var(--bg-primary);
+    color: var(--accent-ink);
 }
 
 .btn-primary:active {
@@ -1060,15 +1115,15 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--ink-03);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
-    background: rgba(0, 209, 102, 0.05);
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-06);
     transform: translateY(-2px);
 }
 
@@ -1084,7 +1139,7 @@ body:not(.loading) .hero-image-wrapper {
     display: block;
     width: 20px;
     height: 30px;
-    border: 2px solid var(--text-muted);
+    border: 2px solid var(--border-strong);
     border-radius: 10px;
     position: relative;
 }
@@ -1097,7 +1152,7 @@ body:not(.loading) .hero-image-wrapper {
     transform: translateX(-50%);
     width: 4px;
     height: 8px;
-    background: var(--accent-primary);
+    background: var(--accent);
     border-radius: 2px;
     animation: scroll 2s infinite;
 }
@@ -1159,14 +1214,25 @@ body:not(.loading) .hero-image-wrapper {
     align-items: center;
     gap: 1rem;
     color: var(--text-primary);
-    text-shadow: 0 0 30px rgba(0, 255, 102, 0.06);
+    position: relative;
+}
+
+/* A small accent bar marks each section heading — a restrained, deliberate
+   signal, replacing the near-invisible green text-shadow that was here. */
+.section-title::before {
+    content: '';
+    width: 3px;
+    height: 1.05em;
+    border-radius: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
 }
 
 .section-title::after {
     content: '';
     flex: 1;
     height: 1px;
-    background: var(--border-color);
+    background: linear-gradient(90deg, var(--border-strong) 0%, var(--border-color) 100%);
     max-width: 300px;
 }
 
@@ -1184,7 +1250,7 @@ body:not(.loading) .hero-image-wrapper {
 
 .about-lead {
     font-size: 1.25rem;
-    color: var(--accent-primary);
+    color: var(--accent);
     font-family: var(--font-mono);
     margin-bottom: 2rem;
     line-height: 1.4;
@@ -1192,10 +1258,10 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .info-container {
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(5, 5, 5, 0.98) 100%);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     padding: 2.5rem;
     border-radius: 8px;
-    border: 1px solid rgba(0, 209, 102, 0.1);
+    border: 1px solid var(--border-color);
     position: relative;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -1212,8 +1278,8 @@ body:not(.loading) .hero-image-wrapper {
         0deg,
         transparent,
         transparent 1px,
-        rgba(0, 209, 102, 0.03) 1px,
-        rgba(0, 209, 102, 0.03) 2px
+        var(--ink-03) 1px,
+        var(--ink-03) 2px
     );
     pointer-events: none;
 }
@@ -1290,7 +1356,7 @@ body:not(.loading) .hero-image-wrapper {
     position: relative;
     background: var(--bg-secondary);
     scrollbar-width: thin;
-    scrollbar-color: var(--accent-primary) var(--bg-tertiary);
+    scrollbar-color: var(--border-strong) var(--bg-tertiary);
 }
 
 .terminal-body::-webkit-scrollbar {
@@ -1302,7 +1368,7 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .terminal-body::-webkit-scrollbar-thumb {
-    background-color: var(--accent-primary);
+    background-color: var(--border-strong);
     border-radius: 10px;
 }
 
@@ -1323,7 +1389,7 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .prompt {
-    color: var(--accent-primary);
+    color: var(--accent);
 }
 
 .command {
@@ -1339,7 +1405,7 @@ body:not(.loading) .hero-image-wrapper {
     display: inline-block;
     width: 8px;
     height: 18px;
-    background: var(--accent-primary);
+    background: var(--accent);
     animation: cursor 1s infinite;
     vertical-align: middle;
 }
@@ -1379,7 +1445,7 @@ body:not(.loading) .hero-image-wrapper {
     background: linear-gradient(
         to bottom,
         transparent,
-        rgba(0, 209, 102, 0.03),
+        var(--accent-04),
         transparent
     );
     pointer-events: none;
@@ -1392,7 +1458,7 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .skill-category:hover {
-    border-color: var(--accent-primary);
+    border-color: var(--accent);
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
@@ -1414,7 +1480,7 @@ body:not(.loading) .hero-image-wrapper {
     left: 0;
     width: 40px;
     height: 1px;
-    background: var(--accent-primary);
+    background: var(--accent);
     transition: width 0.4s ease;
 }
 
@@ -1438,17 +1504,19 @@ body:not(.loading) .hero-image-wrapper {
     font-family: var(--font-mono);
     font-size: 0.8rem;
     color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--ink-03);
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     border: 1px solid var(--border-color);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
 .skill-tag:hover {
-    color: var(--accent-primary);
+    color: var(--accent);
     background: var(--accent-glow);
-    border-color: var(--accent-primary);
+    border-color: var(--accent);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -1462,8 +1530,8 @@ body:not(.loading) .hero-image-wrapper {
 
 .project-card {
     flex: 0 0 calc((100% - 2rem) / 2);
-    background: linear-gradient(135deg, rgba(20, 20, 25, 0.6) 0%, rgba(15, 15, 18, 0.8) 100%);
-    border: 1px solid rgba(0, 255, 136, 0.12);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 2rem;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -1479,7 +1547,7 @@ body:not(.loading) .hero-image-wrapper {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(0, 209, 102, 0.03), transparent);
+    background: linear-gradient(to bottom, transparent, var(--accent-04), transparent);
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -1490,14 +1558,14 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .project-card:hover {
-    border-color: var(--accent-primary);
+    border-color: var(--accent-25);
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 .project-card.featured {
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(0, 209, 102, 0.03) 100%);
-    border-color: rgba(0, 209, 102, 0.1);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-color: var(--border-strong);
 }
 
 .project-header {
@@ -1506,7 +1574,7 @@ body:not(.loading) .hero-image-wrapper {
     gap: 1rem;
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(0, 209, 102, 0.05);
+    border-bottom: 1px solid var(--border-soft);
 }
 
 .project-main-header {
@@ -1540,20 +1608,20 @@ body:not(.loading) .hero-image-wrapper {
 .status-tag {
     font-family: var(--font-mono);
     font-size: 0.65rem;
-    color: #70a1ff;
-    background: rgba(112, 161, 255, 0.1);
+    color: rgb(var(--info-rgb));
+    background: rgba(var(--info-rgb), 0.1);
     padding: 2px 6px;
     border-radius: 4px;
     margin-left: 0.8rem;
-    border: 1px solid rgba(112, 161, 255, 0.2);
+    border: 1px solid rgba(var(--info-rgb), 0.2);
     font-weight: 600;
     letter-spacing: 0.5px;
 }
 
 .status-tag.stats {
-    color: #ffd700;
-    background: rgba(255, 215, 0, 0.1);
-    border-color: rgba(255, 215, 0, 0.3);
+    color: rgb(var(--gold-rgb));
+    background: rgba(var(--gold-rgb), 0.1);
+    border-color: rgba(var(--gold-rgb), 0.3);
     font-size: 0.75rem;
     padding: 3px 8px;
     display: inline-flex;
@@ -1563,11 +1631,11 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .status-tag.stats .icon-star {
-    filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.6));
+    filter: drop-shadow(0 0 3px rgba(var(--gold-rgb), 0.6));
 }
 
 .status-tag.stats .icon-fork {
-    filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.4));
+    filter: drop-shadow(0 0 3px rgba(var(--gold-rgb), 0.4));
 }
 
 .project-links {
@@ -1579,7 +1647,7 @@ body:not(.loading) .hero-image-wrapper {
 
 .project-links a {
     color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--ink-03);
     border: 1px solid var(--border-color);
     padding: 0.5rem 0.9rem;
     border-radius: 4px;
@@ -1598,11 +1666,11 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .project-links a:hover {
-    color: var(--accent-primary);
-    border-color: var(--accent-primary);
+    color: var(--accent);
+    border-color: var(--accent);
     background: var(--accent-glow);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 209, 102, 0.1), inset 0 0 8px rgba(0, 209, 102, 0.05);
+    box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.1), inset 0 0 8px rgba(var(--accent-rgb), 0.05);
 }
 
 .project-links a svg {
@@ -1617,15 +1685,15 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .project-links a[aria-label="Live Demo"] {
-    background: rgba(0, 209, 102, 0.05);
-    border-color: rgba(0, 209, 102, 0.2);
-    color: var(--accent-primary);
+    background: var(--accent-06);
+    border-color: var(--accent-25);
+    color: var(--accent);
 }
 
 .project-links a[aria-label="Live Demo"]:hover {
-    background: var(--accent-primary);
+    background: var(--accent);
     color: var(--bg-primary);
-    box-shadow: 0 0 20px rgba(0, 209, 102, 0.3);
+    box-shadow: 0 0 20px var(--accent-25);
 }
 
 .project-links a::before,
@@ -1641,15 +1709,15 @@ body:not(.loading) .hero-image-wrapper {
 .project-links a::before {
     top: 0;
     left: 0;
-    border-top: 1px solid var(--accent-primary);
-    border-left: 1px solid var(--accent-primary);
+    border-top: 1px solid var(--accent);
+    border-left: 1px solid var(--accent);
 }
 
 .project-links a::after {
     bottom: 0;
     right: 0;
-    border-bottom: 1px solid var(--accent-primary);
-    border-right: 1px solid var(--accent-primary);
+    border-bottom: 1px solid var(--accent);
+    border-right: 1px solid var(--accent);
 }
 
 .project-links a:hover::before,
@@ -1660,10 +1728,10 @@ body:not(.loading) .hero-image-wrapper {
 .live-dot {
     width: 6px;
     height: 6px;
-    background: #00ff00;
+    background: var(--accent);
     border-radius: 50%;
     display: inline-block;
-    box-shadow: 0 0 8px #00ff00;
+    box-shadow: 0 0 8px var(--accent);
     animation: livePulse 1.5s infinite;
 }
 
@@ -1678,7 +1746,7 @@ body:not(.loading) .hero-image-wrapper {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--ink-03);
     border: 1px dashed var(--border-color);
     cursor: default;
     white-space: nowrap;
@@ -1732,7 +1800,7 @@ body:not(.loading) .hero-image-wrapper {
     content: '▹';
     position: absolute;
     left: 0;
-    color: var(--accent-primary);
+    color: var(--accent);
 }
 
 .project-tech {
@@ -1746,17 +1814,17 @@ body:not(.loading) .hero-image-wrapper {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     color: var(--text-secondary);
-    background: rgba(0, 209, 102, 0.03);
+    background: rgba(var(--accent-rgb), 0.03);
     padding: 0.25rem 0.75rem;
     border-radius: 4px;
-    border: 1px solid rgba(0, 209, 102, 0.1);
+    border: 1px solid rgba(var(--accent-rgb), 0.1);
     transition: var(--transition);
 }
 
 .tech-tag:hover {
-    color: var(--accent-primary);
+    color: var(--accent);
     background: var(--accent-glow);
-    border-color: var(--accent-primary);
+    border-color: var(--accent);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -1794,8 +1862,8 @@ body:not(.loading) .hero-image-wrapper {
         0deg,
         transparent,
         transparent 2px,
-        rgba(0, 255, 136, 0.04) 2px,
-        rgba(0, 255, 136, 0.04) 4px
+        var(--ink-03) 2px,
+        var(--ink-03) 4px
     );
     pointer-events: none;
     z-index: 1;
@@ -1810,7 +1878,7 @@ body:not(.loading) .hero-image-wrapper {
     background: linear-gradient(
         to bottom,
         transparent 0%,
-        rgba(0, 255, 136, 0.06) 20%,
+        var(--ink-05) 20%,
         transparent 40%,
         rgba(255, 0, 80, 0.04) 60%,
         transparent 80%
@@ -1831,8 +1899,8 @@ body:not(.loading) .hero-image-wrapper {
         0deg,
         transparent,
         transparent 2px,
-        rgba(0, 255, 136, 0.12) 2px,
-        rgba(0, 255, 136, 0.12) 4px
+        var(--ink-05) 2px,
+        var(--ink-05) 4px
     );
 }
 
@@ -1881,8 +1949,8 @@ body:not(.loading) .hero-image-wrapper {
     top: 1.5rem;
     right: 1.5rem;
     z-index: 2;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--ink-03);
+    border: 1px solid var(--ink-12);
     color: #fff;
     width: 48px;
     height: 48px;
@@ -1904,9 +1972,9 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .lightbox-close:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
+    background: var(--ink-08);
+    border-color: var(--accent);
+    color: var(--accent);
     transform: scale(1.1) rotate(90deg);
 }
 
@@ -1922,10 +1990,10 @@ body:not(.loading) .hero-image-wrapper {
     max-height: 80vh;
     transform: scale(0.92);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    border: 1px solid rgba(0, 255, 136, 0.15);
+    border: 1px solid var(--border-strong);
     border-radius: 6px;
     box-shadow:
-        0 0 30px rgba(0, 255, 136, 0.08),
+        0 0 30px rgba(0, 0, 0, 0.4),
         0 20px 60px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     display: flex;
@@ -1949,7 +2017,7 @@ body:not(.loading) .hero-image-wrapper {
     font-size: 0.8rem;
     color: var(--text-muted);
     padding: 0.75rem 1rem;
-    border-top: 1px solid rgba(0, 255, 136, 0.06);
+    border-top: 1px solid var(--border-soft);
     text-align: center;
     letter-spacing: 0.03em;
 }
@@ -1971,7 +2039,7 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .contact-form {
-    background: var(--bg-secondary);
+    background: var(--surface-glass);
     padding: 3rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -1982,6 +2050,8 @@ body:not(.loading) .hero-image-wrapper {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1992,7 +2062,7 @@ body:not(.loading) .hero-image-wrapper {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(0, 209, 102, 0.03), transparent);
+    background: linear-gradient(to bottom, transparent, rgba(var(--accent-rgb), 0.03), transparent);
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -2003,7 +2073,7 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .contact-form:hover {
-    border-color: var(--accent-primary);
+    border-color: var(--accent);
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
@@ -2034,7 +2104,10 @@ body:not(.loading) .hero-image-wrapper {
 .form-group label {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    color: var(--accent-primary);
+    /* Labels are chrome, not signal. Four accent labels stacked in one form
+       was repeating the accent until it stopped meaning anything; the accent
+       now appears only on focus and on the submit action. */
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -2045,15 +2118,16 @@ body:not(.loading) .hero-image-wrapper {
     padding: 1rem;
     border-radius: 4px;
     color: var(--text-primary);
-    font-family: var(--font-primary);
+    font-family: var(--font-sans);
     font-size: 0.95rem;
     transition: all 0.3s ease;
 }
 
 .form-control:focus {
     outline: none;
-    border-color: var(--accent-primary);
-    background: rgba(0, 209, 102, 0.05);
+    border-color: var(--accent);
+    background: var(--accent-06);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 20px var(--accent-06);
 }
 
 .submit-btn {
@@ -2065,7 +2139,7 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .submit-btn:hover {
-    box-shadow: 0 0 20px rgba(0, 209, 102, 0.15), inset 0 0 20px rgba(0, 209, 102, 0.05);
+    box-shadow: 0 0 20px var(--accent-16), inset 0 0 20px var(--accent-04);
 }
 
 .contact-links {
@@ -2094,8 +2168,8 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .contact-btn:hover {
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
+    border-color: var(--accent);
+    color: var(--accent);
     background: var(--accent-glow);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -2108,7 +2182,8 @@ body:not(.loading) .hero-image-wrapper {
 .footer {
     padding: 2rem;
     text-align: center;
-    border-top: 1px solid var(--border-color);
+    position: relative;
+    border-top: 1px solid transparent;
     color: var(--text-muted);
     font-family: var(--font-mono);
     font-size: 0.85rem;
@@ -2155,7 +2230,7 @@ body:not(.loading) .hero-image-wrapper {
 
 @keyframes flashBreak {
     0% { 
-        background: rgba(0, 209, 102, 0.6); 
+        background: rgba(var(--accent-rgb), 0.6); 
         clip-path: inset(0 0 0 0);
     }
     20% { 
@@ -2167,7 +2242,7 @@ body:not(.loading) .hero-image-wrapper {
         clip-path: inset(10% 0 80% 0);
     }
     60% { 
-        background: rgba(0, 255, 136, 0.2); 
+        background: rgba(var(--accent-rgb), 0.2); 
         clip-path: inset(0 0 0 0);
     }
     80% { 
@@ -2257,9 +2332,9 @@ body:not(.loading) .anim-stagger {
 
 .status-message.success {
     display: block;
-    background: rgba(0, 209, 102, 0.1);
-    color: var(--accent-primary);
-    border-color: var(--accent-primary);
+    background: var(--accent-10);
+    color: var(--accent);
+    border-color: var(--accent-25);
     position: relative;
     overflow: hidden;
 }
@@ -2271,7 +2346,7 @@ body:not(.loading) .anim-stagger {
     left: -100%;
     width: 200%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 209, 102, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, var(--accent-16), transparent);
     animation: scanLine 2s linear infinite;
 }
 
@@ -2282,16 +2357,16 @@ body:not(.loading) .anim-stagger {
 
 .status-message.error {
     display: block;
-    background: rgba(255, 0, 64, 0.1);
-    color: #ff0040;
-    border-color: #ff0040;
+    background: rgba(var(--danger-rgb), 0.1);
+    color: var(--danger);
+    border-color: var(--danger);
 }
 
 .contact-btn.loading {
     pointer-events: none;
     opacity: 0.9;
     background: var(--bg-tertiary);
-    border-color: var(--accent-primary);
+    border-color: var(--accent);
     position: relative;
     overflow: hidden;
 }
@@ -2313,8 +2388,8 @@ body:not(.loading) .anim-stagger {
     left: 0;
     width: 0%;
     height: 3px;
-    background: var(--accent-primary);
-    box-shadow: 0 0 10px var(--accent-primary);
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
     animation: transmitProgress 2.5s ease-in-out infinite;
 }
 
@@ -2344,7 +2419,7 @@ body:not(.loading) .anim-stagger {
     top: 0;
     left: 0;
     height: 3px;
-    background: var(--accent-primary);
+    background: var(--accent);
     width: 100%;
     transform: scaleX(0);
     transform-origin: left;
@@ -2360,10 +2435,10 @@ body:not(.loading) .anim-stagger {
     z-index: 999;
     width: 44px;
     height: 44px;
-    border: 1px solid var(--accent-primary);
+    border: 1px solid var(--accent);
     border-radius: 50%;
-    background: rgba(10, 10, 10, 0.9);
-    color: var(--accent-primary);
+    background: var(--surface-float);
+    color: var(--accent);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -2377,7 +2452,7 @@ body:not(.loading) .anim-stagger {
                 border-color 0.3s ease,
                 box-shadow 0.3s ease,
                 background 0.3s ease;
-    box-shadow: 0 0 15px rgba(0, 209, 102, 0.15);
+    box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.15);
     backdrop-filter: blur(8px);
 }
 
@@ -2388,10 +2463,10 @@ body:not(.loading) .anim-stagger {
 }
 
 .scroll-top:hover {
-    background: var(--accent-primary);
+    background: var(--accent);
     color: var(--bg-primary);
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 25px rgba(0, 209, 102, 0.4);
+    border-color: var(--accent);
+    box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.4);
     transform: translateY(-3px) scale(1.1);
 }
 
@@ -2445,16 +2520,14 @@ body:not(.loading) .anim-stagger {
 
 /* ====== UI ENHANCEMENTS ====== */
 
-/* Section alternating backgrounds */
+/* Section backgrounds alternate by *value*, not by hue.
+   Tinting whole sections green meant the accent covered ~60% of the viewport
+   before a single interactive element appeared. */
 .section:nth-child(even) {
-    background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(0, 17, 8, 0.3) 50%, var(--bg-primary) 100%);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
 }
 
-.section:nth-child(odd) {
-    background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(0, 255, 102, 0.01) 50%, var(--bg-primary) 100%);
-}
-
-/* Section top divider accent */
+/* Section top divider accent — neutral hairline, accent reserved for signals */
 .section:not(:first-of-type) {
     position: relative;
 }
@@ -2466,22 +2539,10 @@ body:not(.loading) .anim-stagger {
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 209, 102, 0.12), transparent);
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
     pointer-events: none;
 }
 
-/* Section Title enhancements */
-.section-title {
-    position: relative;
-}
-
-.section-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border-color) 0%, rgba(0, 209, 102, 0.15) 50%, var(--border-color) 100%);
-    max-width: 300px;
-}
 
 /* Card top glow accent line */
 .project-card::before {
@@ -2491,7 +2552,7 @@ body:not(.loading) .anim-stagger {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 2;
@@ -2501,69 +2562,18 @@ body:not(.loading) .anim-stagger {
     opacity: 0.6;
 }
 
-/* Floating ambient orbs for section depth */
-#about::before,
-#skills::before,
-#research::before {
-    content: '';
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-}
-
-#about::before {
-    top: 10%;
-    right: -10%;
-    background: radial-gradient(circle, rgba(0, 255, 136, 0.04) 0%, transparent 70%);
-    animation: ambientDrift 12s ease-in-out infinite alternate;
-}
-
-#skills::before {
-    bottom: 5%;
-    left: -8%;
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(0, 204, 106, 0.035) 0%, transparent 70%);
-    animation: ambientDrift 15s ease-in-out infinite alternate-reverse;
-}
-
-#research::before {
-    top: 15%;
-    left: 15%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(0, 255, 136, 0.03) 0%, transparent 70%);
-    animation: ambientDrift 10s ease-in-out infinite alternate;
-}
-
-#contact::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(0, 255, 136, 0.03) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    animation: ambientDrift 13s ease-in-out infinite alternate-reverse;
-}
+/* Section-level ambient orbs removed.
+   Four tinted glows across About / Skills / Research / Contact meant the accent
+   covered most of the page as pure decoration, which is exactly what made the
+   green feel overwhelming. Depth now comes from the neutral section gradient
+   and the hairline dividers above; the single glow lives in the hero. */
 
 @keyframes markerPulse {
     0%, 100% { box-shadow: 0 0 10px var(--accent-glow); }
-    50% { box-shadow: 0 0 20px rgba(0, 209, 102, 0.3), 0 0 40px rgba(0, 209, 102, 0.1); }
+    50% { box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3), 0 0 40px rgba(var(--accent-rgb), 0.1); }
 }
 
 /* Skill tag glow enhancements */
-.skill-tag {
-    position: relative;
-    overflow: hidden;
-}
-
 .skill-tag::before {
     content: '';
     position: absolute;
@@ -2571,7 +2581,7 @@ body:not(.loading) .anim-stagger {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 209, 102, 0.08), transparent);
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.08), transparent);
     transition: left 0.5s ease;
 }
 
@@ -2580,23 +2590,7 @@ body:not(.loading) .anim-stagger {
 }
 
 /* Contact form glass enhancement */
-.contact-form {
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    background: rgba(15, 15, 18, 0.85);
-}
-
-/* Form input focus glow */
-.form-control:focus {
-    box-shadow: 0 0 0 1px var(--accent-primary), 0 0 20px rgba(0, 209, 102, 0.08);
-}
-
 /* Footer enhancement */
-.footer {
-    position: relative;
-    border-top: 1px solid transparent;
-}
-
 .footer::before {
     content: '';
     position: absolute;
@@ -2604,7 +2598,7 @@ body:not(.loading) .anim-stagger {
     left: 20%;
     right: 20%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 209, 102, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
 }
 
 /* Custom scrollbar */
@@ -2617,12 +2611,12 @@ body:not(.loading) .anim-stagger {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 209, 102, 0.3);
+    background: var(--border-strong);
     border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 209, 102, 0.5);
+    background: #39424c;
 }
 
 /* Nav menu links subtle hover accent */
@@ -2633,14 +2627,10 @@ body:not(.loading) .anim-stagger {
     left: 0;
     width: 0;
     height: 1px;
-    background: var(--accent-primary);
+    background: var(--accent);
     transition: width 0.3s ease;
 }
 
-.nav-link {
-    position: relative;
-    text-decoration: none;
-}
 
 .nav-link:hover::after {
     width: 100%;
@@ -2656,26 +2646,21 @@ body:not(.loading) .anim-stagger {
     100% { transform: rotate(360deg); }
 }
 
-/* Scroll indicator refinement */
-.scroll-indicator span {
-    border-color: rgba(0, 209, 102, 0.3);
-}
-
 /* Selected text color */
 ::selection {
-    background: rgba(0, 209, 102, 0.2);
+    background: rgba(var(--accent-rgb), 0.2);
     color: var(--text-primary);
 }
 
 ::-moz-selection {
-    background: rgba(0, 209, 102, 0.2);
+    background: rgba(var(--accent-rgb), 0.2);
     color: var(--text-primary);
 }
 
 /* Refined focus styles for accessibility */
 :focus-visible {
-    outline: 1px solid var(--accent-primary);
-    outline-offset: 2px;
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
 @media (max-width: 720px) {
@@ -2710,8 +2695,8 @@ body:not(.loading) .anim-stagger {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--accent-primary);
-    opacity: 0.85;
+    color: var(--text-muted);
+    opacity: 1;
     margin: 0 0 1.25rem;
 }
 
@@ -2737,7 +2722,7 @@ body:not(.loading) .anim-stagger {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    background: linear-gradient(135deg, rgba(20, 20, 25, 0.6) 0%, rgba(15, 15, 18, 0.8) 100%);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1.25rem;
@@ -2752,7 +2737,7 @@ body:not(.loading) .anim-stagger {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent, rgba(0, 209, 102, 0.04), transparent);
+    background: linear-gradient(to bottom, transparent, var(--accent-04), transparent);
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -2763,7 +2748,7 @@ body:not(.loading) .anim-stagger {
 }
 
 .contrib-card:hover {
-    border-color: var(--accent-primary);
+    border-color: var(--accent);
     transform: translateY(-4px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
@@ -2804,7 +2789,7 @@ body:not(.loading) .anim-stagger {
 }
 
 .contrib-card:hover .contrib-name {
-    color: var(--accent-primary);
+    color: var(--accent);
 }
 
 .contrib-card:hover .contrib-owner {
@@ -2821,7 +2806,7 @@ body:not(.loading) .anim-stagger {
 .contrib-desc code {
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: var(--accent-primary);
+    color: var(--accent);
     background: var(--accent-glow);
     padding: 1px 4px;
     border-radius: 3px;
@@ -2847,45 +2832,45 @@ body:not(.loading) .anim-stagger {
 }
 
 .contrib-tag.merged {
-    color: var(--accent-primary);
+    color: var(--accent);
     background: var(--accent-glow);
-    border-color: rgba(0, 209, 102, 0.28);
+    border-color: var(--accent-25);
 }
 
 .contrib-tag.commits {
-    color: #70a1ff;
-    background: rgba(112, 161, 255, 0.1);
-    border-color: rgba(112, 161, 255, 0.24);
+    color: rgb(var(--info-rgb));
+    background: rgba(var(--info-rgb), 0.1);
+    border-color: rgba(var(--info-rgb), 0.24);
 }
 
 .contrib-tag.issue {
-    color: #ffb454;
-    background: rgba(255, 180, 84, 0.1);
-    border-color: rgba(255, 180, 84, 0.24);
+    color: rgb(var(--warn-rgb));
+    background: rgba(var(--warn-rgb), 0.1);
+    border-color: rgba(var(--warn-rgb), 0.24);
 }
 
 .contrib-tag.open {
-    color: #ffd700;
-    background: rgba(255, 215, 0, 0.1);
-    border-color: rgba(255, 215, 0, 0.28);
+    color: rgb(var(--gold-rgb));
+    background: rgba(var(--gold-rgb), 0.1);
+    border-color: rgba(var(--gold-rgb), 0.28);
 }
 
 .contrib-tag.closed {
     color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--ink-03);
     border-color: var(--border-color);
 }
 
 .contrib-tag.research {
-    color: #4ecdc4;
-    background: rgba(78, 205, 196, 0.1);
-    border-color: rgba(78, 205, 196, 0.26);
+    color: rgb(var(--teal-rgb));
+    background: rgba(var(--teal-rgb), 0.1);
+    border-color: rgba(var(--teal-rgb), 0.26);
 }
 
 .contrib-tag.live {
-    color: var(--accent-primary);
+    color: var(--accent);
     background: var(--accent-glow);
-    border-color: rgba(0, 209, 102, 0.28);
+    border-color: var(--accent-25);
 }
 
 @media (max-width: 720px) {
