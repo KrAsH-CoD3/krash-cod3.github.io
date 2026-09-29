@@ -1178,6 +1178,10 @@ code {
 }
 
 .contrib-card {
+    /* Positioned so .contrib-card-link::after can stretch over the whole card.
+       This is a div rather than an anchor because the PR tags inside it are
+       links, and an anchor cannot legally contain another anchor. */
+    position: relative;
     display: block;
     padding: 0.95rem 1.05rem;
     background: var(--bg-raised);
@@ -1191,6 +1195,33 @@ code {
     border-color: var(--border-strong);
     border-left-color: var(--accent);
     background: var(--bg-hover);
+}
+
+/* Stretched link: the repo name is the real anchor and its ::after covers the
+   card, so the whole card stays clickable while the PR tags below remain
+   independently clickable — they sit above the overlay via z-index. */
+.contrib-card-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.contrib-card-link:hover .contrib-name {
+    color: var(--accent-bright);
+}
+
+/* PR status tags are links to the individual pull requests. */
+a.contrib-tag {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+a.contrib-tag:hover,
+a.contrib-tag:focus-visible {
+    background: var(--bg-hover);
+    border-color: var(--border-strong);
 }
 
 .contrib-top {
