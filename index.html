@@ -12,12 +12,12 @@
 </head>
 
 <body class="is-booting">
-    <!-- Boot sequence -->
+    <!-- Boot sequence. Deliberately short and in plain English: a first-time
+         visitor should never have to decode it. Clicking anywhere skips it. -->
     <div class="boot" id="bootScreen" aria-hidden="true">
         <div class="boot-inner">
-            <p class="boot-line"><span class="boot-user">samuel@workbench</span><span class="boot-sep">:</span><span class="boot-path">~</span><span class="boot-sigil">$</span> ./portfolio --interactive</p>
-            <p class="boot-line">mounting panes <span class="boot-ok">ok</span></p>
-            <p class="boot-line">restoring session <span class="boot-ok">ok</span></p>
+            <p class="boot-line">Loading portfolio <span class="boot-ok">ok</span></p>
+            <p class="boot-line">Preparing sections <span class="boot-ok">ok</span></p>
         </div>
     </div>
 
@@ -39,9 +39,18 @@
                 <i></i><i></i><i></i>
             </div>
             <p class="titlebar-title">
-                <span class="titlebar-user">samuel@workbench</span><span class="titlebar-sep">:</span><span class="titlebar-path">~/portfolio</span>
+                <span class="titlebar-user">Samuel Alewi</span><span class="titlebar-sep">&middot;</span><span class="titlebar-path">Backend Engineer</span>
             </p>
             <div class="titlebar-actions">
+                <a class="titlebar-cta" href="mailto:samuelalewi@gmail.com">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                        <path d="m2 7 10 6 10-6"></path>
+                    </svg>
+                    Email me
+                </a>
                 <div class="theme-wrapper">
                     <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme (Experimental)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -62,70 +71,67 @@
             </div>
         </header>
 
-        <!-- Window tabs -->
-        <div class="tabbar" role="tablist" aria-label="Portfolio sections">
+        <!-- Window tabs — the primary navigation. Plain-English labels on
+             purpose: most visitors are not developers and read these as a menu. -->
+        <div class="tabbar" role="tablist" aria-label="Main sections">
             <button class="tab is-active" role="tab" id="tab-about" data-view="about" aria-selected="true"
-                aria-controls="view-about" type="button"><span class="tab-index">1</span>about</button>
+                aria-controls="view-about" type="button"><span class="tab-index">1</span>About Me</button>
             <button class="tab" role="tab" id="tab-work" data-view="work" aria-selected="false"
-                aria-controls="view-work" type="button"><span class="tab-index">2</span>work</button>
+                aria-controls="view-work" type="button"><span class="tab-index">2</span>Projects</button>
             <button class="tab" role="tab" id="tab-contributions" data-view="contributions" aria-selected="false"
-                aria-controls="view-contributions" type="button"><span class="tab-index">3</span>contributions</button>
+                aria-controls="view-contributions" type="button"><span class="tab-index">3</span>Open Source</button>
             <button class="tab" role="tab" id="tab-contact" data-view="contact" aria-selected="false"
-                aria-controls="view-contact" type="button"><span class="tab-index">4</span>contact</button>
+                aria-controls="view-contact" type="button"><span class="tab-index">4</span>Contact</button>
         </div>
 
         <!-- Panes -->
         <div class="panes">
-            <!-- File tree -->
-            <nav class="pane pane-tree" aria-label="Project files">
-                <p class="pane-head"><span class="pane-dot" aria-hidden="true"></span>~/portfolio</p>
+            <!-- Contents -->
+            <nav class="pane pane-tree" aria-label="Contents">
+                <p class="pane-head"><span class="pane-dot" aria-hidden="true"></span>Contents</p>
                 <div class="pane-body">
                     <ul class="tree">
                         <li>
                             <button class="tree-item is-active" data-view="about" type="button">
-                                <span class="tree-icon" aria-hidden="true">md</span>about.md
+                                <span class="tree-icon" aria-hidden="true">&bull;</span>About Me
                             </button>
                         </li>
                         <li>
-                            <p class="tree-dir">work/</p>
+                            <p class="tree-dir">Projects</p>
                             <ul class="tree-children">
-                                <li><button class="tree-item" data-view="work" data-anchor="work-fingrasp" type="button"><span class="tree-icon" aria-hidden="true">py</span>fingrasp</button></li>
-                                <li><button class="tree-item" data-view="work" data-anchor="work-whatsapp" type="button"><span class="tree-icon" aria-hidden="true">py</span>whatsapp-status</button></li>
-                                <li><button class="tree-item" data-view="work" data-anchor="work-pricediffs" type="button"><span class="tree-icon" aria-hidden="true">py</span>pricediffs</button></li>
-                                <li><button class="tree-item" data-view="work" data-anchor="work-betking" type="button"><span class="tree-icon" aria-hidden="true">py</span>betking-vf-autobet</button></li>
-                                <li><button class="tree-item" data-view="work" data-anchor="work-humanscroll" type="button"><span class="tree-icon" aria-hidden="true">py</span>humanscroll</button></li>
-                                <li><button class="tree-item" data-view="work" data-anchor="work-portfolio" type="button"><span class="tree-icon" aria-hidden="true">js</span>portfolio</button></li>
-                                <li><button class="tree-item" data-view="work" data-anchor="work-plu" type="button"><span class="tree-icon" aria-hidden="true">py</span>plu-auto-trading</button></li>
+                                <li><button class="tree-item" data-view="work" data-anchor="work-fingrasp" type="button"><span class="tree-icon" aria-hidden="true">&bull;</span>Fingrasp</button></li>
+                                <li><button class="tree-item" data-view="work" data-anchor="work-whatsapp" type="button"><span class="tree-icon" aria-hidden="true">&bull;</span>WhatsApp Status</button></li>
+                                <li><button class="tree-item" data-view="work" data-anchor="work-pricediffs" type="button"><span class="tree-icon" aria-hidden="true">&bull;</span>PriceDiffs</button></li>
+                                <li><button class="tree-item" data-view="work" data-anchor="work-betking" type="button"><span class="tree-icon" aria-hidden="true">&bull;</span>Betking Autobet</button></li>
+                                <li><button class="tree-item" data-view="work" data-anchor="work-humanscroll" type="button"><span class="tree-icon" aria-hidden="true">&bull;</span>HumanScroll</button></li>
+                                <li><button class="tree-item" data-view="work" data-anchor="work-portfolio" type="button"><span class="tree-icon" aria-hidden="true">&bull;</span>Portfolio Site</button></li>
+                                <li><button class="tree-item" data-view="work" data-anchor="work-plu" type="button"><span class="tree-icon" aria-hidden="true">&bull;</span>Plu Auto Trading</button></li>
                             </ul>
                         </li>
                         <li>
                             <button class="tree-item" data-view="contributions" type="button">
-                                <span class="tree-icon" aria-hidden="true">md</span>contributions.md
+                                <span class="tree-icon" aria-hidden="true">&bull;</span>Open Source Work
                             </button>
                         </li>
                         <li>
                             <button class="tree-item" data-view="contact" type="button">
-                                <span class="tree-icon" aria-hidden="true">md</span>contact.md
+                                <span class="tree-icon" aria-hidden="true">&bull;</span>Contact
                             </button>
                         </li>
                     </ul>
-                    <p class="tree-note">7 projects &middot; 6 upstream repos &middot; 1 research thread</p>
+                    <p class="tree-note">7 projects &middot; 6 open-source repos &middot; 1 research thread</p>
                 </div>
             </nav>
 
             <!-- Main pane -->
             <main class="pane pane-main">
                 <p class="pane-head"><span class="pane-dot" aria-hidden="true"></span><span
-                        id="mainPaneHead">about.md</span></p>
+                        id="mainPaneHead">About Me</span></p>
                 <div class="pane-body" id="mainPaneBody">
 
                     <!-- ABOUT -->
                     <section class="view is-active" id="view-about" role="tabpanel" aria-labelledby="tab-about"
                         data-view="about" tabindex="0">
-                        <p class="cmd"><span class="cmd-user">samuel@workbench</span><span class="cmd-sep">:</span><span
-                                class="cmd-path">~/portfolio</span><span class="cmd-sigil">$</span> <span
-                                class="cmd-text">cat about.md</span></p>
-
                         <div class="profile">
                             <img class="profile-avatar" src="src/assets/profile.png"
                                 alt="Samuel Alewi - Backend Engineer" width="88" height="88" loading="eager">
@@ -135,6 +141,10 @@
                                         class="typed-cursor">|</span></p>
                             </div>
                         </div>
+
+                        <p class="cmd"><span class="cmd-user">samuel@workbench</span><span class="cmd-sep">:</span><span
+                                class="cmd-path">~/portfolio</span><span class="cmd-sigil">$</span> <span
+                                class="cmd-text">cat about.md</span></p>
 
                         <p class="lede">Architecting high-scale distributed systems and specialized stealth automation
                             frameworks.</p>
@@ -167,14 +177,25 @@
                         </div>
 
                         <div class="actions">
-                            <button class="btn btn-primary" data-view="work" type="button">Open work/</button>
+                            <button class="btn btn-primary" data-view="work" type="button">See my projects</button>
                             <button class="btn" data-view="contact" type="button">Get in touch</button>
                         </div>
+
+                        <nav class="view-nav" aria-label="Section navigation">
+                            <button class="view-nav-link view-nav-forward" data-view="work" type="button">Next: Projects
+                                <span class="view-nav-dir" aria-hidden="true">&rarr;</span></button>
+                        </nav>
                     </section>
 
                     <!-- WORK -->
                     <section class="view" id="view-work" role="tabpanel" aria-labelledby="tab-work" data-view="work"
                         tabindex="0">
+                        <header class="view-head">
+                            <h2 class="view-title">Projects</h2>
+                            <p class="view-sub">Seven projects I designed and built. Each links to its source on GitHub
+                                and, where it is deployed, to a live demo.</p>
+                        </header>
+
                         <p class="cmd"><span class="cmd-user">samuel@workbench</span><span class="cmd-sep">:</span><span
                                 class="cmd-path">~/portfolio</span><span class="cmd-sigil">$</span> <span
                                 class="cmd-text">ls -l ./work</span></p>
@@ -466,17 +487,29 @@
                             </li>
 
                         </ol>
+
+                        <nav class="view-nav" aria-label="Section navigation">
+                            <button class="view-nav-link" data-view="about" type="button"><span class="view-nav-dir"
+                                    aria-hidden="true">&larr;</span>Back: About Me</button>
+                            <button class="view-nav-link view-nav-forward" data-view="contributions" type="button">Next:
+                                Open Source <span class="view-nav-dir" aria-hidden="true">&rarr;</span></button>
+                        </nav>
                     </section>
 
                     <!-- CONTRIBUTIONS -->
                     <section class="view" id="view-contributions" role="tabpanel" aria-labelledby="tab-contributions"
                         data-view="contributions" tabindex="0">
+                        <header class="view-head">
+                            <h2 class="view-title">Open Source Contributions</h2>
+                        </header>
+
                         <p class="cmd"><span class="cmd-user">samuel@workbench</span><span class="cmd-sep">:</span><span
                                 class="cmd-path">~/portfolio</span><span class="cmd-sigil">$</span> <span
                                 class="cmd-text">cat contributions.md</span></p>
 
                         <p class="lede">Merged pull requests, upstream commits and reproducible bug reports across 21
-                            external repositories. A selection is below.</p>
+                            external repositories. A selection is below &mdash; each card opens that project on
+                            GitHub.</p>
 
                         <h2 class="h-block">open source</h2>
                         <div class="contrib-list">
@@ -650,11 +683,22 @@
                                 </div>
                             </a>
                         </div>
+
+                        <nav class="view-nav" aria-label="Section navigation">
+                            <button class="view-nav-link" data-view="work" type="button"><span class="view-nav-dir"
+                                    aria-hidden="true">&larr;</span>Back: Projects</button>
+                            <button class="view-nav-link view-nav-forward" data-view="contact" type="button">Next:
+                                Contact <span class="view-nav-dir" aria-hidden="true">&rarr;</span></button>
+                        </nav>
                     </section>
 
                     <!-- CONTACT -->
                     <section class="view" id="view-contact" role="tabpanel" aria-labelledby="tab-contact"
                         data-view="contact" tabindex="0">
+                        <header class="view-head">
+                            <h2 class="view-title">Get in Touch</h2>
+                        </header>
+
                         <p class="cmd"><span class="cmd-user">samuel@workbench</span><span class="cmd-sep">:</span><span
                                 class="cmd-path">~/portfolio</span><span class="cmd-sigil">$</span> <span
                                 class="cmd-text">cat contact.md</span></p>
@@ -738,6 +782,11 @@
                                 <p class="contact-foot">&copy; 2026 Samuel Alewi &middot; # KrAsH-CoD3</p>
                             </div>
                         </div>
+
+                        <nav class="view-nav" aria-label="Section navigation">
+                            <button class="view-nav-link" data-view="contributions" type="button"><span
+                                    class="view-nav-dir" aria-hidden="true">&larr;</span>Back: Open Source</button>
+                        </nav>
                     </section>
 
                 </div>
@@ -745,7 +794,7 @@
 
             <!-- Stack -->
             <aside class="pane pane-stack" aria-label="Technology stack">
-                <p class="pane-head"><span class="pane-dot" aria-hidden="true"></span>stack.toml</p>
+                <p class="pane-head"><span class="pane-dot" aria-hidden="true"></span>Skills &amp; Tools</p>
                 <div class="pane-body">
                     <div class="toml">
                         <p class="toml-section">[backend]</p>
@@ -800,12 +849,13 @@
             </aside>
         </div>
 
-        <!-- Session log -->
-        <section class="pane pane-log" aria-label="Session log">
+        <!-- Session log. Collapsed on load: it is a decorative flourish and, at
+             full height, it pushed the page content up by ~180px. -->
+        <section class="pane pane-log is-collapsed" aria-label="Session log">
             <p class="pane-head">
-                <span class="pane-dot" aria-hidden="true"></span>session.log
-                <button class="pane-head-toggle" id="logToggle" type="button" aria-expanded="true"
-                    aria-controls="aboutTerminalBody">hide</button>
+                <span class="pane-dot" aria-hidden="true"></span>Session log
+                <button class="pane-head-toggle" id="logToggle" type="button" aria-expanded="false"
+                    aria-controls="aboutTerminalBody">show</button>
             </p>
             <div class="pane-body log-body" id="aboutTerminalBody"></div>
         </section>
@@ -813,9 +863,8 @@
         <!-- Status bar -->
         <footer class="statusbar">
             <span class="status-mode">PORTFOLIO</span>
-            <span class="status-path">~/portfolio</span>
             <span class="status-name">Samuel Alewi</span>
-            <span class="status-hint">Browse with links &middot; no commands required</span>
+            <span class="status-hint">Click the tabs above to move around &mdash; nothing to type</span>
             <time class="status-clock" id="heroStatusTime">00:00</time>
         </footer>
     </div>

@@ -21,7 +21,15 @@
         }, 600);
     }
 
+    var bootDone = false;
+    var bootTimer = null;
+    var bootSkip = null;
+
     function finishBoot() {
+        if (bootDone) return;
+        bootDone = true;
+        if (bootTimer) window.clearTimeout(bootTimer);
+        if (bootSkip) document.removeEventListener('keydown', bootSkip);
         document.body.classList.remove('is-booting');
         flashGlitch();
         if (!bootScreen) return;
@@ -32,7 +40,14 @@
     }
 
     if (bootScreen && !prefersReducedMotion) {
-        window.setTimeout(finishBoot, 640);
+        bootTimer = window.setTimeout(finishBoot, 640);
+        // An impatient visitor should never be made to wait on a loader, so a
+        // click anywhere or any key press ends it immediately.
+        bootSkip = function () {
+            finishBoot();
+        };
+        bootScreen.addEventListener('click', bootSkip);
+        document.addEventListener('keydown', bootSkip);
     } else {
         finishBoot();
     }
@@ -41,11 +56,14 @@
        View routing
        --------------------------------------------------------------------- */
 
-    var VIEW_FILES = {
-        about: 'about.md',
-        work: 'work/',
-        contributions: 'contributions.md',
-        contact: 'contact.md'
+    // View name -> the plain-English label shown in the main pane head. These
+    // are deliberately human words, not file names: the pane head is the "you
+    // are here" marker and most visitors are not developers.
+    var VIEW_LABELS = {
+        about: 'About Me',
+        work: 'Projects',
+        contributions: 'Open Source',
+        contact: 'Contact'
     };
 
     // Older links pointed at section anchors. Keep them working.
@@ -69,7 +87,7 @@
         var raw = window.location.hash.replace(/^#/, '').trim();
         if (!raw) return { view: 'about', anchor: null };
         if (LEGACY_HASH[raw]) return { view: LEGACY_HASH[raw], anchor: null };
-        if (VIEW_FILES[raw]) return { view: raw, anchor: null };
+        if (VIEW_LABELS[raw]) return { view: raw, anchor: null };
 
         var target = document.getElementById(raw);
         if (target) {
@@ -83,7 +101,7 @@
 
     function activate(view, options) {
         var opts = options || {};
-        if (!VIEW_FILES[view]) view = 'about';
+        if (!VIEW_LABELS[view]) view = 'about';
 
         tabs.forEach(function (tab) {
             var on = tab.dataset.view === view;
@@ -107,7 +125,7 @@
             }
         });
 
-        if (mainPaneHead) mainPaneHead.textContent = VIEW_FILES[view];
+        if (mainPaneHead) mainPaneHead.textContent = VIEW_LABELS[view];
 
         currentView = view;
         currentAnchor = opts.anchor || null;
