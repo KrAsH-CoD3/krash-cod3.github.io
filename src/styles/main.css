@@ -258,30 +258,6 @@ code {
     align-items: center;
 }
 
-/* Persistent contact action. A hiring manager should never have to hunt for a
-   way to get in touch, so this sits in the chrome and is visible on every view. */
-.titlebar-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-right: 0.45rem;
-    padding: 0.3rem 0.7rem;
-    background: var(--accent-dim);
-    border: 1px solid var(--accent-line);
-    border-radius: var(--radius);
-    color: var(--accent-bright);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    white-space: nowrap;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.titlebar-cta:hover {
-    border-color: var(--accent);
-    background: rgba(145, 185, 207, 0.2);
-}
-
 .icon-btn {
     display: grid;
     place-items: center;

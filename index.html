@@ -42,15 +42,6 @@
                 <span class="titlebar-user">Samuel Alewi</span><span class="titlebar-sep">&middot;</span><span class="titlebar-path">Backend Engineer</span>
             </p>
             <div class="titlebar-actions">
-                <a class="titlebar-cta" href="mailto:samuelalewi@gmail.com">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                        <path d="m2 7 10 6 10-6"></path>
-                    </svg>
-                    Email me
-                </a>
                 <div class="theme-wrapper">
                     <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme (Experimental)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -849,13 +840,13 @@
             </aside>
         </div>
 
-        <!-- Session log. Collapsed on load: it is a decorative flourish and, at
-             full height, it pushed the page content up by ~180px. -->
-        <section class="pane pane-log is-collapsed" aria-label="Session log">
+        <!-- Session log. Open by default on desktop; main.js collapses it on
+             narrow screens, where the full height would eat the viewport. -->
+        <section class="pane pane-log" aria-label="Session log">
             <p class="pane-head">
                 <span class="pane-dot" aria-hidden="true"></span>Session log
-                <button class="pane-head-toggle" id="logToggle" type="button" aria-expanded="false"
-                    aria-controls="aboutTerminalBody">show</button>
+                <button class="pane-head-toggle" id="logToggle" type="button" aria-expanded="true"
+                    aria-controls="aboutTerminalBody">hide</button>
             </p>
             <div class="pane-body log-body" id="aboutTerminalBody"></div>
         </section>

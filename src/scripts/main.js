@@ -317,10 +317,22 @@
         logTimer = window.setTimeout(addLogLine, 900);
 
         if (logToggle && logPane) {
-            logToggle.addEventListener('click', function () {
-                var collapsed = logPane.classList.toggle('is-collapsed');
+            // The log is a desktop luxury: at full height it costs ~180px, which
+            // is too much of a phone viewport. So it starts open on wide screens
+            // and collapsed on narrow ones — see the markup for the desktop
+            // default, which this keeps in sync before the first paint matters.
+            var narrowLog = window.matchMedia('(max-width: 860px)');
+
+            function setLogCollapsed(collapsed) {
+                logPane.classList.toggle('is-collapsed', collapsed);
                 logToggle.textContent = collapsed ? 'show' : 'hide';
                 logToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+            }
+
+            setLogCollapsed(narrowLog.matches);
+
+            logToggle.addEventListener('click', function () {
+                setLogCollapsed(!logPane.classList.contains('is-collapsed'));
             });
         }
     }
