@@ -18,25 +18,31 @@ Specialized in engineering Python-based server-side foundations and advanced hea
 
 ### Featured Projects
 
-- **[Fingrasp](https://github.com/KrAsH-CoD3/Fingrasp)** – A browser-fingerprint intelligence platform designed to differentiate between legitimate hardware and simulated environments using entropy research and SHA-256 composite hashing.
-- **[WhatsApp Status Monitor](https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker)** – An automation tool that continuously monitors contact status updates and sends programmatic alerts via WhatsApp at specified intervals.
-- **[Autobet System](https://github.com/KrAsH-CoD3/Betking-VF-Autobet)** – A high-performance automation engine for autonomous execution of virtual football bets based on Realnaps predictions, optimized for real-time stake management.
-- **[BotasHuman](https://github.com/KrAsH-CoD3/botashuman)** – A universal web orchestration platform with a zero-detection footprint, bypassing advanced anti-bot defenses through indistinguishable human-interaction patterns.
-- **[Trading Automator](https://github.com/KrAsH-CoD3/Plu-Auto-Trading)** – A high-precision trading engine that automatically executes trades at pre-defined intervals, focusing on temporal reliability and automated stake management.
-- **TheBotify Framework** – A specialized browser automation library designed to mimic human interactions through stealthy mouse movements, randomized temporal logic, and cross-platform detection avoidance.
+#### Web Apps
+
+- **[TheGuestEye](https://github.com/KrAsH-CoD3/TheGuestEye)** — A friction-free event media capture platform where guests scan a QR code and upload photos/videos directly from their phones — no apps, no logins. Resumable chunked uploads with localStorage persistence and exponential backoff retry. Stack: FastAPI, SQLAlchemy async, PostgreSQL, Paystack.
+- **[Fingrasp](https://github.com/KrAsH-CoD3/Fingrasp)** — A browser-fingerprint intelligence platform designed to differentiate between legitimate hardware and simulated environments using entropy research and SHA-256 composite hashing. Live: [fingrasp.vercel.app](https://fingrasp.vercel.app)
+- **[PriceDiffs](https://github.com/KrAsH-CoD3/PriceDiffs)** — Multi-phase e-commerce price tracker with stealth browser scraping, historical snapshots, and a Django + DRF dashboard for monitoring price fluctuations across retailers. Live: [pricediffs.up.railway.app](https://pricediffs.up.railway.app)
+- **[Portfolio](https://github.com/KrAsH-CoD3/Portfolio)** — This personal portfolio — built from scratch with just HTML, CSS, and JavaScript. No frameworks, no libraries. Live: [krash-cod3.github.io](https://krash-cod3.github.io)
+
+#### CLI Tools
+
+- **[WhatsApp Status Monitor](https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker)** — An automation tool that continuously monitors contact status updates and sends programmatic alerts via WhatsApp at specified intervals.
+- **[Bybit P2P Repricer](https://github.com/KrAsH-CoD3/Bybit-price-monitor)** — A Telegram bot that keeps Bybit P2P ads at the top price by continuously monitoring competitor ads and repricing yours to match. Auto-recovers ads hidden by PRICE_LIMIT. Dry-run mode, VPS-ready systemd deployment.
+- **[Autobet System](https://github.com/KrAsH-CoD3/Betking-VF-Autobet)** — A high-performance automation engine for autonomous execution of virtual football bets based on Realnaps predictions, optimized for real-time stake management.
+- **[HumanScroll](https://github.com/KrAsH-CoD3/HumanScroll)** — Physics-based human-like scrolling library for Playwright automation. Models inertia, overshoot, rest periods, and trackpad vs. mouse scroll patterns with anti-detection features.
+- **[Trading Automator](https://github.com/KrAsH-CoD3/Plu-Auto-Trading)** — A high-precision trading engine that automatically executes trades at pre-defined intervals, focusing on temporal reliability and automated stake management.
 
 ### Open Source Contributions
 
 Contributions across 21 external repositories — merged pull requests, upstream commits and reproducible bug reports. The code contributions are browsable in the [portfolio](https://krash-cod3.github.io/#research).
 
-#### Code & Documentation
-
-- **[CamouChat WhatsApp](https://github.com/CamouChat-Team/camouchat-whatsapp)** – Merged competitor-matrix expansion ([PR #10](https://github.com/CamouChat-Team/camouchat-whatsapp/pull/10)) plus an open security hardening PR closing a JavaScript injection vector, a path traversal flaw and a log leakage path ([PR #24](https://github.com/CamouChat-Team/camouchat-whatsapp/pull/24)).
-- **[Pydoll](https://github.com/autoscrape-labs/pydoll)** – Merged a fix pass across a WebDriver-less Chromium automation library, closing resource leaks, incorrect runtime behavior and deprecation warnings ([PR #427](https://github.com/autoscrape-labs/pydoll/pull/427), reported as [issue #426](https://github.com/autoscrape-labs/pydoll/issues/426)).
-- **[HumanTyping](https://github.com/Lax3n/HumanTyping)** – Improved error correction and modernized packaging for a Markov-chain keyboard simulator ([PR #2](https://github.com/Lax3n/HumanTyping/pull/2), reported as [issue #1](https://github.com/Lax3n/HumanTyping/issues/1)).
-- **[StealthBrowserController](https://github.com/sarperavci/StealthBrowserController)** – Corrected the Python version floor and a missing `mss` dependency, landing the merged fix ([PR #5](https://github.com/sarperavci/StealthBrowserController/pull/5)).
-- **[CallMeBot](https://github.com/gabrielrih/callmebot)** – Modernized the WhatsApp API wrapper with a new `send_message` function ([PR #4](https://github.com/gabrielrih/callmebot/pull/4)).
-- **[playwright_stealth](https://github.com/AtuboDad/playwright_stealth)** – README rewrite clarifying setup and usage ([PR #26](https://github.com/AtuboDad/playwright_stealth/pull/26)).
+- **[CamouChat WhatsApp](https://github.com/CamouChat-Team/camouchat-whatsapp)** — Merged competitor-matrix expansion ([PR #10](https://github.com/CamouChat-Team/camouchat-whatsapp/pull/10)) plus an open security hardening PR closing a JavaScript injection vector, a path traversal flaw and a log leakage path ([PR #24](https://github.com/CamouChat-Team/camouchat-whatsapp/pull/24)).
+- **[Pydoll](https://github.com/autoscrape-labs/pydoll)** — Merged a fix pass across a WebDriver-less Chromium automation library, closing resource leaks, incorrect runtime behavior and deprecation warnings ([PR #427](https://github.com/autoscrape-labs/pydoll/pull/427), reported as [issue #426](https://github.com/autoscrape-labs/pydoll/issues/426)).
+- **[HumanTyping](https://github.com/Lax3n/HumanTyping)** — Improved error correction and modernized packaging for a Markov-chain keyboard simulator ([PR #2](https://github.com/Lax3n/HumanTyping/pull/2), reported as [issue #1](https://github.com/Lax3n/HumanTyping/issues/1)).
+- **[StealthBrowserController](https://github.com/sarperavci/StealthBrowserController)** — Corrected the Python version floor and a missing `mss` dependency, landing the merged fix ([PR #5](https://github.com/sarperavci/StealthBrowserController/pull/5)).
+- **[CallMeBot](https://github.com/gabrielrih/callmebot)** — Modernized the WhatsApp API wrapper with a new `send_message` function ([PR #4](https://github.com/gabrielrih/callmebot/pull/4)).
+- **[playwright_stealth](https://github.com/AtuboDad/playwright_stealth)** — README rewrite clarifying setup and usage ([PR #26](https://github.com/AtuboDad/playwright_stealth/pull/26)).
 
 ### Repository Structure
 
@@ -49,18 +55,6 @@ Contributions across 21 external repositories — merged pull requests, upstream
 │   └── assets/      # Media & Graphic Resources
 ```
 
-### Development
-
-This portfolio is built with modern web standards to ensure maximum performance and accessibility.
-
-```bash
-# Clone
-git clone https://github.com/KrAsH-CoD3/krash-cod3.github.io.git
-
-# Preview
-# Open index.html in any modern browser
-```
-
 ### Get in Touch
 
 - **Email:** [samuelalewi@gmail.com](mailto:samuelalewi@gmail.com)
@@ -68,6 +62,7 @@ git clone https://github.com/KrAsH-CoD3/krash-cod3.github.io.git
 - **Status:** Open for architectural consulting and high-scale backend engineering roles.
 
 ---
+
 <p align="center">
   <i>"Architecture is about making the complex feel simple."</i>
 </p>
