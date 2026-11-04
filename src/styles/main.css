@@ -1712,6 +1712,36 @@ body:not(.loading) .hero-image-wrapper {
     flex-shrink: 0;
 }
 
+.private-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    cursor: help;
+    white-space: nowrap;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.private-badge:hover {
+    background: rgba(251, 191, 36, 0.2);
+    border-color: #fbbf24;
+}
+
+.private-badge svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
 @keyframes livePulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.6); opacity: 0.5; }
