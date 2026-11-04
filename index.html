@@ -804,11 +804,21 @@
                                         </svg>
                                         Telegram Bot
                                     </span>
+                                    <span class="private-tag">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                        </svg>
+                                        Private
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <p class="project-description">
-                            A Telegram bot that keeps your Bybit P2P ads at the top price by continuously monitoring competitor ads and repricing yours to match. Reads the P2P page's own listing endpoint for accurate market data, filters rivals by payment method overlap and trade size, enforces move caps and floor prices, and auto-recovers ads hidden due to PRICE_LIMIT. Features dry-run mode, persistent settings via chat, and VPS-ready systemd deployment.
+                            A Telegram bot that keeps Bybit P2P ads at the top price,
+                            identifying top competitor per market, and repricing only when necessary.<br>
+                            Auto-recovers ads hidden by Bybit's `PRICE LIMIT` feature. <br>
+                            Helps traders improve their visibility and competitiveness in the P2P market, leading to more trades.
                         </p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
