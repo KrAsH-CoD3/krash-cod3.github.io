@@ -1712,27 +1712,33 @@ body:not(.loading) .hero-image-wrapper {
     flex-shrink: 0;
 }
 
-.private-tag {
+.private-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.5rem 0.9rem;
+    gap: 0.4rem;
+    padding: 0.35rem 0.7rem;
     border-radius: 4px;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    background: var(--ink-03);
-    border: 1px dashed var(--border-color);
-    cursor: default;
+    letter-spacing: 0.08em;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    cursor: help;
     white-space: nowrap;
-    pointer-events: none;
+    transition: background 0.2s, border-color 0.2s;
 }
 
-.private-tag svg {
-    width: 16px;
-    height: 16px;
+.private-badge:hover {
+    background: rgba(251, 191, 36, 0.2);
+    border-color: #fbbf24;
+}
+
+.private-badge svg {
+    width: 12px;
+    height: 12px;
     flex-shrink: 0;
 }
 
