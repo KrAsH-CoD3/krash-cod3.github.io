@@ -1,8 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
-  <rect width="800" height="450" fill="#0f151c"/>
-  <text x="400" y="200" font-family="monospace" font-size="24" fill="#6b7280" text-anchor="middle">Bybit P2P Repricer</text>
-  <text x="400" y="235" font-family="monospace" font-size="14" fill="#4b5563" text-anchor="middle">Telegram Bot for Automated P2P Ad Repricing</text>
-  <rect x="300" y="260" width="200" height="4" fill="#1f2937" rx="2"/>
-  <rect x="300" y="260" width="120" height="4" fill="#22c55e" rx="2"/>
-  <text x="400" y="290" font-family="monospace" font-size="12" fill="#6b7280" text-anchor="middle">‚óè dry-run mode  ‚óè payment filters  ‚óè auto-recovery</text>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f151c"/>
+      <stop offset="100%" style="stop-color:#1a1f2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fbbf24"/>
+      <stop offset="100%" style="stop-color:#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+  </pattern>
+  <rect width="800" height="450" fill="url(#grid)" opacity="0.3"/>
+  
+  <!-- Title -->
+  <text x="400" y="170" font-family="monospace" font-size="28" font-weight="600" fill="#e2e8f0" text-anchor="middle">Bybit P2P Repricer</text>
+  
+  <!-- Subtitle -->
+  <text x="400" y="210" font-family="monospace" font-size="13" fill="#64748b" text-anchor="middle">Telegram Bot ï Automated P2P Ad Repricing</text>
+  
+  <!-- Divider -->
+  <line x1="300" y1="230" x2="500" y2="230" stroke="url(#accent)" stroke-width="2"/>
+  
+  <!-- Feature tags -->
+  <g font-family="monospace" font-size="11" fill="#94a3b8" text-anchor="middle">
+    <text x="400" y="265">? Real-time market polling</text>
+    <text x="400" y="285">? Payment-method filtering</text>
+    <text x="400" y="305">? Safety caps & floor prices</text>
+    <text x="400" y="325">? PRICE_LIMIT auto-recovery</text>
+    <text x="400" y="345">? Dry-run mode ï VPS ready</text>
+  </g>
+  
+  <!-- Tech stack -->
+  <g font-family="monospace" font-size="10" fill="#475569" text-anchor="middle">
+    <text x="400" y="385">Python  ï  Telegram Bot API  ï  Bybit P2P API</text>
+  </g>
+  
+  <!-- Private badge indicator -->
+  <g transform="translate(650, 30)">
+    <rect x="0" y="0" width="110" height="24" rx="4" fill="rgba(251,191,36,0.12)" stroke="rgba(251,191,36,0.4)" stroke-width="1"/>
+    <text x="55" y="16" font-family="monospace" font-size="10" font-weight="600" fill="#fbbf24" text-anchor="middle">?? Private</text>
+  </g>
 </svg>
