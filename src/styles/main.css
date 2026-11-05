@@ -1872,29 +1872,6 @@ body:not(.loading) .hero-image-wrapper {
     50% { opacity: 0.7; text-shadow: 0 0 16px rgba(var(--accent-rgb), 0.8), 0 0 24px rgba(var(--accent-rgb), 0.4); }
 }
 
-/* Shimmer sweep effect */
-.live-demo-coming-soon .demo-shimmer {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(var(--accent-rgb), 0.15) 20%,
-        rgba(var(--accent-rgb), 0.35) 40%,
-        rgba(var(--accent-rgb), 0.15) 60%,
-        transparent 80%
-    );
-    transform: translateX(-100%);
-    animation: shimmerSweep 2.5s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes shimmerSweep {
-    0% { transform: translateX(-100%); }
-    60% { transform: translateX(100%); }
-    100% { transform: translateX(100%); }
-}
-
 /* Pulsing border glow */
 .live-demo-coming-soon::before {
     content: '';
@@ -1913,26 +1890,6 @@ body:not(.loading) .hero-image-wrapper {
 @keyframes borderPulse {
     0%, 100% { opacity: 0; background-position: 0% 50%; }
     50% { opacity: 0.4; background-position: 100% 50%; }
-}
-
-/* Subtle scan line */
-.live-demo-coming-soon::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: scanLine 2s ease-in-out infinite;
-}
-
-@keyframes scanLine {
-    0% { transform: scaleX(0); transform-origin: left; opacity: 1; }
-    50% { transform: scaleX(1); transform-origin: left; opacity: 1; }
-    100% { transform: scaleX(0); transform-origin: right; opacity: 0; }
 }
 
 /* Down Live Demo Button */
@@ -2030,29 +1987,6 @@ body:not(.loading) .hero-image-wrapper {
     50% { opacity: 0.5; text-shadow: 0 0 16px rgba(var(--danger-rgb), 0.9), 0 0 24px rgba(var(--danger-rgb), 0.5); }
 }
 
-/* Shimmer sweep effect - danger variant */
-.live-demo-down .demo-shimmer {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(var(--danger-rgb), 0.15) 20%,
-        rgba(var(--danger-rgb), 0.35) 40%,
-        rgba(var(--danger-rgb), 0.15) 60%,
-        transparent 80%
-    );
-    transform: translateX(-100%);
-    animation: shimmerSweepDanger 2s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes shimmerSweepDanger {
-    0% { transform: translateX(-100%); }
-    60% { transform: translateX(100%); }
-    100% { transform: translateX(100%); }
-}
-
 @keyframes borderPulseDanger {
     0%, 100% { opacity: 0; background-position: 0% 50%; }
     50% { opacity: 0.35; background-position: 100% 50%; }
@@ -2062,7 +1996,6 @@ body:not(.loading) .hero-image-wrapper {
     0% { transform: scaleX(0); transform-origin: left; opacity: 1; }
     50% { transform: scaleX(1); transform-origin: left; opacity: 1; }
     100% { transform: scaleX(0); transform-origin: right; opacity: 0; }
-}
 }
 
 @keyframes livePulse {
