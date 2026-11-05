@@ -1810,6 +1810,157 @@ body:not(.loading) .hero-image-wrapper {
     flex-shrink: 0;
 }
 
+/* Coming Soon Live Demo Button */
+.live-demo-coming-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    background: var(--accent-06);
+    border: 1px solid var(--accent-25);
+    cursor: not-allowed;
+    white-space: nowrap;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0.85;
+    transition: opacity 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.live-demo-coming-soon:hover {
+    opacity: 1;
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-25), inset 0 0 20px var(--accent-04);
+}
+
+.live-demo-coming-soon .demo-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+.live-demo-coming-soon .demo-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.live-demo-coming-soon .demo-label {
+    color: var(--accent);
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+.live-demo-coming-soon .demo-status {
+    color: var(--accent-bright);
+    font-weight: 700;
+    position: relative;
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+.live-demo-coming-soon .demo-status::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: underlineSweep 1.5s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.4); }
+    50% { opacity: 0.7; text-shadow: 0 0 16px rgba(var(--accent-rgb), 0.8), 0 0 24px rgba(var(--accent-rgb), 0.4); }
+}
+
+@keyframes underlineSweep {
+    0% { transform: scaleX(0); transform-origin: left; }
+    50% { transform: scaleX(1); transform-origin: left; }
+    100% { transform: scaleX(0); transform-origin: right; }
+}
+
+/* Shimmer sweep effect */
+.live-demo-coming-soon .demo-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(var(--accent-rgb), 0.15) 20%,
+        rgba(var(--accent-rgb), 0.35) 40%,
+        rgba(var(--accent-rgb), 0.15) 60%,
+        transparent 80%
+    );
+    transform: translateX(-100%);
+    animation: shimmerSweep 2.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmerSweep {
+    0% { transform: translateX(-100%); }
+    60% { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Pulsing border glow */
+.live-demo-coming-soon::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright), var(--accent));
+    background-size: 200% 100%;
+    opacity: 0;
+    animation: borderPulse 3s ease-in-out infinite;
+    z-index: -1;
+    filter: blur(4px);
+}
+
+@keyframes borderPulse {
+    0%, 100% { opacity: 0; background-position: 0% 50%; }
+    50% { opacity: 0.4; background-position: 100% 50%; }
+}
+
+/* Subtle scan line */
+.live-demo-coming-soon::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: scanLine 2s ease-in-out infinite;
+}
+
+@keyframes scanLine {
+    0% { transform: scaleX(0); transform-origin: left; opacity: 1; }
+    50% { transform: scaleX(1); transform-origin: left; opacity: 1; }
+    100% { transform: scaleX(0); transform-origin: right; opacity: 0; }
+}
+
 @keyframes livePulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.6); opacity: 0.5; }
