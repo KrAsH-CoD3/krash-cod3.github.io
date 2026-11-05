@@ -1961,6 +1961,175 @@ body:not(.loading) .hero-image-wrapper {
     100% { transform: scaleX(0); transform-origin: right; opacity: 0; }
 }
 
+/* Down Live Demo Button */
+.live-demo-down {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--warn);
+    background: rgba(var(--warn-rgb), 0.1);
+    border: 1px solid rgba(var(--warn-rgb), 0.3);
+    cursor: not-allowed;
+    white-space: nowrap;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0.85;
+    transition: opacity 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    isolation: isolate;
+}
+
+/* Override base project-links corner accents (top-left & bottom-right green corners) */
+.project-links a.live-demo-down::before,
+.project-links a.live-demo-down::after {
+    content: none;
+    display: none;
+}
+
+/* Custom border pulse glow */
+.live-demo-down::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: linear-gradient(90deg, var(--warn), var(--gold), var(--warn));
+    background-size: 200% 100%;
+    opacity: 0;
+    animation: borderPulseWarn 2.5s ease-in-out infinite;
+    z-index: -1;
+    filter: blur(4px);
+}
+
+/* Custom scan line */
+.live-demo-down::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--warn), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: scanLineWarn 1.5s ease-in-out infinite;
+}
+
+.live-demo-down:hover {
+    opacity: 1;
+    border-color: var(--warn);
+    box-shadow: 0 0 20px rgba(var(--warn-rgb), 0.25), inset 0 0 20px rgba(var(--warn-rgb), 0.08);
+}
+
+.live-demo-down .demo-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    animation: iconWarn 2s ease-in-out infinite;
+}
+
+@keyframes iconWarn {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-2px) rotate(-5deg); }
+    75% { transform: translateY(-2px) rotate(5deg); }
+}
+
+.live-demo-down .demo-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.live-demo-down .demo-label {
+    color: var(--warn);
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+.live-demo-down .demo-status.down {
+    color: var(--warn);
+    font-weight: 700;
+    position: relative;
+    animation: statusBlink 1s ease-in-out infinite;
+    text-shadow: none;
+}
+
+.live-demo-down .demo-status.down::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--warn);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: underlineSweep 1.5s ease-in-out infinite;
+}
+
+@keyframes statusBlink {
+    0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(var(--warn-rgb), 0.5); }
+    50% { opacity: 0.5; text-shadow: 0 0 16px rgba(var(--warn-rgb), 0.9), 0 0 24px rgba(var(--warn-rgb), 0.5); }
+}
+
+/* Shimmer sweep effect - warn variant */
+.live-demo-down .demo-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(var(--warn-rgb), 0.15) 20%,
+        rgba(var(--warn-rgb), 0.35) 40%,
+        rgba(var(--warn-rgb), 0.15) 60%,
+        transparent 80%
+    );
+    transform: translateX(-100%);
+    animation: shimmerSweep 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Pulsing border glow - warn variant */
+.live-demo-down::before,
+.live-demo-down::after {
+    display: none;
+}
+
+@keyframes borderPulseWarn {
+    0%, 100% { opacity: 0; background-position: 0% 50%; }
+    50% { opacity: 0.35; background-position: 100% 50%; }
+}
+
+/* Subtle scan line - warn variant */
+.live-demo-down::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--warn), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: scanLineWarn 1.5s ease-in-out infinite;
+}
+
+@keyframes scanLineWarn {
+    0% { transform: scaleX(0); transform-origin: left; opacity: 1; }
+    50% { transform: scaleX(1); transform-origin: left; opacity: 1; }
+    100% { transform: scaleX(0); transform-origin: right; opacity: 0; }
+}
+
 @keyframes livePulse {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.6); opacity: 0.5; }
