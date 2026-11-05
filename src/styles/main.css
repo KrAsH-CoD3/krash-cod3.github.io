@@ -1874,28 +1874,9 @@ body:not(.loading) .hero-image-wrapper {
     animation: statusPulse 2s ease-in-out infinite;
 }
 
-.live-demo-coming-soon .demo-status::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: underlineSweep 1.5s ease-in-out infinite;
-}
-
 @keyframes statusPulse {
     0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.4); }
     50% { opacity: 0.7; text-shadow: 0 0 16px rgba(var(--accent-rgb), 0.8), 0 0 24px rgba(var(--accent-rgb), 0.4); }
-}
-
-@keyframes underlineSweep {
-    0% { transform: scaleX(0); transform-origin: left; }
-    50% { transform: scaleX(1); transform-origin: left; }
-    100% { transform: scaleX(0); transform-origin: right; }
 }
 
 /* Shimmer sweep effect */
@@ -1973,9 +1954,9 @@ body:not(.loading) .hero-image-wrapper {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--warn);
-    background: rgba(var(--warn-rgb), 0.1);
-    border: 1px solid rgba(var(--warn-rgb), 0.3);
+    color: var(--danger);
+    background: rgba(var(--danger-rgb), 0.1);
+    border: 1px solid rgba(var(--danger-rgb), 0.3);
     cursor: not-allowed;
     white-space: nowrap;
     text-decoration: none;
@@ -2001,10 +1982,10 @@ body:not(.loading) .hero-image-wrapper {
     inset: -2px;
     border-radius: 6px;
     border: 1px solid transparent;
-    background: linear-gradient(90deg, var(--warn), var(--gold), var(--warn));
+    background: linear-gradient(90deg, var(--danger), #ff3366, var(--danger));
     background-size: 200% 100%;
     opacity: 0;
-    animation: borderPulseWarn 2.5s ease-in-out infinite;
+    animation: borderPulseDanger 2.5s ease-in-out infinite;
     z-index: -1;
     filter: blur(4px);
 }
@@ -2017,16 +1998,16 @@ body:not(.loading) .hero-image-wrapper {
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--warn), transparent);
+    background: linear-gradient(90deg, transparent, var(--danger), transparent);
     transform: scaleX(0);
     transform-origin: left;
-    animation: scanLineWarn 1.5s ease-in-out infinite;
+    animation: scanLineDanger 1.5s ease-in-out infinite;
 }
 
 .live-demo-down:hover {
     opacity: 1;
-    border-color: var(--warn);
-    box-shadow: 0 0 20px rgba(var(--warn-rgb), 0.25), inset 0 0 20px rgba(var(--warn-rgb), 0.08);
+    border-color: var(--danger);
+    box-shadow: 0 0 20px rgba(var(--danger-rgb), 0.3), inset 0 0 20px rgba(var(--danger-rgb), 0.1);
 }
 
 .live-demo-down .demo-icon {
@@ -2037,12 +2018,6 @@ body:not(.loading) .hero-image-wrapper {
     animation: iconFloat 3s ease-in-out infinite;
 }
 
-@keyframes iconWarn {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-2px) rotate(-5deg); }
-    75% { transform: translateY(-2px) rotate(5deg); }
-}
-
 .live-demo-down .demo-text {
     display: inline-flex;
     align-items: center;
@@ -2051,83 +2026,57 @@ body:not(.loading) .hero-image-wrapper {
 }
 
 .live-demo-down .demo-label {
-    color: var(--warn);
+    color: var(--danger);
     opacity: 0.5;
     font-weight: 400;
 }
 
 .live-demo-down .demo-status.down {
-    color: var(--warn);
+    color: var(--danger);
     font-weight: 700;
     position: relative;
-    animation: statusBlink 1s ease-in-out infinite;
+    animation: statusBlinkDanger 1s ease-in-out infinite;
     text-shadow: none;
 }
 
-.live-demo-down .demo-status.down::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--warn);
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: underlineSweep 1.5s ease-in-out infinite;
+@keyframes statusBlinkDanger {
+    0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(var(--danger-rgb), 0.5); }
+    50% { opacity: 0.5; text-shadow: 0 0 16px rgba(var(--danger-rgb), 0.9), 0 0 24px rgba(var(--danger-rgb), 0.5); }
 }
 
-@keyframes statusBlink {
-    0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(var(--warn-rgb), 0.5); }
-    50% { opacity: 0.5; text-shadow: 0 0 16px rgba(var(--warn-rgb), 0.9), 0 0 24px rgba(var(--warn-rgb), 0.5); }
-}
-
-/* Shimmer sweep effect - warn variant */
+/* Shimmer sweep effect - danger variant */
 .live-demo-down .demo-shimmer {
     position: absolute;
     inset: 0;
     background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(var(--warn-rgb), 0.15) 20%,
-        rgba(var(--warn-rgb), 0.35) 40%,
-        rgba(var(--warn-rgb), 0.15) 60%,
+        rgba(var(--danger-rgb), 0.15) 20%,
+        rgba(var(--danger-rgb), 0.35) 40%,
+        rgba(var(--danger-rgb), 0.15) 60%,
         transparent 80%
     );
     transform: translateX(-100%);
-    animation: shimmerSweep 2s ease-in-out infinite;
+    animation: shimmerSweepDanger 2s ease-in-out infinite;
     pointer-events: none;
 }
 
-/* Pulsing border glow - warn variant */
-.live-demo-down::before,
-.live-demo-down::after {
-    display: none;
+@keyframes shimmerSweepDanger {
+    0% { transform: translateX(-100%); }
+    60% { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
 }
 
-@keyframes borderPulseWarn {
+@keyframes borderPulseDanger {
     0%, 100% { opacity: 0; background-position: 0% 50%; }
     50% { opacity: 0.35; background-position: 100% 50%; }
 }
 
-/* Subtle scan line - warn variant */
-.live-demo-down::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--warn), transparent);
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: scanLineWarn 1.5s ease-in-out infinite;
-}
-
-@keyframes scanLineWarn {
+@keyframes scanLineDanger {
     0% { transform: scaleX(0); transform-origin: left; opacity: 1; }
     50% { transform: scaleX(1); transform-origin: left; opacity: 1; }
     100% { transform: scaleX(0); transform-origin: right; opacity: 0; }
+}
 }
 
 @keyframes livePulse {
