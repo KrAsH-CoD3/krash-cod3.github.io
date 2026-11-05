@@ -1,1121 +1,1119 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Samuel Alewi - Backend Engineer & Web Automation Specialist">
-    <meta name="keywords" content="Python, Backend, FastAPI, Web Automation, Software Engineer">
-    <title>Samuel Alewi | Backend Engineer</title>
-    <link rel="stylesheet" href="src/styles/main.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Samuel Alewi - Backend Engineer & Web Automation Specialist">
+        <meta name="keywords" content="Python, Backend, FastAPI, Web Automation, Software Engineer">
+        <title>Samuel Alewi | Backend Engineer</title>
+        <link rel="stylesheet" href="src/styles/main.css">
+    </head>
 
-<body class="loading">
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
+    <body class="loading">
+        <!-- Scroll Progress Indicator -->
+        <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Glitch Interference Overlay -->
-    <div id="glitchOverlay" class="glitch-overlay"></div>
+        <!-- Glitch Interference Overlay -->
+        <div id="glitchOverlay" class="glitch-overlay"></div>
 
-    <!-- Icon Sprite -->
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-        <symbol id="icon-star" viewBox="0 0 24 24">
-            <path
-                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-        </symbol>
-    </svg>
+        <!-- Icon Sprite -->
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+            <symbol id="icon-star" viewBox="0 0 24 24">
+                <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </symbol>
+        </svg>
 
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <a href="/" class="nav-logo" aria-label="Home">&lt;SA/&gt;<span class="logo-cursor">_</span></a>
-            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="hamburger"></span>
-            </button>
-            <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
-                <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
-                <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
-                <li role="none"><a href="#research" class="nav-link" role="menuitem">Contribution & Research</a></li>
-                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
-                <li role="none">
-                    <div class="theme-wrapper">
-                        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme (Experimental)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="5"></circle>
-                                <line x1="12" y1="1" x2="12" y2="3"></line>
-                                <line x1="12" y1="21" x2="12" y2="23"></line>
-                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                <line x1="1" y1="12" x2="3" y2="12"></line>
-                                <line x1="21" y1="12" x2="23" y2="12"></line>
-                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                            </svg>
-                        </button>
-                        <div id="themeTooltip" class="theme-tooltip">// Safety Protocol Active</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="hero" id="hero">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <p class="hero-greeting anim-stagger" style="--i:0">>> Hello world, I'm</p>
-                <h1 class="hero-title anim-stagger" style="--i:1" data-text="Samuel Alewi">Samuel Alewi</h1>
-                <h2 class="hero-subtitle anim-stagger" style="--i:2">
-                    <span class="typed-role"></span><span class="typed-cursor">|</span>
-                </h2>
-                <p class="hero-description anim-stagger" style="--i:3">
-                    Architecting high-scale distributed systems and specialized stealth automation frameworks.
-                </p>
-                <div class="hero-buttons anim-stagger" style="--i:4">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                </div>
-            </div>
-            <div class="hero-image-wrapper" style="--i:2">
-                <div class="hero-image-container">
-                    <div class="hero-image-ring"></div>
-                    <div class="hero-image-ring ring-2"></div>
-                    <div class="hero-image-ring ring-3"></div>
-                    <img src="src/assets/profile.png" alt="Samuel Alewi - Backend Engineer"
-                        class="hero-image" loading="eager">
-                    <div class="hero-image-glow"></div>
-                </div>
-                <div class="hero-image-dots"></div>
-                <div class="hero-status-bar">
-                    <span class="status-prompt">STATUS</span>
-                    <span class="status-colon">:</span>
-                    <span class="status-value">DEBUGGING</span>
-                    <span class="status-ellipsis">
-                        <span>.</span><span>.</span><span>.</span>
-                    </span>
-                    <span class="status-pipe">|</span>
-                    <span class="status-time" id="heroStatusTime">00:00</span>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator" aria-hidden="true">
-            <span></span>
-        </div>
-    </section>
-
-    <section class="section" id="about" aria-labelledby="about-title">
-        <div class="container">
-            <h2 class="section-title" id="about-title"><span class="hacker-trigger">About Me</span></h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="info-container">
-                        <p>
-                            As a <strong>Backend Architect</strong>, I specialize in building Python ecosystems that
-                            handle massive concurrency without breaking. My work focuses on creating resilient
-                            server-side foundations that power products at scale.
-                        </p>
-                        <p>
-                            Beyond traditional backend, I engineer <strong>Stealth Automation</strong> frameworks. I
-                            design specialized orchestrators and headless pipelines that bypass advanced anti-bot
-                            protections and operate where others are detected.
-                        </p>
-                        <p>
-                            Leveraging my expertise in automation, I am currently pioneering
-                            research into specialized <strong>Cybersecurity</strong> domains. My focus lies in protocol
-                            analysis, anti-telemetry heuristics, and the development of defensive methodologies that
-                            bridge the gap between high-scale architecture and system integrity.
-                        </p>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="terminal-window">
-                        <div class="terminal-header">
-                            <span class="terminal-btn close"></span>
-                            <span class="terminal-btn minimize"></span>
-                            <span class="terminal-btn maximize"></span>
-                            <span class="terminal-title">sys_monitor.py</span>
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="nav-container">
+                <a href="/" class="nav-logo" aria-label="Home">&lt;SA/&gt;<span class="logo-cursor">_</span></a>
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-menu" role="menubar">
+                    <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+                    <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
+                    <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
+                    <li role="none"><a href="#research" class="nav-link" role="menuitem">Contribution & Research</a></li>
+                    <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
+                    <li role="none">
+                        <div class="theme-wrapper">
+                            <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme (Experimental)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="5"></circle>
+                                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                </svg>
+                            </button>
+                            <div id="themeTooltip" class="theme-tooltip">// Safety Protocol Active</div>
                         </div>
-                        <div class="terminal-body" id="aboutTerminalBody">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="hero" id="hero">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <p class="hero-greeting anim-stagger" style="--i:0">>> Hello world, I'm</p>
+                    <h1 class="hero-title anim-stagger" style="--i:1" data-text="Samuel Alewi">Samuel Alewi</h1>
+                    <h2 class="hero-subtitle anim-stagger" style="--i:2">
+                        <span class="typed-role"></span><span class="typed-cursor">|</span>
+                    </h2>
+                    <p class="hero-description anim-stagger" style="--i:3">
+                        Architecting high-scale distributed systems and specialized stealth automation frameworks.
+                    </p>
+                    <div class="hero-buttons anim-stagger" style="--i:4">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper" style="--i:2">
+                    <div class="hero-image-container">
+                        <div class="hero-image-ring"></div>
+                        <div class="hero-image-ring ring-2"></div>
+                        <div class="hero-image-ring ring-3"></div>
+                        <img src="src/assets/profile.png" alt="Samuel Alewi - Backend Engineer"
+                            class="hero-image" loading="eager">
+                        <div class="hero-image-glow"></div>
+                    </div>
+                    <div class="hero-image-dots"></div>
+                    <div class="hero-status-bar">
+                        <span class="status-prompt">STATUS</span>
+                        <span class="status-colon">:</span>
+                        <span class="status-value">DEBUGGING</span>
+                        <span class="status-ellipsis">
+                            <span>.</span><span>.</span><span>.</span>
+                        </span>
+                        <span class="status-pipe">|</span>
+                        <span class="status-time" id="heroStatusTime">00:00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator" aria-hidden="true">
+                <span></span>
+            </div>
+        </section>
+
+        <section class="section" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <h2 class="section-title" id="about-title"><span class="hacker-trigger">About Me</span></h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="info-container">
+                            <p>
+                                As a <strong>Backend Architect</strong>, I specialize in building Python ecosystems that
+                                handle massive concurrency without breaking. My work focuses on creating resilient
+                                server-side foundations that power products at scale.
+                            </p>
+                            <p>
+                                Beyond traditional backend, I engineer <strong>Stealth Automation</strong> frameworks. I
+                                design specialized orchestrators and headless pipelines that bypass advanced anti-bot
+                                protections and operate where others are detected.
+                            </p>
+                            <p>
+                                Leveraging my expertise in automation, I am currently pioneering
+                                research into specialized <strong>Cybersecurity</strong> domains. My focus lies in protocol
+                                analysis, anti-telemetry heuristics, and the development of defensive methodologies that
+                                bridge the gap between high-scale architecture and system integrity.
+                            </p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="skills" aria-labelledby="skills-title">
-        <div class="container">
-            <h2 class="section-title" id="skills-title"><span class="hacker-trigger">Skills</span></h2>
-            <div class="skills-grid">
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Languages</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Bash</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Databases</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Redis</span>
-                        <span class="skill-tag">SQLite</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Frameworks & Libraries</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Django + DRF</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">Celery</span>
-                        <span class="skill-tag">SQLAlchemy</span>
-                        <span class="skill-tag">Pydantic</span>
-                        <span class="skill-tag">Playwright</span>
-                        <span class="skill-tag">Selenium</span>
-                        <span class="skill-tag">Scrapy</span>
-                        <span class="skill-tag">BeautifulSoup</span>
-                        <span class="skill-tag">Scrapling</span>
-
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Infrastructure</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Kafka</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub Actions</span>
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Cloudflare</span>
-                        <span class="skill-tag">Google Cloud</span>
-                        <span class="skill-tag">Vercel</span>
-                        <span class="skill-tag">Render</span>
-                        <span class="skill-tag">Railway</span>
-                        <span class="skill-tag">Netlify</span>
-                        <span class="skill-tag">Nginx</span>
-                        <span class="skill-tag">HAProxy</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <div class="category-header">
-                        <h3 class="skill-category-title">Security</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Kali Linux</span>
-                        <span class="skill-tag">Burp Suite</span>
-                        <span class="skill-tag">Nmap</span>
-                        <span class="skill-tag">Wireshark</span>
-                        <span class="skill-tag">Metasploit</span>
-                        <span class="skill-tag">Pegasus</span>
-                        <span class="skill-tag">John the Ripper</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="projects" aria-labelledby="projects-title">
-        <div class="container">
-            <h2 class="section-title" id="projects-title"><span class="hacker-trigger">Projects</span></h2>
-
-            <!-- Web Apps -->
-            <div class="project-category">
-                <h3 class="category-title">Web Apps</h3>
-                <div class="projects-grid">
-
-                    <!-- TheGuestEye -->
-                    <article class="project-card featured" data-repo="KrAsH-CoD3/TheGuestEye">
-                        <div class="project-content">
-                            <div class="project-image">
-                                <img src="src/assets/projects/the-guest-eye.png" alt="TheGuestEye — event photo capture platform" loading="lazy">
+                    <div class="about-image">
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <span class="terminal-btn close"></span>
+                                <span class="terminal-btn minimize"></span>
+                                <span class="terminal-btn maximize"></span>
+                                <span class="terminal-title">sys_monitor.py</span>
                             </div>
-                            <div class="project-header">
-                                <div class="project-main-header">
-                                    <div class="project-title-row">
-                                    <h3 class="project-title">TheGuestEye</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/TheGuestEye">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
+                            <div class="terminal-body" id="aboutTerminalBody">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills" aria-labelledby="skills-title">
+            <div class="container">
+                <h2 class="section-title" id="skills-title"><span class="hacker-trigger">Skills</span></h2>
+                <div class="skills-grid">
+
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <h3 class="skill-category-title">Languages</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Bash</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <h3 class="skill-category-title">Databases</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">SQLite</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <h3 class="skill-category-title">Frameworks & Libraries</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">Django + DRF</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">Celery</span>
+                            <span class="skill-tag">SQLAlchemy</span>
+                            <span class="skill-tag">Pydantic</span>
+                            <span class="skill-tag">Playwright</span>
+                            <span class="skill-tag">Selenium</span>
+                            <span class="skill-tag">Scrapy</span>
+                            <span class="skill-tag">BeautifulSoup</span>
+                            <span class="skill-tag">Scrapling</span>
+
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <h3 class="skill-category-title">Infrastructure</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Kafka</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Cloudflare</span>
+                            <span class="skill-tag">Google Cloud</span>
+                            <span class="skill-tag">Vercel</span>
+                            <span class="skill-tag">Render</span>
+                            <span class="skill-tag">Railway</span>
+                            <span class="skill-tag">Netlify</span>
+                            <span class="skill-tag">Nginx</span>
+                            <span class="skill-tag">HAProxy</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <h3 class="skill-category-title">Security</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Kali Linux</span>
+                            <span class="skill-tag">Burp Suite</span>
+                            <span class="skill-tag">Nmap</span>
+                            <span class="skill-tag">Wireshark</span>
+                            <span class="skill-tag">Metasploit</span>
+                            <span class="skill-tag">Pegasus</span>
+                            <span class="skill-tag">John the Ripper</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects" aria-labelledby="projects-title">
+            <div class="container">
+                <h2 class="section-title" id="projects-title"><span class="hacker-trigger">Projects</span></h2>
+
+                <!-- Web Apps -->
+                <div class="project-category">
+                    <h3 class="category-title">Web Apps</h3>
+                    <div class="projects-grid">
+
+                        <!-- TheGuestEye -->
+                        <article class="project-card featured" data-repo="KrAsH-CoD3/TheGuestEye">
+                            <div class="project-content">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/the-guest-eye.png" alt="TheGuestEye — event photo capture platform" loading="lazy">
                                 </div>
-                                    <div class="project-links">
-                                        <a class="live-demo-coming-soon" href="#" aria-disabled="true" tabindex="-1" title="Built but not deployed yet — private repository">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="demo-icon">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                                <polyline points="15 3 21 3 21 9" />
-                                                <line x1="10" y1="14" x2="21" y2="3" />
+                                <div class="project-header">
+                                    <div class="project-main-header">
+                                        <div class="project-title-row">
+                                        <h3 class="project-title">TheGuestEye</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/TheGuestEye">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                             </svg>
-                                            <span class="demo-text">
-                                                <span class="demo-label">Live Demo</span>
-                                                <span class="demo-status" aria-label="Coming soon">Coming Soon</span>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                    </div>
+                                        <div class="project-links">
+                                            <a class="live-demo-coming-soon" href="#" aria-disabled="true" tabindex="-1" title="Built but not deployed yet — private repository">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="demo-icon">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                    <polyline points="15 3 21 3 21 9" />
+                                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                                </svg>
+                                                <span class="demo-text">
+                                                    <span class="demo-label">Live Demo</span>
+                                                    <span class="demo-status" aria-label="Coming soon">Coming Soon</span>
+                                                </span>
+                                                <span class="demo-shimmer" aria-hidden="true"></span>
+                                            </a>
+                                            <span class="private-badge" title="Private repository">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                </svg>
+                                                <span>Private</span>
                                             </span>
-                                            <span class="demo-shimmer" aria-hidden="true"></span>
-                                        </a>
-                                        <span class="private-badge" title="Private repository">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                            </svg>
-                                            <span>Private</span>
-                                        </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p class="project-description">
-                                TheGuestEye is a QR-powered event media collection platform that lets guests seamlessly 
-                                upload photos and videos from their phones without registration or app installation. 
-                                It provides reliable resumable uploads, a centralized media gallery, content moderation, 
-                                QR code generation, event management, and integrated payments through an intuitive administrative dashboard.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">FastAPI</span>
-                                <span class="tech-tag">SQLAlchemy</span>
-                                <span class="tech-tag">Docker</span>
-                                <span class="tech-tag">Paystack</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Fingrasp -->
-                    <article class="project-card featured" data-repo="KrAsH-CoD3/Fingrasp">
-                        <div class="project-content">
-                            <div class="project-image">
-                                <img src="src/assets/projects/fingrasp.png" alt="Fingrasp — browser fingerprint intelligence dashboard" loading="lazy">
-                            </div>
-                            <div class="project-header">
-                                <div class="project-main-header">
-                                    <div class="project-title-row">
-                                    <h3 class="project-title">Fingrasp</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/Fingrasp">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
-                                </div>
-                                    <div class="project-links">
-                                        <a href="https://github.com/KrAsH-CoD3/Fingrasp" target="_blank"
-                                            rel="noopener noreferrer" aria-label="GitHub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path
-                                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
-                                            </svg>
-                                            GitHub
-                                        </a>
-                                        <a href="https://fingrasp.vercel.app" target="_blank" rel="noopener noreferrer"
-                                            aria-label="Live Demo">
-                                            <span class="live-dot" aria-hidden="true"></span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                                <polyline points="15 3 21 3 21 9" />
-                                                <line x1="10" y1="14" x2="21" y2="3" />
-                                            </svg>
-                                            Live Demo
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="project-description">
-                                An advanced device-integrity platform engineered to differentiate between legitimate
-                                hardware
-                                and simulated environments. Focuses on eliminating false positives in browser fingerprinting
-                                to ensure high-fidelity authentication.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">FastAPI</span>
-                                <span class="tech-tag">MongoDB</span>
-                                <span class="tech-tag">Redis</span>
-                                <span class="tech-tag">Fingerprinting</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- PriceDiffs -->
-                    <article class="project-card featured" data-repo="KrAsH-CoD3/PriceDiffs">
-                        <div class="project-content">
-                            <div class="project-image">
-                                <img src="src/assets/projects/pricediffs.png" alt="PriceDiffs — e-commerce price tracking dashboard" loading="lazy">
-                            </div>
-                            <div class="project-header">
-                                <div class="project-main-header">
-                                    <div class="project-title-row">
-                                    <h3 class="project-title">PriceDiffs</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/PriceDiffs">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
-                                </div>
-                                    <div class="project-links">
-                                        <a href="https://github.com/KrAsH-CoD3/PriceDiffs" target="_blank"
-                                            rel="noopener noreferrer" aria-label="GitHub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path
-                                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
-                                            </svg>
-                                            GitHub
-                                        </a>
-                                        <a href="https://pricediffs.up.railway.app" target="_blank" rel="noopener noreferrer"
-                                            aria-label="Live Demo">
-                                            <span class="live-dot" aria-hidden="true"></span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                                <polyline points="15 3 21 3 21 9" />
-                                                <line x1="10" y1="14" x2="21" y2="3" />
-                                            </svg>
-                                            Live Demo
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="project-description">
-                                Multi-phase e-commerce price tracker with stealth browser scraping, historical snapshots, and a Django + DRF dashboard for monitoring price fluctuations across retailers.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Django + DRF</span>
-                                <span class="tech-tag">Scrapling</span>
-                                <span class="tech-tag">Playwright</span>
-                                <span class="tech-tag">Price Tracking</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- Portfolio -->
-                    <article class="project-card featured" data-repo="KrAsH-CoD3/Portfolio">
-                        <div class="project-content">
-                            <div class="project-image">
-                                <img src="src/assets/projects/portfolio.png" alt="Portfolio — this portfolio website" loading="lazy">
-                            </div>
-                            <div class="project-header">
-                                <div class="project-main-header">
-                                    <div class="project-title-row">
-                                    <h3 class="project-title">Portfolio</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/Portfolio">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
-                                </div>
-                                    <div class="project-links">
-                                        <a href="https://github.com/KrAsH-CoD3/Portfolio" target="_blank"
-                                            rel="noopener noreferrer" aria-label="GitHub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path
-                                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
-                                            </svg>
-                                            GitHub
-                                        </a>
-                                        <a href="https://krash-cod3.github.io" target="_blank" rel="noopener noreferrer"
-                                            aria-label="Live Demo">
-                                            <span class="live-dot" aria-hidden="true"></span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                                <polyline points="15 3 21 3 21 9" />
-                                                <line x1="10" y1="14" x2="21" y2="3" />
-                                            </svg>
-                                            Live Demo
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="project-description">
-                                    My personal portfolio — built from scratch with just HTML, CSS, and JavaScript. No frameworks, no libraries. Backend engineers can ship frontends too.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">HTML5</span>
-                                <span class="tech-tag">CSS3</span>
-                                <span class="tech-tag">JavaScript</span>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-
-            <!-- CLI Tools -->
-            <div class="project-category">
-                <h3 class="category-title">CLI Tools</h3>
-                <div class="projects-grid">
-
-                    <!-- WhatsAppStatusViewer -->
-                    <article class="project-card featured" data-repo="KrAsH-CoD3/WhatsApp-Status-Checker">
-                        <div class="project-content">
-                            <div class="project-image">
-                                <img src="src/assets/projects/whatsapp-status-checker.png" alt="WhatsAppStatusViewer — contact status monitoring CLI" loading="lazy">
-                            </div>
-                            <div class="project-header">
-                                <div class="project-main-header">
-                                    <div class="project-title-row">
-                                    <h3 class="project-title">WhatsAppStatusViewer</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/WhatsApp-Status-Checker">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
-                                </div>
-                                    <div class="project-links">
-                                        <a href="https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker" target="_blank"
-                                            rel="noopener noreferrer" aria-label="GitHub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path
-                                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
-                                            </svg>
-                                            GitHub
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="project-description">
-                                Continuously monitors targeted contact status updates and either immediately sends you a
-                                message or at specified time intervals (30m — 6h).
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">WhatsApp</span>
-                                <span class="tech-tag">Automation</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Bybit P2P Repricer -->
-                    <article class="project-card featured" data-repo="KrAsH-CoD3/Bybit-price-monitor">
-                        <div class="project-content">
-                            <div class="project-image">
-                                <img src="src/assets/projects/bybit-price-monitor.png" alt="Bybit P2P Repricer — automated P2P ad repricing Telegram bot" loading="lazy">
-                            </div>
-                            <div class="project-header">
-                                <div class="project-main-header">
-                                    <div class="project-title-row">
-                                    <h3 class="project-title">Bybit P2P Repricer</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/Bybit-price-monitor">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
-                                </div>
-                                    <div class="project-links">
-                                        <span class="private-badge" title="Private repository">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                            </svg>
-                                            <span>Private</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="project-description">
-                                A Telegram bot that keeps Bybit P2P ads at the top price,
-                                identifying top competitor per market, and repricing only when necessary.<br>
-                                Auto-recovers ads hidden by Bybit's `PRICE LIMIT` feature. <br>
-                                Helps traders improve their visibility and competitiveness in the P2P market, leading to more trades.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Telegram Bot</span>
-                                <span class="tech-tag">Bybit P2P</span>
-                                <span class="tech-tag">Automation</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Betking-VF-Autobet -->
-                    <article class="project-card featured" data-repo="KrAsH-CoD3/Betking-VF-Autobet">
-                        <div class="project-content">
-                            <div class="project-image">
-                                <img src="src/assets/projects/betking-vf-autobet.png" alt="Betking-VF-Autobet — virtual football betting automation CLI" loading="lazy">
-                            </div>
-                            <div class="project-header">
-                                <div class="project-main-header">
-                                    <div class="project-title-row">
-                                    <h3 class="project-title">Betking-VF-Autobet</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/Betking-VF-Autobet">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
-                                </div>
-                                    <div class="project-links">
-                                        <a href="https://github.com/KrAsH-CoD3/Betking-VF-Autobet" target="_blank"
-                                            rel="noopener noreferrer" aria-label="GitHub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path
-                                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
-                                            </svg>
-                                            GitHub
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="project-description">
-                                A high-performance automation engine that autonomously executes virtual football bets based
-                                on <strong>Realnaps</strong> predictions. Optimized for continuous real-time stake
-                                management.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Playwright</span>
-                                <span class="tech-tag">Betting</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- BotasHuman -->
-                    <!-- <article class="project-card featured" data-repo="KrAsH-CoD3/botashuman">
-                        <div class="project-content">
-                            <div class="project-header">
-                                <div class="project-meta">
-                                    <span class="project-folder">BotasHuman</span>
-                                    <span class="status-tag">PRIVATE</span>
-                                </div>
-                                <div class="project-main-header">
-                                    <h3 class="project-title">BotasHuman</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/botashuman">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
-                                    <div class="project-links">
-                                        <a href="https://github.com/KrAsH-CoD3/botashuman" target="_blank"
-                                            rel="noopener noreferrer" aria-label="GitHub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path
-                                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
-                                            </svg>
-                                            GitHub
-                                        </a>
-                                        <a href="https://botashuman.com" target="_blank" rel="noopener noreferrer"
-                                            aria-label="Live Demo">
-                                            <span class="live-dot" aria-hidden="true"></span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                                <polyline points="15 3 21 3 21 9" />
-                                                <line x1="10" y1="14" x2="21" y2="3" />
-                                            </svg>
-                                            Live Demo
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="project-description">
-                                A specialized automation platform for universal web orchestration with a zero-detection
-                                footprint. Bypasses advanced anti-bot defenses with indistinguishable
-                                human-interaction and other patterns.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">SaaS</span>
-                                <span class="tech-tag">Anti-Detection</span>
-                                <span class="tech-tag">Automation</span>
-                            </div>
-                        </div>
-                    </article> -->
-
-                    <!-- TheBotify -->
-                    <!-- <article class="project-card featured">
-                        <div class="project-content">
-                            <div class="project-header">
-                                <div class="project-meta">
-                                    <span class="project-folder">TheBotify</span>
-                                    <span class="status-tag">PRIVATE</span>
-                                </div>
-                                <div class="project-main-header">
-                                    <h3 class="project-title">TheBotify Framework</h3>
-                                    <div class="project-links">
-                                        <a href="https://github.com/KrAsH-CoD3/TheBotify" target="_blank"
-                                            rel="noopener noreferrer" aria-label="GitHub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path
-                                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
-                                            </svg>
-                                            GitHub
-                                        </a>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
                                 <p class="project-description">
-                                    My personal portfolio — built from scratch with just HTML, CSS, and JavaScript. No frameworks, no libraries. Backend engineers can ship frontends too.
+                                    TheGuestEye is a QR-powered event media collection platform that lets guests seamlessly 
+                                    upload photos and videos from their phones without registration or app installation. 
+                                    It provides reliable resumable uploads, a centralized media gallery, content moderation, 
+                                    QR code generation, event management, and integrated payments through an intuitive administrative dashboard.
                                 </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">HTML5</span>
-                                <span class="tech-tag">CSS3</span>
-                                <span class="tech-tag">JavaScript</span>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- HumanScroll -->
-
-                    <!-- HumanScroll -->
-                    <article class="project-card featured" data-repo="KrAsH-CoD3/HumanScroll">
-                        <div class="project-content">
-                            <div class="project-image">
-                                <img src="src/assets/projects/humanscroll.png" alt="HumanScroll — physics-based human-like scrolling library" loading="lazy">
-                            </div>
-                            <div class="project-header">
-                                <div class="project-main-header">
-                                    <div class="project-title-row">
-                                    <h3 class="project-title">HumanScroll</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/HumanScroll">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">FastAPI</span>
+                                    <span class="tech-tag">SQLAlchemy</span>
+                                    <span class="tech-tag">Docker</span>
+                                    <span class="tech-tag">Paystack</span>
                                 </div>
-<div class="project-links">
-                                        <a href="https://github.com/KrAsH-CoD3/HumanScroll" target="_blank"
-                                            rel="noopener noreferrer" aria-label="GitHub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path
-                                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
+                            </div>
+                        </article>
+
+                        <!-- Fingrasp -->
+                        <article class="project-card featured" data-repo="KrAsH-CoD3/Fingrasp">
+                            <div class="project-content">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/fingrasp.png" alt="Fingrasp — browser fingerprint intelligence dashboard" loading="lazy">
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-main-header">
+                                        <div class="project-title-row">
+                                        <h3 class="project-title">Fingrasp</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/Fingrasp">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                             </svg>
-                                            GitHub
-                                        </a>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                    </div>
+                                        <div class="project-links">
+                                            <a href="https://github.com/KrAsH-CoD3/Fingrasp" target="_blank"
+                                                rel="noopener noreferrer" aria-label="GitHub">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                            <a href="https://fingrasp.vercel.app" target="_blank" rel="noopener noreferrer"
+                                                aria-label="Live Demo">
+                                                <span class="live-dot" aria-hidden="true"></span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                    <polyline points="15 3 21 3 21 9" />
+                                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                                </svg>
+                                                Live Demo
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p class="project-description">
-                                Physics-based human-like scrolling library for Playwright automation. Models inertia, overshoot, rest periods, and trackpad vs. mouse scroll patterns with anti-detection features.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Playwright</span>
-                                <span class="tech-tag">Anti-Detection</span>
-                                <span class="tech-tag">Behavioral Biometrics</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Plu-Auto-Trading -->
-                    <article class="project-card featured" data-repo="KrAsH-CoD3/Plu-Auto-Trading">
-                        <div class="project-content">
-                            <div class="project-image">
-                                <img src="src/assets/projects/plu-auto-trading.png" alt="Plu-Auto-Trading — automated trading engine CLI" loading="lazy">
-                            </div>
-                            <div class="project-header">
-                                <div class="project-main-header">
-                                    <div class="project-title-row">
-                                    <h3 class="project-title">Plu-Auto-Trading</h3>
-                                    <span class="status-tag stats" data-repo="KrAsH-CoD3/Plu-Auto-Trading">
-                                        <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                        <span class="star-count">-</span>
-                                        <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <line x1="6" y1="3" x2="6" y2="15"></line>
-                                            <circle cx="18" cy="6" r="3"></circle>
-                                            <circle cx="6" cy="18" r="3"></circle>
-                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
-                                        </svg>
-                                        <span class="fork-count">-</span>
-                                    </span>
+                                <p class="project-description">
+                                    An advanced device-integrity platform engineered to differentiate between legitimate
+                                    hardware
+                                    and simulated environments. Focuses on eliminating false positives in browser fingerprinting
+                                    to ensure high-fidelity authentication.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">FastAPI</span>
+                                    <span class="tech-tag">MongoDB</span>
+                                    <span class="tech-tag">Redis</span>
+                                    <span class="tech-tag">Fingerprinting</span>
                                 </div>
-<div class="project-links">
-                                        <a href="https://github.com/KrAsH-CoD3/Plu-Auto-Trading" target="_blank"
-                                            rel="noopener noreferrer" aria-label="GitHub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path
-                                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
+                            </div>
+                        </article>
+                        
+                        <!-- PriceDiffs -->
+                        <article class="project-card featured" data-repo="KrAsH-CoD3/PriceDiffs">
+                            <div class="project-content">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/pricediffs.png" alt="PriceDiffs — e-commerce price tracking dashboard" loading="lazy">
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-main-header">
+                                        <div class="project-title-row">
+                                        <h3 class="project-title">PriceDiffs</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/PriceDiffs">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                             </svg>
-                                            GitHub
-                                        </a>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                    </div>
+                                        <div class="project-links">
+                                            <a href="https://github.com/KrAsH-CoD3/PriceDiffs" target="_blank"
+                                                rel="noopener noreferrer" aria-label="GitHub">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                            <a href="https://pricediffs.up.railway.app" target="_blank" rel="noopener noreferrer"
+                                                aria-label="Live Demo">
+                                                <span class="live-dot" aria-hidden="true"></span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                    <polyline points="15 3 21 3 21 9" />
+                                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                                </svg>
+                                                Live Demo
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="project-description">
+                                    Multi-phase e-commerce price tracker with stealth browser scraping, historical snapshots, and a Django + DRF dashboard for monitoring price fluctuations across retailers.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Django + DRF</span>
+                                    <span class="tech-tag">Scrapling</span>
+                                    <span class="tech-tag">Playwright</span>
+                                    <span class="tech-tag">Price Tracking</span>
+                                </div>
                             </div>
-                            <p class="project-description">
-                            A high-precision trading engine that automatically executes trades at pre-defined intervals for consistent daily growth. Focuses on temporal reliability and automated stake management.
+                        </article>
+                        
+                        <!-- Portfolio -->
+                        <article class="project-card featured" data-repo="KrAsH-CoD3/Portfolio">
+                            <div class="project-content">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/portfolio.png" alt="Portfolio — this portfolio website" loading="lazy">
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-main-header">
+                                        <div class="project-title-row">
+                                        <h3 class="project-title">Portfolio</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/Portfolio">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                            </svg>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                    </div>
+                                        <div class="project-links">
+                                            <a href="https://github.com/KrAsH-CoD3/Portfolio" target="_blank"
+                                                rel="noopener noreferrer" aria-label="GitHub">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                            <a href="https://krash-cod3.github.io" target="_blank" rel="noopener noreferrer"
+                                                aria-label="Live Demo">
+                                                <span class="live-dot" aria-hidden="true"></span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                    <polyline points="15 3 21 3 21 9" />
+                                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                                </svg>
+                                                Live Demo
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="project-description">
+                                        My personal portfolio — built from scratch with just HTML, CSS, and JavaScript. No frameworks, no libraries. Backend engineers can ship frontends too.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- CLI Tools -->
+                <div class="project-category" style="margin-top: 3rem;">
+                    <h3 class="category-title">CLI Tools</h3>
+                    <div class="projects-grid">
+
+                        <!-- WhatsAppStatusViewer -->
+                        <article class="project-card featured" data-repo="KrAsH-CoD3/WhatsApp-Status-Checker">
+                            <div class="project-content">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/whatsapp-status-checker.png" alt="WhatsAppStatusViewer — contact status monitoring CLI" loading="lazy">
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-main-header">
+                                        <div class="project-title-row">
+                                        <h3 class="project-title">WhatsAppStatusViewer</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/WhatsApp-Status-Checker">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                            </svg>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                    </div>
+                                        <div class="project-links">
+                                            <a href="https://github.com/KrAsH-CoD3/WhatsApp-Status-Checker" target="_blank"
+                                                rel="noopener noreferrer" aria-label="GitHub">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="project-description">
+                                    Continuously monitors targeted contact status updates and either immediately sends you a
+                                    message or at specified time intervals (30m — 6h).
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">WhatsApp</span>
+                                    <span class="tech-tag">Automation</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Bybit P2P Repricer -->
+                        <article class="project-card featured" data-repo="KrAsH-CoD3/Bybit-price-monitor">
+                            <div class="project-content">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/bybit-price-monitor.png" alt="Bybit P2P Repricer — automated P2P ad repricing Telegram bot" loading="lazy">
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-main-header">
+                                        <div class="project-title-row">
+                                        <h3 class="project-title">Bybit P2P Repricer</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/Bybit-price-monitor">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                            </svg>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                    </div>
+                                        <div class="project-links">
+                                            <span class="private-badge" title="Private repository">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                </svg>
+                                                <span>Private</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="project-description">
+                                    A Telegram bot that keeps Bybit P2P ads at the top price,
+                                    identifying top competitor per market, and repricing only when necessary.<br>
+                                    Auto-recovers ads hidden by Bybit's `PRICE LIMIT` feature. <br>
+                                    Helps traders improve their visibility and competitiveness in the P2P market, leading to more trades.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Telegram Bot</span>
+                                    <span class="tech-tag">Bybit P2P</span>
+                                    <span class="tech-tag">Automation</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Betking-VF-Autobet -->
+                        <article class="project-card featured" data-repo="KrAsH-CoD3/Betking-VF-Autobet">
+                            <div class="project-content">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/betking-vf-autobet.png" alt="Betking-VF-Autobet — virtual football betting automation CLI" loading="lazy">
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-main-header">
+                                        <div class="project-title-row">
+                                        <h3 class="project-title">Betking-VF-Autobet</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/Betking-VF-Autobet">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                            </svg>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                    </div>
+                                        <div class="project-links">
+                                            <a href="https://github.com/KrAsH-CoD3/Betking-VF-Autobet" target="_blank"
+                                                rel="noopener noreferrer" aria-label="GitHub">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="project-description">
+                                    A high-performance automation engine that autonomously executes virtual football bets based
+                                    on <strong>Realnaps</strong> predictions. Optimized for continuous real-time stake
+                                    management.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Playwright</span>
+                                    <span class="tech-tag">Betting</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- BotasHuman -->
+                        <!-- <article class="project-card featured" data-repo="KrAsH-CoD3/botashuman">
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <div class="project-meta">
+                                        <span class="project-folder">BotasHuman</span>
+                                        <span class="status-tag">PRIVATE</span>
+                                    </div>
+                                    <div class="project-main-header">
+                                        <h3 class="project-title">BotasHuman</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/botashuman">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                            </svg>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                        <div class="project-links">
+                                            <a href="https://github.com/KrAsH-CoD3/botashuman" target="_blank"
+                                                rel="noopener noreferrer" aria-label="GitHub">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                            <a href="https://botashuman.com" target="_blank" rel="noopener noreferrer"
+                                                aria-label="Live Demo">
+                                                <span class="live-dot" aria-hidden="true"></span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                                    <polyline points="15 3 21 3 21 9" />
+                                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                                </svg>
+                                                Live Demo
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="project-description">
+                                    A specialized automation platform for universal web orchestration with a zero-detection
+                                    footprint. Bypasses advanced anti-bot defenses with indistinguishable
+                                    human-interaction and other patterns.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">SaaS</span>
+                                    <span class="tech-tag">Anti-Detection</span>
+                                    <span class="tech-tag">Automation</span>
+                                </div>
+                            </div>
+                        </article> -->
+
+                        <!-- TheBotify -->
+                        <!-- <article class="project-card featured">
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <div class="project-meta">
+                                        <span class="project-folder">TheBotify</span>
+                                        <span class="status-tag">PRIVATE</span>
+                                    </div>
+                                    <div class="project-main-header">
+                                        <h3 class="project-title">TheBotify Framework</h3>
+                                        <div class="project-links">
+                                            <a href="https://github.com/KrAsH-CoD3/TheBotify" target="_blank"
+                                                rel="noopener noreferrer" aria-label="GitHub">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                    <p class="project-description">
+                                        My personal portfolio — built from scratch with just HTML, CSS, and JavaScript. No frameworks, no libraries. Backend engineers can ship frontends too.
+                                    </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- HumanScroll -->
+
+                        <!-- HumanScroll -->
+                        <article class="project-card featured" data-repo="KrAsH-CoD3/HumanScroll">
+                            <div class="project-content">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/humanscroll.png" alt="HumanScroll — physics-based human-like scrolling library" loading="lazy">
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-main-header">
+                                        <div class="project-title-row">
+                                        <h3 class="project-title">HumanScroll</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/HumanScroll">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                            </svg>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                    </div>
+                                        <div class="project-links">
+                                            <a href="https://github.com/KrAsH-CoD3/HumanScroll" target="_blank"
+                                                rel="noopener noreferrer" aria-label="GitHub">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="project-description">
+                                    Physics-based human-like scrolling library for Playwright automation. Models inertia, overshoot, rest periods, and trackpad vs. mouse scroll patterns with anti-detection features.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Playwright</span>
+                                    <span class="tech-tag">Anti-Detection</span>
+                                    <span class="tech-tag">Behavioral Biometrics</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Plu-Auto-Trading -->
+                        <article class="project-card featured" data-repo="KrAsH-CoD3/Plu-Auto-Trading">
+                            <div class="project-content">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/plu-auto-trading.png" alt="Plu-Auto-Trading — automated trading engine CLI" loading="lazy">
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-main-header">
+                                        <div class="project-title-row">
+                                        <h3 class="project-title">Plu-Auto-Trading</h3>
+                                        <span class="status-tag stats" data-repo="KrAsH-CoD3/Plu-Auto-Trading">
+                                            <svg class="icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                            </svg>
+                                            <span class="star-count">-</span>
+                                            <svg class="icon-fork" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="18" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                            <span class="fork-count">-</span>
+                                        </span>
+                                    </div>
+                                        <div class="project-links">
+                                            <a href="https://github.com/KrAsH-CoD3/Plu-Auto-Trading" target="_blank"
+                                                rel="noopener noreferrer" aria-label="GitHub">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                    <path
+                                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                GitHub
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="project-description">
+                                A high-precision trading engine that automatically executes trades at pre-defined intervals for consistent daily growth. Focuses on temporal reliability and automated stake management.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Automation</span>
+                                    <span class="tech-tag">Trading</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section" id="research" aria-labelledby="research-title">
+            <div class="container">
+                <h2 class="section-title" id="research-title"><span class="hacker-trigger">Contribution & Research</span></h2>
+
+                <div class="footprint">
+                    <h3 class="footprint-group-label">Open Source Contributions</h3>
+                    <div class="footprint-grid">
+                        <!-- camouchat-whatsapp -->
+                        <a class="contrib-card" href="https://github.com/CamouChat-Team/camouchat-whatsapp" target="_blank" rel="noopener noreferrer">
+                            <div class="contrib-top">
+                                <span class="contrib-repo"><span class="contrib-owner">CamouChat-Team</span><span class="contrib-name">camouchat-whatsapp</span></span>
+                                <span class="status-tag stats" data-repo="CamouChat-Team/camouchat-whatsapp">
+                                    <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
+                                    <span class="star-count">-</span>
+                                </span>
+                            </div>
+                            <p class="contrib-desc">
+                                The WhatsApp plugin layer for the CamouChat stealth automation framework. Expanded its
+                                competitor matrix and hardened the plugin against a JavaScript injection vector, a path
+                                traversal flaw and log leakage.
                             </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Automation</span>
-                                <span class="tech-tag">Trading</span>
+                            <div class="contrib-tags">
+                                <span class="contrib-tag merged">PR #10 merged</span>
+                                <span class="contrib-tag open">PR #24 open</span>
+                                <span class="contrib-tag closed">PR #9 closed</span>
+                            </div>
+                        </a>
+                        <!-- pydoll -->
+                        <a class="contrib-card" href="https://github.com/autoscrape-labs/pydoll" target="_blank" rel="noopener noreferrer">
+                            <div class="contrib-top">
+                                <span class="contrib-repo"><span class="contrib-owner">autoscrape-labs</span><span class="contrib-name">pydoll</span></span>
+                                <span class="status-tag stats" data-repo="autoscrape-labs/pydoll">
+                                    <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
+                                    <span class="star-count">-</span>
+                                </span>
+                            </div>
+                            <p class="contrib-desc">
+                                A WebDriver-less Chromium automation library that drives the browser directly over the
+                                DevTools Protocol. Authored a merged fix pass covering resource leaks, incorrect runtime
+                                behaviour and deprecation warnings, filed from a self-reproduced defect report.
+                            </p>
+                            <div class="contrib-tags">
+                                <span class="contrib-tag merged">PR #427 merged</span>
+                                <span class="contrib-tag commits">16 commits</span>
+                                <span class="contrib-tag issue">Issue #426</span>
+                            </div>
+                        </a>
+                        <!-- HumanTyping -->
+                        <a class="contrib-card" href="https://github.com/Lax3n/HumanTyping" target="_blank" rel="noopener noreferrer">
+                            <div class="contrib-top">
+                                <span class="contrib-repo"><span class="contrib-owner">Lax3n</span><span class="contrib-name">HumanTyping</span></span>
+                                <span class="status-tag stats" data-repo="Lax3n/HumanTyping">
+                                    <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
+                                    <span class="star-count">-</span>
+                                </span>
+                            </div>
+                            <p class="contrib-desc">
+                                A Python library that simulates realistic human keyboard typing for web automation
+                                (Playwright/Selenium), using Markov chains to model errors, corrections and fatigue.
+                                Improved error correction and modernized the packaging.
+                            </p>
+                            <div class="contrib-tags">
+                                <span class="contrib-tag merged">PR #2 merged</span>
+                                <span class="contrib-tag commits">6 commits</span>
+                                <span class="contrib-tag issue">Issue #1</span>
+                            </div>
+                        </a>
+                        <!-- StealthBrowserController -->
+                        <a class="contrib-card" href="https://github.com/sarperavci/StealthBrowserController" target="_blank" rel="noopener noreferrer">
+                            <div class="contrib-top">
+                                <span class="contrib-repo"><span class="contrib-owner">sarperavci</span><span class="contrib-name">StealthBrowserController</span></span>
+                                <span class="status-tag stats" data-repo="sarperavci/StealthBrowserController">
+                                    <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
+                                    <span class="star-count">-</span>
+                                </span>
+                            </div>
+                            <p class="contrib-desc">
+                                Natural browser control through mouse movement and screen detection. Diagnosed two
+                                packaging defects from a clean install - a wrong Python version floor and a missing
+                                <code>mss</code> dependency - then landed the merged fix.
+                            </p>
+                            <div class="contrib-tags">
+                                <span class="contrib-tag merged">PR #5 merged</span>
+                                <span class="contrib-tag commits">4 commits</span>
+                                <span class="contrib-tag issue">Issues #3, #4</span>
+                            </div>
+                        </a>
+                        <!-- callmebot -->
+                        <a class="contrib-card" href="https://github.com/gabrielrih/callmebot" target="_blank" rel="noopener noreferrer">
+                            <div class="contrib-top">
+                                <span class="contrib-repo"><span class="contrib-owner">gabrielrih</span><span class="contrib-name">callmebot</span></span>
+                                <span class="status-tag stats" data-repo="gabrielrih/callmebot">
+                                    <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
+                                    <span class="star-count">-</span>
+                                </span>
+                            </div>
+                            <p class="contrib-desc">
+                                A Python wrapper for the free CallMeBot WhatsApp messaging API, with session management
+                                and environment-based configuration. Modernized the interface with a new
+                                <code>send_message</code> function.
+                            </p>
+                            <div class="contrib-tags">
+                                <span class="contrib-tag merged">PR #4 merged</span>
+                                <span class="contrib-tag commits">6 commits</span>
+                            </div>
+                        </a>
+                        <!-- playwright_stealth -->
+                        <a class="contrib-card" href="https://github.com/AtuboDad/playwright_stealth" target="_blank" rel="noopener noreferrer">
+                            <div class="contrib-top">
+                                <span class="contrib-repo"><span class="contrib-owner">AtuboDad</span><span class="contrib-name">playwright_stealth</span></span>
+                                <span class="status-tag stats" data-repo="AtuboDad/playwright_stealth">
+                                    <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
+                                    <span class="star-count">-</span>
+                                </span>
+                            </div>
+                            <p class="contrib-desc">
+                                A stealth plugin for Playwright that patches the most common automation leaks. Rewrote
+                                the README for clearer setup and usage.
+                            </p>
+                            <div class="contrib-tags">
+                                <span class="contrib-tag open">PR #26 open</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <h3 class="footprint-group-label">Research</h3>
+                    <div class="footprint-grid">
+                        <!-- Fingrasp research -->
+                        <a class="contrib-card" href="https://fingrasp.vercel.app" target="_blank" rel="noopener noreferrer">
+                            <div class="contrib-top">
+                                <span class="contrib-repo"><span class="contrib-owner">KrAsH-CoD3</span><span class="contrib-name">Fingrasp</span></span>
+                            </div>
+                            <p class="contrib-desc">
+                                Exploring a device-integrity platform that differentiates legitimate hardware from
+                                simulated environments - multi-layered integrity protection, behavioural scoring and
+                                transient session security to eliminate false positives.
+                            </p>
+                            <div class="contrib-tags">
+                                <span class="contrib-tag research">Research</span>
+                                <span class="contrib-tag live">Live Demo</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <h2 class="section-title" id="contact-title"><span class="hacker-trigger">Contact</span></h2>
+                <div class="contact-content">
+                    <form id="contactForm" class="contact-form" action="https://formspree.io/f/mkoyboky" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Adam Smith"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-control"
+                                    placeholder="adamsmith@example.com" required>
                             </div>
                         </div>
-                    </article>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="section" id="research" aria-labelledby="research-title">
-        <div class="container">
-            <h2 class="section-title" id="research-title"><span class="hacker-trigger">Contribution & Research</span></h2>
-
-            <div class="footprint">
-                <h3 class="footprint-group-label">Open Source Contributions</h3>
-                <div class="footprint-grid">
-                    <!-- camouchat-whatsapp -->
-                    <a class="contrib-card" href="https://github.com/CamouChat-Team/camouchat-whatsapp" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">CamouChat-Team</span><span class="contrib-name">camouchat-whatsapp</span></span>
-                            <span class="status-tag stats" data-repo="CamouChat-Team/camouchat-whatsapp">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            The WhatsApp plugin layer for the CamouChat stealth automation framework. Expanded its
-                            competitor matrix and hardened the plugin against a JavaScript injection vector, a path
-                            traversal flaw and log leakage.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #10 merged</span>
-                            <span class="contrib-tag open">PR #24 open</span>
-                            <span class="contrib-tag closed">PR #9 closed</span>
-                        </div>
-                    </a>
-                    <!-- pydoll -->
-                    <a class="contrib-card" href="https://github.com/autoscrape-labs/pydoll" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">autoscrape-labs</span><span class="contrib-name">pydoll</span></span>
-                            <span class="status-tag stats" data-repo="autoscrape-labs/pydoll">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            A WebDriver-less Chromium automation library that drives the browser directly over the
-                            DevTools Protocol. Authored a merged fix pass covering resource leaks, incorrect runtime
-                            behaviour and deprecation warnings, filed from a self-reproduced defect report.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #427 merged</span>
-                            <span class="contrib-tag commits">16 commits</span>
-                            <span class="contrib-tag issue">Issue #426</span>
-                        </div>
-                    </a>
-                    <!-- HumanTyping -->
-                    <a class="contrib-card" href="https://github.com/Lax3n/HumanTyping" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">Lax3n</span><span class="contrib-name">HumanTyping</span></span>
-                            <span class="status-tag stats" data-repo="Lax3n/HumanTyping">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            A Python library that simulates realistic human keyboard typing for web automation
-                            (Playwright/Selenium), using Markov chains to model errors, corrections and fatigue.
-                            Improved error correction and modernized the packaging.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #2 merged</span>
-                            <span class="contrib-tag commits">6 commits</span>
-                            <span class="contrib-tag issue">Issue #1</span>
-                        </div>
-                    </a>
-                    <!-- StealthBrowserController -->
-                    <a class="contrib-card" href="https://github.com/sarperavci/StealthBrowserController" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">sarperavci</span><span class="contrib-name">StealthBrowserController</span></span>
-                            <span class="status-tag stats" data-repo="sarperavci/StealthBrowserController">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            Natural browser control through mouse movement and screen detection. Diagnosed two
-                            packaging defects from a clean install - a wrong Python version floor and a missing
-                            <code>mss</code> dependency - then landed the merged fix.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #5 merged</span>
-                            <span class="contrib-tag commits">4 commits</span>
-                            <span class="contrib-tag issue">Issues #3, #4</span>
-                        </div>
-                    </a>
-                    <!-- callmebot -->
-                    <a class="contrib-card" href="https://github.com/gabrielrih/callmebot" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">gabrielrih</span><span class="contrib-name">callmebot</span></span>
-                            <span class="status-tag stats" data-repo="gabrielrih/callmebot">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            A Python wrapper for the free CallMeBot WhatsApp messaging API, with session management
-                            and environment-based configuration. Modernized the interface with a new
-                            <code>send_message</code> function.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag merged">PR #4 merged</span>
-                            <span class="contrib-tag commits">6 commits</span>
-                        </div>
-                    </a>
-                    <!-- playwright_stealth -->
-                    <a class="contrib-card" href="https://github.com/AtuboDad/playwright_stealth" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">AtuboDad</span><span class="contrib-name">playwright_stealth</span></span>
-                            <span class="status-tag stats" data-repo="AtuboDad/playwright_stealth">
-                                <svg class="icon-star" width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#icon-star" /></svg>
-                                <span class="star-count">-</span>
-                            </span>
-                        </div>
-                        <p class="contrib-desc">
-                            A stealth plugin for Playwright that patches the most common automation leaks. Rewrote
-                            the README for clearer setup and usage.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag open">PR #26 open</span>
-                        </div>
-                    </a>
-                </div>
-
-                <h3 class="footprint-group-label">Research</h3>
-                <div class="footprint-grid">
-                    <!-- Fingrasp research -->
-                    <a class="contrib-card" href="https://fingrasp.vercel.app" target="_blank" rel="noopener noreferrer">
-                        <div class="contrib-top">
-                            <span class="contrib-repo"><span class="contrib-owner">KrAsH-CoD3</span><span class="contrib-name">Fingrasp</span></span>
-                        </div>
-                        <p class="contrib-desc">
-                            Exploring a device-integrity platform that differentiates legitimate hardware from
-                            simulated environments - multi-layered integrity protection, behavioural scoring and
-                            transient session security to eliminate false positives.
-                        </p>
-                        <div class="contrib-tags">
-                            <span class="contrib-tag research">Research</span>
-                            <span class="contrib-tag live">Live Demo</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="contact" aria-labelledby="contact-title">
-        <div class="container">
-            <h2 class="section-title" id="contact-title"><span class="hacker-trigger">Contact</span></h2>
-            <div class="contact-content">
-                <form id="contactForm" class="contact-form" action="https://formspree.io/f/mkoyboky" method="POST">
-                    <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Adam Smith"
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control" placeholder="Job Offer"
                                 required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" class="form-control"
-                                placeholder="adamsmith@example.com" required>
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-control" rows="5"
+                                placeholder="Enter your message..." required></textarea>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Job Offer"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" class="form-control" rows="5"
-                            placeholder="Enter your message..." required></textarea>
-                    </div>
-                    <button type="submit" id="submitBtn" class="contact-btn submit-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                        <span class="btn-text">Send Message</span>
-                    </button>
-                    <div id="formStatus" class="status-message"></div>
-                </form>
+                        <button type="submit" id="submitBtn" class="contact-btn submit-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                            <span class="btn-text">Send Message</span>
+                        </button>
+                        <div id="formStatus" class="status-message"></div>
+                    </form>
 
-                <div class="contact-links">
-                    <a href="mailto:samuelalewi@gmail.com" class="contact-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        Email
-                    </a>
-                    <a href="https://github.com/KrAsH-CoD3" class="contact-btn" target="_blank"
-                        rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                            </path>
-                        </svg>
-                        GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/samuel-alewi/?lipi=urn%3Ali%3Apage%3Ad_flagship3_detail_base%3BtbvlRPibQqujwv4PlUNRWA%3D%3D" class="contact-btn" target="_blank"
-                        rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                            </path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                        LinkedIn
-                    </a>
+                    <div class="contact-links">
+                        <a href="mailto:samuelalewi@gmail.com" class="contact-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            Email
+                        </a>
+                        <a href="https://github.com/KrAsH-CoD3" class="contact-btn" target="_blank"
+                            rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/samuel-alewi/?lipi=urn%3Ali%3Apage%3Ad_flagship3_detail_base%3BtbvlRPibQqujwv4PlUNRWA%3D%3D" class="contact-btn" target="_blank"
+                            rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                            LinkedIn
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Samuel Alewi. 
-                <br> # KrAsH-CoD3
-            </p>
-        </div>
-    </footer>
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2026 Samuel Alewi. 
+                    <br> # KrAsH-CoD3
+                </p>
+            </div>
+        </footer>
 
-    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
-
-    <!-- Image Lightbox -->
-    <div id="imageLightbox" class="lightbox" role="dialog" aria-label="Image preview" aria-hidden="true">
-        <div class="lightbox-backdrop"></div>
-        <button class="lightbox-close" aria-label="Close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
+        <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
             </svg>
         </button>
-        <div class="lightbox-content">
-            <img src="" alt="">
-            <span class="lightbox-caption"></span>
+
+        <!-- Image Lightbox -->
+        <div id="imageLightbox" class="lightbox" role="dialog" aria-label="Image preview" aria-hidden="true">
+            <div class="lightbox-backdrop"></div>
+            <button class="lightbox-close" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="lightbox-content">
+                <img src="" alt="">
+                <span class="lightbox-caption"></span>
+            </div>
         </div>
-    </div>
 
-    <script src="src/scripts/main.js"></script>
-
-</body>
+        <script src="src/scripts/main.js"></script>
+    </body>
 
 </html>
