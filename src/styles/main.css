@@ -1857,14 +1857,7 @@ body:not(.loading) .hero-image-wrapper {
 .live-demo-coming-soon .demo-text {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
     position: relative;
-}
-
-.live-demo-coming-soon .demo-label {
-    color: var(--accent);
-    opacity: 0.5;
-    font-weight: 400;
 }
 
 .live-demo-coming-soon .demo-status {
@@ -2021,14 +2014,7 @@ body:not(.loading) .hero-image-wrapper {
 .live-demo-down .demo-text {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
     position: relative;
-}
-
-.live-demo-down .demo-label {
-    color: var(--danger);
-    opacity: 0.5;
-    font-weight: 400;
 }
 
 .live-demo-down .demo-status.down {
