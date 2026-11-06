@@ -20,9 +20,9 @@ Specialized in engineering Python-based server-side foundations and advanced hea
 
 #### Web Apps
 
-- **[TheGuestEye](https://github.com/KrAsH-CoD3/TheGuestEye)** — A friction-free event media capture platform where guests scan a QR code and upload photos/videos directly from their phones — no apps, no logins. Resumable chunked uploads with localStorage persistence and exponential backoff retry. Stack: FastAPI, SQLAlchemy async, PostgreSQL, Paystack.
-- **[Fingrasp](https://github.com/KrAsH-CoD3/Fingrasp)** — A browser-fingerprint intelligence platform designed to differentiate between legitimate hardware and simulated environments using entropy research and SHA-256 composite hashing. Live: [fingrasp.vercel.app](https://fingrasp.vercel.app)
-- **[PriceDiffs](https://github.com/KrAsH-CoD3/PriceDiffs)** — Multi-phase e-commerce price tracker with stealth browser scraping, historical snapshots, and a Django + DRF dashboard for monitoring price fluctuations across retailers. Live: [pricediffs.up.railway.app](https://pricediffs.up.railway.app)
+- **[TheGuestEye](https://github.com/KrAsH-CoD3/TheGuestEye)** — A friction-free event media capture platform where guests scan a QR code and upload photos/videos directly from their phones — no apps, no logins. Resumable chunked uploads with localStorage persistence and exponential backoff retry. Stack: FastAPI, SQLAlchemy async, PostgreSQL, Paystack. Coming soon!
+- **[Fingrasp](https://github.com/KrAsH-CoD3/Fingrasp)** — A browser-fingerprint intelligence platform designed to differentiate between legitimate hardware and simulated environments using entropy research and SHA-256 composite hashing. Live: [fingrasp](https://fingrasp.vercel.app)
+- **[PriceDiffs](https://github.com/KrAsH-CoD3/PriceDiffs)** — Multi-phase e-commerce price tracker with stealth browser scraping, historical snapshots, and a Django + DRF dashboard for monitoring price fluctuations across retailers. Temporarily Down: [pricediffs](https://pricediffs.up.railway.app)
 - **[Portfolio](https://github.com/KrAsH-CoD3/Portfolio)** — This personal portfolio — built from scratch with just HTML, CSS, and JavaScript. No frameworks, no libraries. Live: [krash-cod3.github.io](https://krash-cod3.github.io)
 
 #### CLI Tools
